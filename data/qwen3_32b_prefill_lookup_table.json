@@ -1,0 +1,182 @@
+[
+    {
+        "batch_size": 1,
+        "prompt_length": 128,
+        "ffn_gemm_ms": 0.3793,
+        "attention_prefill_ms": 0.0155
+    },
+    {
+        "batch_size": 1,
+        "prompt_length": 512,
+        "ffn_gemm_ms": 1.3288,
+        "attention_prefill_ms": 0.0528
+    },
+    {
+        "batch_size": 1,
+        "prompt_length": 1024,
+        "ffn_gemm_ms": 2.3754,
+        "attention_prefill_ms": 0.1637
+    },
+    {
+        "batch_size": 1,
+        "prompt_length": 2048,
+        "ffn_gemm_ms": 4.7449,
+        "attention_prefill_ms": 0.5745
+    },
+    {
+        "batch_size": 1,
+        "prompt_length": 4096,
+        "ffn_gemm_ms": 9.2249,
+        "attention_prefill_ms": 2.1596
+    },
+    {
+        "batch_size": 2,
+        "prompt_length": 128,
+        "ffn_gemm_ms": 0.7948,
+        "attention_prefill_ms": 0.0154
+    },
+    {
+        "batch_size": 2,
+        "prompt_length": 512,
+        "ffn_gemm_ms": 2.3752,
+        "attention_prefill_ms": 0.0895
+    },
+    {
+        "batch_size": 2,
+        "prompt_length": 1024,
+        "ffn_gemm_ms": 4.7448,
+        "attention_prefill_ms": 0.3006
+    },
+    {
+        "batch_size": 2,
+        "prompt_length": 2048,
+        "ffn_gemm_ms": 9.2254,
+        "attention_prefill_ms": 1.1082
+    },
+    {
+        "batch_size": 2,
+        "prompt_length": 4096,
+        "ffn_gemm_ms": 18.4366,
+        "attention_prefill_ms": 4.2217
+    },
+    {
+        "batch_size": 4,
+        "prompt_length": 128,
+        "ffn_gemm_ms": 1.3213,
+        "attention_prefill_ms": 0.0204
+    },
+    {
+        "batch_size": 4,
+        "prompt_length": 512,
+        "ffn_gemm_ms": 4.746,
+        "attention_prefill_ms": 0.164
+    },
+    {
+        "batch_size": 4,
+        "prompt_length": 1024,
+        "ffn_gemm_ms": 9.2284,
+        "attention_prefill_ms": 0.584
+    },
+    {
+        "batch_size": 4,
+        "prompt_length": 2048,
+        "ffn_gemm_ms": 18.4503,
+        "attention_prefill_ms": 2.1567
+    },
+    {
+        "batch_size": 4,
+        "prompt_length": 4096,
+        "ffn_gemm_ms": 36.8588,
+        "attention_prefill_ms": 8.3344
+    },
+    {
+        "batch_size": 8,
+        "prompt_length": 128,
+        "ffn_gemm_ms": 2.3759,
+        "attention_prefill_ms": 0.0345
+    },
+    {
+        "batch_size": 8,
+        "prompt_length": 512,
+        "ffn_gemm_ms": 9.2268,
+        "attention_prefill_ms": 0.3241
+    },
+    {
+        "batch_size": 8,
+        "prompt_length": 1024,
+        "ffn_gemm_ms": 18.4445,
+        "attention_prefill_ms": 1.1465
+    },
+    {
+        "batch_size": 8,
+        "prompt_length": 2048,
+        "ffn_gemm_ms": 36.8524,
+        "attention_prefill_ms": 4.2702
+    },
+    {
+        "batch_size": 8,
+        "prompt_length": 4096,
+        "ffn_gemm_ms": 76.1067,
+        "attention_prefill_ms": 16.5795
+    },
+    {
+        "batch_size": 16,
+        "prompt_length": 128,
+        "ffn_gemm_ms": 4.7452,
+        "attention_prefill_ms": 0.0623
+    },
+    {
+        "batch_size": 16,
+        "prompt_length": 512,
+        "ffn_gemm_ms": 18.4344,
+        "attention_prefill_ms": 0.6334
+    },
+    {
+        "batch_size": 16,
+        "prompt_length": 1024,
+        "ffn_gemm_ms": 36.8502,
+        "attention_prefill_ms": 2.2954
+    },
+    {
+        "batch_size": 16,
+        "prompt_length": 2048,
+        "ffn_gemm_ms": 76.4026,
+        "attention_prefill_ms": 8.6195
+    },
+    {
+        "batch_size": 16,
+        "prompt_length": 4096,
+        "ffn_gemm_ms": 153.3713,
+        "attention_prefill_ms": 33.2915
+    },
+    {
+        "batch_size": 32,
+        "prompt_length": 128,
+        "ffn_gemm_ms": 9.2496,
+        "attention_prefill_ms": 0.2352
+    },
+    {
+        "batch_size": 32,
+        "prompt_length": 512,
+        "ffn_gemm_ms": 36.8527,
+        "attention_prefill_ms": 1.2898
+    },
+    {
+        "batch_size": 32,
+        "prompt_length": 1024,
+        "ffn_gemm_ms": 76.9103,
+        "attention_prefill_ms": 4.6724
+    },
+    {
+        "batch_size": 32,
+        "prompt_length": 2048,
+        "ffn_gemm_ms": 154.2872,
+        "attention_prefill_ms": 17.4096
+    },
+    {
+        "batch_size": 32,
+        "prompt_length": 4096,
+        "ffn_gemm_ms": 309.455,
+        "attention_prefill_ms": 67.1595
+    }
+]

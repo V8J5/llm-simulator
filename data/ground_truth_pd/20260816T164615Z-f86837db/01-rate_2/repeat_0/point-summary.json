@@ -1,0 +1,71 @@
+{
+  "requestRate": "2",
+  "runStatus": "success",
+  "failureReason": "",
+  "attemptIndex": 0,
+  "isWarmup": false,
+  "artifactDir": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/20260816T164615Z-f86837db/01-rate_2/repeat_0",
+  "metrics": {
+    "total": 5,
+    "completed": 1,
+    "failed": 4,
+    "successRate": 20.0,
+    "errorRate": 80.0,
+    "requestThroughput": 0.49966545974205956,
+    "outputTokenThroughput": 0.0,
+    "totalTokenThroughput": 255.8287153879345,
+    "promptTokens": 512,
+    "outputTokens": 0,
+    "plannedInputTokens": 2560,
+    "plannedOutputTokens": 640,
+    "actualDurationSeconds": 2.001339056968689,
+    "actualConcurrency": {
+      "peak": 1,
+      "average": 0.04436593992741113
+    },
+    "ttftMs": {
+      "p50": null,
+      "p90": null,
+      "p95": null,
+      "p99": null
+    },
+    "tpotMs": {
+      "p50": null,
+      "p90": null,
+      "p95": null,
+      "p99": null
+    },
+    "itlMs": {
+      "p50": null,
+      "p90": null,
+      "p95": null,
+      "p99": null
+    },
+    "e2eLatencyMs": {
+      "p50": 1.3040266036987305,
+      "p90": 82.59269618988037,
+      "p95": 82.59269618988037,
+      "p99": 82.59269618988037
+    },
+    "clientBackpressureMs": {
+      "p50": 0.4312906265258789,
+      "p90": 1.9343209266662598,
+      "p95": 1.9343209266662598,
+      "p99": 1.9343209266662598
+    },
+    "requestStatusCounts": {
+      "200": 1,
+      "500": 1,
+      "none": 3
+    },
+    "failureCategoryCounts": {
+      "connection_error": 3,
+      "http_5xx": 1
+    },
+    "gpu": {
+      "gpuMemoryPeakMb": 39449,
+      "gpuUtilizationPeakPercent": 0,
+      "gpuUtilizationAvgPercent": 0.0
+    }
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "createdAt": "2026-08-16T16:46:15.136736+00:00",
+  "requestRate": "2",
+  "attemptIndex": 0,
+  "isWarmup": false,
+  "baseUrl": "http://127.0.0.1:8001",
+  "endpoint": "/v1/chat/completions",
+  "servedModelName": "/data/home/public/weight/Qwen3-32B",
+  "requestCount": 5,
+  "scheduledDurationSeconds": 2.0,
+  "maxConcurrency": 2,
+  "clientWorkers": 2,
+  "workload": {
+    "type": "synthetic",
+    "inputTokenCap": null,
+    "outputTokenCap": null
+  }
+}

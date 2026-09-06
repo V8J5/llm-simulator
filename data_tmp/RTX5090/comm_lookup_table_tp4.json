@@ -1,0 +1,77 @@
+[
+    {
+        "world_size": 4,
+        "msg_size_mb": 0.01,
+        "allreduce_ms": 13.2387
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 0.02,
+        "allreduce_ms": 0.0165
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 0.05,
+        "allreduce_ms": 0.0188
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 0.1,
+        "allreduce_ms": 0.0207
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 0.2,
+        "allreduce_ms": 0.0343
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 0.5,
+        "allreduce_ms": 0.1643
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 1,
+        "allreduce_ms": 0.1717
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 2,
+        "allreduce_ms": 0.3627
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 4,
+        "allreduce_ms": 0.6243
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 8,
+        "allreduce_ms": 1.2881
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 16,
+        "allreduce_ms": 2.6895
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 32,
+        "allreduce_ms": 5.6105
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 64,
+        "allreduce_ms": 11.6715
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 128,
+        "allreduce_ms": 23.2323
+    },
+    {
+        "world_size": 4,
+        "msg_size_mb": 256,
+        "allreduce_ms": 46.6164
+    }
+]

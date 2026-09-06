@@ -1,0 +1,74 @@
+{
+  "cases": [
+    {
+      "id": "A",
+      "name": "实时对话",
+      "description": "模拟实时交互场景，用户等待首 token 敏感",
+      "prompt_len": 128,
+      "output_len": 64,
+      "batch_sizes": [1, 2, 4, 8, 16, 32],
+      "sla": {
+        "ttft_ms": 500,
+        "tpot_ms": 50
+      },
+      "scenario": "chat"
+    },
+    {
+      "id": "B",
+      "name": "标准对话",
+      "description": "典型对话场景",
+      "prompt_len": 512,
+      "output_len": 128,
+      "batch_sizes": [1, 2, 4, 8, 16, 32],
+      "sla": {
+        "ttft_ms": 500,
+        "tpot_ms": 50
+      },
+      "scenario": "chat"
+    },
+    {
+      "id": "C",
+      "name": "长上下文推理",
+      "description": "长文档分析、多轮对话总结",
+      "prompt_len": 2048,
+      "output_len": 256,
+      "batch_sizes": [1, 2, 4, 8],
+      "sla": {
+        "ttft_ms": 2000,
+        "tpot_ms": 100
+      },
+      "scenario": "long_context"
+    },
+    {
+      "id": "D",
+      "name": "代码生成",
+      "description": "代码补全、代码生成场景",
+      "prompt_len": 512,
+      "output_len": 512,
+      "batch_sizes": [1, 2, 4, 8],
+      "sla": {
+        "ttft_ms": 2000,
+        "tpot_ms": 100
+      },
+      "scenario": "code"
+    },
+    {
+      "id": "E",
+      "name": "文档摘要",
+      "description": "大文档摘要生成，输出较长",
+      "prompt_len": 4096,
+      "output_len": 1024,
+      "batch_sizes": [1, 2, 4],
+      "sla": {
+        "ttft_ms": 5000,
+        "tpot_ms": 200
+      },
+      "scenario": "summary"
+    }
+  ],
+  "meta": {
+    "description": "推理卡标准测试 Case 集",
+    "version": "1.0",
+    "created": "2026-08-14"
+  }
+}

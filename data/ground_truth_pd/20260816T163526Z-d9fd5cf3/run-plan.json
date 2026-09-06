@@ -1,0 +1,147 @@
+{
+  "createdAt": "2026-08-16T16:35:26.926155+00:00",
+  "mode": "managed-components",
+  "baseUrl": "http://127.0.0.1:8300",
+  "endpoint": "/v1/chat/completions",
+  "servedModelName": "Qwen3-32B",
+  "modelPath": "/data/home/public/weight/Qwen3-32B",
+  "pdSeparation": {
+    "prefill": {
+      "gpuSet": "0,1",
+      "port": 8301,
+      "tensorParallelSize": 2,
+      "managed": true
+    },
+    "decode": {
+      "gpuSet": "2,3,4,5",
+      "port": 8302,
+      "tensorParallelSize": 4,
+      "managed": true
+    },
+    "router": {
+      "gpuSet": "",
+      "port": 8300,
+      "managed": false
+    },
+    "components": [
+      {
+        "name": "prefill",
+        "gpuSet": "0,1",
+        "command": "python -m vllm.entrypoints.openai.api_server --model /data/home/public/weight/Qwen3-32B --served-model-name Qwen3-32B --host 127.0.0.1 --port 8301 --tensor-parallel-size 2 --trust-remote-code --kv-transfer-config '{\"kv_connector\":\"PyNcclConnector\",\"kv_role\":\"kv_producer\",\"kv_buffer_size\":5e9,\"engine_id\":\"my_pd_cluster\"}'",
+        "env": {}
+      },
+      {
+        "name": "decode",
+        "gpuSet": "2,3,4,5",
+        "command": "python -m vllm.entrypoints.openai.api_server --model /data/home/public/weight/Qwen3-32B --served-model-name Qwen3-32B --host 127.0.0.1 --port 8302 --tensor-parallel-size 4 --trust-remote-code --kv-transfer-config '{\"kv_connector\":\"PyNcclConnector\",\"kv_role\":\"kv_consumer\",\"kv_buffer_size\":5e9,\"engine_id\":\"my_pd_cluster\"}'",
+        "env": {}
+      }
+    ]
+  },
+  "workload": {
+    "type": "synthetic",
+    "datasetPath": null,
+    "tracePath": null,
+    "requestCount": 5,
+    "inputTokens": {
+      "p50": 512.0,
+      "p90": 512.0,
+      "p95": 512.0,
+      "p99": 512.0
+    },
+    "outputTokens": {
+      "p50": 128.0,
+      "p90": 128.0,
+      "p95": 128.0,
+      "p99": 128.0
+    },
+    "arrivalSpanSeconds": 0,
+    "randomInputLen": 512,
+    "randomOutputLen": 128,
+    "sharegptOutputLen": null,
+    "inputTokenCap": null,
+    "outputTokenCap": null
+  },
+  "requestRates": [
+    "2"
+  ],
+  "metricPercentiles": [
+    50,
+    90,
+    95,
+    99
+  ],
+  "args": {
+    "model_path": "/data/home/public/weight/Qwen3-32B",
+    "served_model_name": "Qwen3-32B",
+    "model": null,
+    "tokenizer": "",
+    "host": "127.0.0.1",
+    "base_url": "http://127.0.0.1:8300",
+    "endpoint": "/v1/chat/completions",
+    "api_key": "",
+    "api_key_env": "OPENAI_API_KEY",
+    "timeout_seconds": 600,
+    "health_timeout_ms": 900000,
+    "health_path": [
+      "/health",
+      "/v1/models"
+    ],
+    "skip_health_check": false,
+    "no_start_components": false,
+    "prefill_command_template": "python -m vllm.entrypoints.openai.api_server --model $model_path --served-model-name $served_model_name --host $host --port $prefill_port --tensor-parallel-size $prefill_tensor_parallel_size --trust-remote-code --kv-transfer-config '{\"kv_connector\":\"PyNcclConnector\",\"kv_role\":\"kv_producer\",\"kv_buffer_size\":5e9,\"engine_id\":\"my_pd_cluster\"}'",
+    "decode_command_template": "python -m vllm.entrypoints.openai.api_server --model $model_path --served-model-name $served_model_name --host $host --port $decode_port --tensor-parallel-size $decode_tensor_parallel_size --trust-remote-code --kv-transfer-config '{\"kv_connector\":\"PyNcclConnector\",\"kv_role\":\"kv_consumer\",\"kv_buffer_size\":5e9,\"engine_id\":\"my_pd_cluster\"}'",
+    "router_command_template": "",
+    "component_working_dir": "/data/home/lihaozhe/Deployment_Solution",
+    "component_start_gap_seconds": 15.0,
+    "conda_env": "",
+    "prefill_port": 8301,
+    "decode_port": 8302,
+    "router_port": 8300,
+    "prefill_gpu_set": "0,1",
+    "decode_gpu_set": "2,3,4,5",
+    "router_gpu_set": "",
+    "prefill_tensor_parallel_size": 2,
+    "decode_tensor_parallel_size": 4,
+    "dtype": "bfloat16",
+    "max_model_len": null,
+    "gpu_memory_utilization": null,
+    "component_env": [],
+    "prefill_env": [],
+    "decode_env": [],
+    "router_env": [],
+    "workload_type": "synthetic",
+    "dataset_path": null,
+    "trace_path": null,
+    "num_prompts": 5,
+    "limit": null,
+    "random_input_len": 512,
+    "random_output_len": 128,
+    "sharegpt_output_len": null,
+    "infer_sharegpt_output_len": false,
+    "sharegpt_max_prompt_chars": 32000,
+    "input_token_cap": null,
+    "output_token_cap": null,
+    "request_rates": "2",
+    "arrival_mode": "constant",
+    "no_preserve_trace_shape": false,
+    "trace_replay_speed": 1.0,
+    "metric_percentiles": "50,90,95,99",
+    "max_concurrency": 2,
+    "client_workers": null,
+    "warmup_count": 0,
+    "repeat_count": 1,
+    "select_repeat_by": "output_throughput",
+    "temperature": 0,
+    "ignore_eos": false,
+    "no_stream_usage": false,
+    "extra_request_body_json": [],
+    "artifact_root": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd",
+    "run_group_id": null,
+    "gpu_set": "",
+    "no_gpu_monitor": false,
+    "gpu_monitor_interval_seconds": 1.0,
+    "seed": 1,
+    "dry_run": false
+  }
+}

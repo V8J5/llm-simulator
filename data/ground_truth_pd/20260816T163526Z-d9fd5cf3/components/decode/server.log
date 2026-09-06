@@ -1,0 +1,48 @@
+(APIServer pid=3103754) INFO 08-16 16:35:48 [utils.py:299] 
+(APIServer pid=3103754) INFO 08-16 16:35:48 [utils.py:299]        █     █     █▄   ▄█
+(APIServer pid=3103754) INFO 08-16 16:35:48 [utils.py:299]  ▄▄ ▄█ █     █     █ ▀▄▀ █  version 0.19.0
+(APIServer pid=3103754) INFO 08-16 16:35:48 [utils.py:299]   █▄█▀ █     █     █     █  model   /data/home/public/weight/Qwen3-32B
+(APIServer pid=3103754) INFO 08-16 16:35:48 [utils.py:299]    ▀▀  ▀▀▀▀▀ ▀▀▀▀▀ ▀     ▀
+(APIServer pid=3103754) INFO 08-16 16:35:48 [utils.py:299] 
+(APIServer pid=3103754) INFO 08-16 16:35:48 [utils.py:233] non-default args: {'host': '127.0.0.1', 'port': 8302, 'model': '/data/home/public/weight/Qwen3-32B', 'trust_remote_code': True, 'served_model_name': ['Qwen3-32B'], 'tensor_parallel_size': 4, 'kv_transfer_config': KVTransferConfig(kv_connector='PyNcclConnector', engine_id='my_pd_cluster', kv_buffer_device='cuda', kv_buffer_size=5000000000.0, kv_role='kv_consumer', kv_rank=None, kv_parallel_size=1, kv_ip='127.0.0.1', kv_port=14579, kv_connector_extra_config={}, kv_connector_module_path=None, enable_permute_local_kv=False, kv_load_failure_policy='fail')}
+(APIServer pid=3103754) INFO 08-16 16:35:48 [model.py:549] Resolved architecture: Qwen3ForCausalLM
+(APIServer pid=3103754) INFO 08-16 16:35:48 [model.py:1678] Using max model len 40960
+(APIServer pid=3103754) INFO 08-16 16:35:48 [vllm.py:790] Asynchronous scheduling is enabled.
+(APIServer pid=3103754) Traceback (most recent call last):
+(APIServer pid=3103754)   File "<frozen runpy>", line 198, in _run_module_as_main
+(APIServer pid=3103754)   File "<frozen runpy>", line 88, in _run_code
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 710, in <module>
+(APIServer pid=3103754)     uvloop.run(run_server(args))
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/uvloop/__init__.py", line 92, in run
+(APIServer pid=3103754)     return runner.run(wrapper())
+(APIServer pid=3103754)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/asyncio/runners.py", line 118, in run
+(APIServer pid=3103754)     return self._loop.run_until_complete(task)
+(APIServer pid=3103754)            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3103754)   File "uvloop/loop.pyx", line 1518, in uvloop.loop.Loop.run_until_complete
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/uvloop/__init__.py", line 48, in wrapper
+(APIServer pid=3103754)     return await main
+(APIServer pid=3103754)            ^^^^^^^^^^
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 670, in run_server
+(APIServer pid=3103754)     await run_server_worker(listen_address, sock, args, **uvicorn_kwargs)
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 684, in run_server_worker
+(APIServer pid=3103754)     async with build_async_engine_client(
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=3103754)     return await anext(self.gen)
+(APIServer pid=3103754)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 100, in build_async_engine_client
+(APIServer pid=3103754)     async with build_async_engine_client_from_engine_args(
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/contextlib.py", line 210, in __aenter__
+(APIServer pid=3103754)     return await anext(self.gen)
+(APIServer pid=3103754)            ^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/vllm/entrypoints/openai/api_server.py", line 124, in build_async_engine_client_from_engine_args
+(APIServer pid=3103754)     vllm_config = engine_args.create_engine_config(usage_context=usage_context)
+(APIServer pid=3103754)                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/vllm/engine/arg_utils.py", line 1967, in create_engine_config
+(APIServer pid=3103754)     config = VllmConfig(
+(APIServer pid=3103754)              ^^^^^^^^^^^
+(APIServer pid=3103754)   File "/data/home/lihaozhe/miniconda3/envs/vllm-env/lib/python3.11/site-packages/pydantic/_internal/_dataclasses.py", line 121, in __init__
+(APIServer pid=3103754)     s.__pydantic_validator__.validate_python(ArgsKwargs(args, kwargs), self_instance=s)
+(APIServer pid=3103754) pydantic_core._pydantic_core.ValidationError: 1 validation error for VllmConfig
+(APIServer pid=3103754)   Value error, Unsupported connector type: PyNcclConnector [type=value_error, input_value=ArgsKwargs((), {'model_co... 'shutdown_timeout': 0}), input_type=ArgsKwargs]
+(APIServer pid=3103754)     For further information visit https://errors.pydantic.dev/2.13/v/value_error

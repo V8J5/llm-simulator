@@ -1,0 +1,722 @@
+[
+  {
+    "batch_size": 1,
+    "seq_len": 128,
+    "prefill_layer_ms": 0.9725,
+    "num_layers": 64,
+    "estimated_full_time_ms": 62.24,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 256,
+    "prefill_layer_ms": 1.3159,
+    "num_layers": 64,
+    "estimated_full_time_ms": 84.22,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 512,
+    "prefill_layer_ms": 2.0799,
+    "num_layers": 64,
+    "estimated_full_time_ms": 133.11,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 768,
+    "prefill_layer_ms": 2.9162,
+    "num_layers": 64,
+    "estimated_full_time_ms": 186.64,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 1024,
+    "prefill_layer_ms": 3.6736,
+    "num_layers": 64,
+    "estimated_full_time_ms": 235.11,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 1536,
+    "prefill_layer_ms": 5.4575,
+    "num_layers": 64,
+    "estimated_full_time_ms": 349.28,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 2048,
+    "prefill_layer_ms": 7.0857,
+    "num_layers": 64,
+    "estimated_full_time_ms": 453.48,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 3072,
+    "prefill_layer_ms": 10.6191,
+    "num_layers": 64,
+    "estimated_full_time_ms": 679.62,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 4096,
+    "prefill_layer_ms": 14.181,
+    "num_layers": 64,
+    "estimated_full_time_ms": 907.58,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 128,
+    "prefill_layer_ms": 1.3572,
+    "num_layers": 64,
+    "estimated_full_time_ms": 86.86,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 256,
+    "prefill_layer_ms": 2.1449,
+    "num_layers": 64,
+    "estimated_full_time_ms": 137.27,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 512,
+    "prefill_layer_ms": 3.6857,
+    "num_layers": 64,
+    "estimated_full_time_ms": 235.88,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 768,
+    "prefill_layer_ms": 5.4322,
+    "num_layers": 64,
+    "estimated_full_time_ms": 347.66,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 1024,
+    "prefill_layer_ms": 7.0353,
+    "num_layers": 64,
+    "estimated_full_time_ms": 450.26,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 1536,
+    "prefill_layer_ms": 10.424,
+    "num_layers": 64,
+    "estimated_full_time_ms": 667.14,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 2048,
+    "prefill_layer_ms": 13.7318,
+    "num_layers": 64,
+    "estimated_full_time_ms": 878.84,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 3072,
+    "prefill_layer_ms": 20.675,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1323.2,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 4096,
+    "prefill_layer_ms": 28.0311,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1793.99,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 128,
+    "prefill_layer_ms": 1.826,
+    "num_layers": 64,
+    "estimated_full_time_ms": 116.86,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 256,
+    "prefill_layer_ms": 2.9835,
+    "num_layers": 64,
+    "estimated_full_time_ms": 190.94,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 512,
+    "prefill_layer_ms": 5.4267,
+    "num_layers": 64,
+    "estimated_full_time_ms": 347.31,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 768,
+    "prefill_layer_ms": 7.873,
+    "num_layers": 64,
+    "estimated_full_time_ms": 503.87,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 1024,
+    "prefill_layer_ms": 10.3429,
+    "num_layers": 64,
+    "estimated_full_time_ms": 661.95,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 1536,
+    "prefill_layer_ms": 15.0356,
+    "num_layers": 64,
+    "estimated_full_time_ms": 962.28,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 2048,
+    "prefill_layer_ms": 20.3665,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1303.46,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 3072,
+    "prefill_layer_ms": 30.9252,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1979.21,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 4096,
+    "prefill_layer_ms": 41.9212,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2682.96,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 128,
+    "prefill_layer_ms": 2.1854,
+    "num_layers": 64,
+    "estimated_full_time_ms": 139.87,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 256,
+    "prefill_layer_ms": 3.7157,
+    "num_layers": 64,
+    "estimated_full_time_ms": 237.8,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 512,
+    "prefill_layer_ms": 7.0063,
+    "num_layers": 64,
+    "estimated_full_time_ms": 448.4,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 768,
+    "prefill_layer_ms": 10.3407,
+    "num_layers": 64,
+    "estimated_full_time_ms": 661.8,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 1024,
+    "prefill_layer_ms": 13.5588,
+    "num_layers": 64,
+    "estimated_full_time_ms": 867.76,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 1536,
+    "prefill_layer_ms": 20.2457,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1295.72,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 2048,
+    "prefill_layer_ms": 27.2415,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1743.46,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 3072,
+    "prefill_layer_ms": 41.2335,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2638.94,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 4096,
+    "prefill_layer_ms": 55.5497,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3555.18,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 128,
+    "prefill_layer_ms": 3.0021,
+    "num_layers": 64,
+    "estimated_full_time_ms": 192.13,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 256,
+    "prefill_layer_ms": 5.431,
+    "num_layers": 64,
+    "estimated_full_time_ms": 347.58,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 512,
+    "prefill_layer_ms": 10.3067,
+    "num_layers": 64,
+    "estimated_full_time_ms": 659.63,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 768,
+    "prefill_layer_ms": 14.9173,
+    "num_layers": 64,
+    "estimated_full_time_ms": 954.71,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 1024,
+    "prefill_layer_ms": 20.113,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1287.23,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 1536,
+    "prefill_layer_ms": 30.3092,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1939.79,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 2048,
+    "prefill_layer_ms": 40.7194,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2606.04,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 3072,
+    "prefill_layer_ms": 61.4796,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3934.69,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 4096,
+    "prefill_layer_ms": 83.102,
+    "num_layers": 64,
+    "estimated_full_time_ms": 5318.53,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 128,
+    "prefill_layer_ms": 3.7285,
+    "num_layers": 64,
+    "estimated_full_time_ms": 238.62,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 256,
+    "prefill_layer_ms": 6.9988,
+    "num_layers": 64,
+    "estimated_full_time_ms": 447.92,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 512,
+    "prefill_layer_ms": 13.5001,
+    "num_layers": 64,
+    "estimated_full_time_ms": 864.01,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 768,
+    "prefill_layer_ms": 20.0736,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1284.71,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 1024,
+    "prefill_layer_ms": 26.9209,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1722.94,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 1536,
+    "prefill_layer_ms": 40.471,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2590.14,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 2048,
+    "prefill_layer_ms": 54.0164,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3457.05,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 3072,
+    "prefill_layer_ms": 82.1409,
+    "num_layers": 64,
+    "estimated_full_time_ms": 5257.02,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 4096,
+    "prefill_layer_ms": 111.0686,
+    "num_layers": 64,
+    "estimated_full_time_ms": 7108.39,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 128,
+    "prefill_layer_ms": 5.4341,
+    "num_layers": 64,
+    "estimated_full_time_ms": 347.78,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 256,
+    "prefill_layer_ms": 10.2463,
+    "num_layers": 64,
+    "estimated_full_time_ms": 655.76,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 512,
+    "prefill_layer_ms": 19.9457,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1276.52,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 768,
+    "prefill_layer_ms": 30.0076,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1920.49,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 1024,
+    "prefill_layer_ms": 40.1882,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2572.04,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 1536,
+    "prefill_layer_ms": 60.3544,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3862.68,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 2048,
+    "prefill_layer_ms": 81.1473,
+    "num_layers": 64,
+    "estimated_full_time_ms": 5193.43,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 3072,
+    "prefill_layer_ms": 123.2847,
+    "num_layers": 64,
+    "estimated_full_time_ms": 7890.22,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 4096,
+    "prefill_layer_ms": 166.9995,
+    "num_layers": 64,
+    "estimated_full_time_ms": 10687.97,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 128,
+    "prefill_layer_ms": 7.0528,
+    "num_layers": 64,
+    "estimated_full_time_ms": 451.38,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 256,
+    "prefill_layer_ms": 13.5566,
+    "num_layers": 64,
+    "estimated_full_time_ms": 867.62,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 512,
+    "prefill_layer_ms": 26.9163,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1722.64,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 768,
+    "prefill_layer_ms": 40.4271,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2587.33,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 1024,
+    "prefill_layer_ms": 53.744,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3439.62,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 1536,
+    "prefill_layer_ms": 80.946,
+    "num_layers": 64,
+    "estimated_full_time_ms": 5180.54,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 2048,
+    "prefill_layer_ms": 108.6367,
+    "num_layers": 64,
+    "estimated_full_time_ms": 6952.75,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 3072,
+    "prefill_layer_ms": 165.4002,
+    "num_layers": 64,
+    "estimated_full_time_ms": 10585.61,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 4096,
+    "prefill_layer_ms": 223.9715,
+    "num_layers": 64,
+    "estimated_full_time_ms": 14334.18,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 128,
+    "prefill_layer_ms": 10.4001,
+    "num_layers": 64,
+    "estimated_full_time_ms": 665.61,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 256,
+    "prefill_layer_ms": 20.2184,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1293.98,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 512,
+    "prefill_layer_ms": 40.505,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2592.32,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 768,
+    "prefill_layer_ms": 60.4868,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3871.16,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 1024,
+    "prefill_layer_ms": 80.7777,
+    "num_layers": 64,
+    "estimated_full_time_ms": 5169.77,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 1536,
+    "prefill_layer_ms": 121.8192,
+    "num_layers": 64,
+    "estimated_full_time_ms": 7796.43,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 2048,
+    "prefill_layer_ms": 163.9153,
+    "num_layers": 64,
+    "estimated_full_time_ms": 10490.58,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 3072,
+    "prefill_layer_ms": 249.5557,
+    "num_layers": 64,
+    "estimated_full_time_ms": 15971.56,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 4096,
+    "prefill_layer_ms": 338.6465,
+    "num_layers": 64,
+    "estimated_full_time_ms": 21673.38,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 128,
+    "prefill_layer_ms": 13.6566,
+    "num_layers": 64,
+    "estimated_full_time_ms": 874.02,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 256,
+    "prefill_layer_ms": 27.1554,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1737.95,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 512,
+    "prefill_layer_ms": 54.0645,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3460.13,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 768,
+    "prefill_layer_ms": 81.1566,
+    "num_layers": 64,
+    "estimated_full_time_ms": 5194.02,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 1024,
+    "prefill_layer_ms": 108.4237,
+    "num_layers": 64,
+    "estimated_full_time_ms": 6939.12,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 1536,
+    "prefill_layer_ms": 163.6268,
+    "num_layers": 64,
+    "estimated_full_time_ms": 10472.12,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 2048,
+    "prefill_layer_ms": 219.6143,
+    "num_layers": 64,
+    "estimated_full_time_ms": 14055.32,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 3072,
+    "prefill_layer_ms": 334.8917,
+    "num_layers": 64,
+    "estimated_full_time_ms": 21433.07,
+    "device": "NVIDIA GeForce RTX 5090"
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 4096,
+    "prefill_layer_ms": 454.3878,
+    "num_layers": 64,
+    "estimated_full_time_ms": 29080.82,
+    "device": "NVIDIA GeForce RTX 5090"
+  }
+]

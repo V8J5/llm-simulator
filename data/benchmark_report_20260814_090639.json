@@ -1,0 +1,216 @@
+{
+  "meta": {
+    "generated_at": "2026-08-14 09:06:39",
+    "tool": "PD \u5206\u79bb\u8bc4\u6d4b\u6846\u67b6 v1.0",
+    "hardware": "L20",
+    "model": "Qwen3-32B"
+  },
+  "configs": [
+    {
+      "name": "P4_D8_TP4_TP8",
+      "hardware": "L20",
+      "p_gpus": 4,
+      "d_gpus": 8,
+      "p_tp": 4,
+      "d_tp": 8,
+      "metrics": {
+        "goodput": 77.77777777777779,
+        "throughput_tokens_s": 22.793826671943016,
+        "ttft_p50_ms": 328.6400000000001,
+        "ttft_p90_ms": 4072.4500000000007,
+        "ttft_avg_ms": 745.0266666666668,
+        "tpot_avg_ms": 41.26666666666668,
+        "completed_requests": 9,
+        "total_requests": 9
+      },
+      "score": {
+        "total": 6.4,
+        "goodput": 7.8,
+        "throughput": 7.6,
+        "ttft": 3.4
+      },
+      "summary": ""
+    },
+    {
+      "name": "P2_D8_TP2_TP8",
+      "hardware": "L20",
+      "p_gpus": 2,
+      "d_gpus": 8,
+      "p_tp": 2,
+      "d_tp": 8,
+      "metrics": {
+        "goodput": 77.77777777777779,
+        "throughput_tokens_s": 22.810277693350265,
+        "ttft_p50_ms": 324.59000000000015,
+        "ttft_p90_ms": 4068.4000000000005,
+        "ttft_avg_ms": 740.9766666666668,
+        "tpot_avg_ms": 41.26672743055556,
+        "completed_requests": 9,
+        "total_requests": 9
+      },
+      "score": {
+        "total": 6.4,
+        "goodput": 7.8,
+        "throughput": 7.6,
+        "ttft": 3.5
+      },
+      "summary": ""
+    },
+    {
+      "name": "P2_D2_TP2",
+      "hardware": "L20",
+      "p_gpus": 2,
+      "d_gpus": 2,
+      "p_tp": 2,
+      "d_tp": 2,
+      "metrics": {
+        "goodput": 70.0,
+        "throughput_tokens_s": 21.887237295441974,
+        "ttft_p50_ms": 364.6399999999999,
+        "ttft_p90_ms": 4053.819999999999,
+        "ttft_avg_ms": 1054.6809999999998,
+        "tpot_avg_ms": 43.070929687499984,
+        "completed_requests": 10,
+        "total_requests": 10
+      },
+      "score": {
+        "total": 5.8,
+        "goodput": 7.0,
+        "throughput": 7.3,
+        "ttft": 2.7
+      },
+      "summary": ""
+    },
+    {
+      "name": "P4_D8_TP8_TP8",
+      "hardware": "L20",
+      "p_gpus": 4,
+      "d_gpus": 8,
+      "p_tp": 8,
+      "d_tp": 8,
+      "metrics": {
+        "goodput": 55.55555555555556,
+        "throughput_tokens_s": 22.295305580193713,
+        "ttft_p50_ms": 464.1899999999996,
+        "ttft_p90_ms": 4049.1000000000004,
+        "ttft_avg_ms": 877.0566666666665,
+        "tpot_avg_ms": 40.93471354166667,
+        "completed_requests": 9,
+        "total_requests": 9
+      },
+      "score": {
+        "total": 4.7,
+        "goodput": 5.6,
+        "throughput": 7.4,
+        "ttft": 0.7
+      },
+      "summary": ""
+    },
+    {
+      "name": "P2_D4_TP2_TP4",
+      "hardware": "L20",
+      "p_gpus": 2,
+      "d_gpus": 4,
+      "p_tp": 2,
+      "d_tp": 4,
+      "metrics": {
+        "goodput": 53.84615384615385,
+        "throughput_tokens_s": 20.3553077688283,
+        "ttft_p50_ms": 437.78999999999974,
+        "ttft_p90_ms": 4045.0599999999995,
+        "ttft_avg_ms": 1716.2546153846151,
+        "tpot_avg_ms": 46.10497596153845,
+        "completed_requests": 13,
+        "total_requests": 13
+      },
+      "score": {
+        "total": 4.6,
+        "goodput": 5.4,
+        "throughput": 6.8,
+        "ttft": 1.2
+      },
+      "summary": ""
+    },
+    {
+      "name": "P4_D4_TP4",
+      "hardware": "L20",
+      "p_gpus": 4,
+      "d_gpus": 4,
+      "p_tp": 4,
+      "d_tp": 4,
+      "metrics": {
+        "goodput": 53.84615384615385,
+        "throughput_tokens_s": 20.342206276084088,
+        "ttft_p50_ms": 441.8399999999997,
+        "ttft_p90_ms": 4049.1099999999988,
+        "ttft_avg_ms": 1720.3046153846149,
+        "tpot_avg_ms": 46.14186298076921,
+        "completed_requests": 13,
+        "total_requests": 13
+      },
+      "score": {
+        "total": 4.5,
+        "goodput": 5.4,
+        "throughput": 6.8,
+        "ttft": 1.2
+      },
+      "summary": ""
+    }
+  ],
+  "ranking": [
+    {
+      "rank": 1,
+      "config": "P4_D8_TP4_TP8",
+      "score": 6.4,
+      "goodput": 77.77777777777779,
+      "throughput": 22.793826671943016
+    },
+    {
+      "rank": 2,
+      "config": "P2_D8_TP2_TP8",
+      "score": 6.4,
+      "goodput": 77.77777777777779,
+      "throughput": 22.810277693350265
+    },
+    {
+      "rank": 3,
+      "config": "P2_D2_TP2",
+      "score": 5.8,
+      "goodput": 70.0,
+      "throughput": 21.887237295441974
+    },
+    {
+      "rank": 4,
+      "config": "P4_D8_TP8_TP8",
+      "score": 4.7,
+      "goodput": 55.55555555555556,
+      "throughput": 22.295305580193713
+    },
+    {
+      "rank": 5,
+      "config": "P2_D4_TP2_TP4",
+      "score": 4.6,
+      "goodput": 53.84615384615385,
+      "throughput": 20.3553077688283
+    },
+    {
+      "rank": 6,
+      "config": "P4_D4_TP4",
+      "score": 4.5,
+      "goodput": 53.84615384615385,
+      "throughput": 20.342206276084088
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "best_performance",
+      "config": "P4_D8_TP4_TP8",
+      "reason": "\u7efc\u5408\u8bc4\u5206 6.4/10\uff0cGoodput 77.8%\uff0c\u541e\u5410 22.8 tokens/s"
+    },
+    {
+      "type": "best_value",
+      "config": "P2_D2_TP2",
+      "reason": "\u4ec5\u9700 4 \u5361\uff0c\u7efc\u5408\u8bc4\u5206 5.8/10"
+    }
+  ]
+}

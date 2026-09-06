@@ -1,0 +1,632 @@
+[
+  {
+    "batch_size": 1,
+    "kv_len": 128,
+    "decode_layer_ms": 0.9035,
+    "num_layers": 64,
+    "estimated_full_time_ms": 57.82
+  },
+  {
+    "batch_size": 1,
+    "kv_len": 256,
+    "decode_layer_ms": 0.9108,
+    "num_layers": 64,
+    "estimated_full_time_ms": 58.29
+  },
+  {
+    "batch_size": 1,
+    "kv_len": 512,
+    "decode_layer_ms": 0.917,
+    "num_layers": 64,
+    "estimated_full_time_ms": 58.69
+  },
+  {
+    "batch_size": 1,
+    "kv_len": 768,
+    "decode_layer_ms": 0.9273,
+    "num_layers": 64,
+    "estimated_full_time_ms": 59.35
+  },
+  {
+    "batch_size": 1,
+    "kv_len": 1024,
+    "decode_layer_ms": 0.9356,
+    "num_layers": 64,
+    "estimated_full_time_ms": 59.88
+  },
+  {
+    "batch_size": 1,
+    "kv_len": 1536,
+    "decode_layer_ms": 0.953,
+    "num_layers": 64,
+    "estimated_full_time_ms": 60.99
+  },
+  {
+    "batch_size": 1,
+    "kv_len": 2048,
+    "decode_layer_ms": 0.976,
+    "num_layers": 64,
+    "estimated_full_time_ms": 62.46
+  },
+  {
+    "batch_size": 1,
+    "kv_len": 3072,
+    "decode_layer_ms": 1.0157,
+    "num_layers": 64,
+    "estimated_full_time_ms": 65.0
+  },
+  {
+    "batch_size": 1,
+    "kv_len": 4096,
+    "decode_layer_ms": 1.0805,
+    "num_layers": 64,
+    "estimated_full_time_ms": 69.15
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 128,
+    "decode_layer_ms": 0.8759,
+    "num_layers": 64,
+    "estimated_full_time_ms": 56.06
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 256,
+    "decode_layer_ms": 0.8825,
+    "num_layers": 64,
+    "estimated_full_time_ms": 56.48
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 512,
+    "decode_layer_ms": 0.9054,
+    "num_layers": 64,
+    "estimated_full_time_ms": 57.95
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 768,
+    "decode_layer_ms": 0.9249,
+    "num_layers": 64,
+    "estimated_full_time_ms": 59.19
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 1024,
+    "decode_layer_ms": 0.9421,
+    "num_layers": 64,
+    "estimated_full_time_ms": 60.29
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 1536,
+    "decode_layer_ms": 0.984,
+    "num_layers": 64,
+    "estimated_full_time_ms": 62.98
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 2048,
+    "decode_layer_ms": 1.0598,
+    "num_layers": 64,
+    "estimated_full_time_ms": 67.83
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 3072,
+    "decode_layer_ms": 1.1833,
+    "num_layers": 64,
+    "estimated_full_time_ms": 75.73
+  },
+  {
+    "batch_size": 2,
+    "kv_len": 4096,
+    "decode_layer_ms": 1.3043,
+    "num_layers": 64,
+    "estimated_full_time_ms": 83.48
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 128,
+    "decode_layer_ms": 0.8787,
+    "num_layers": 64,
+    "estimated_full_time_ms": 56.24
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 256,
+    "decode_layer_ms": 0.8953,
+    "num_layers": 64,
+    "estimated_full_time_ms": 57.3
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 512,
+    "decode_layer_ms": 0.9259,
+    "num_layers": 64,
+    "estimated_full_time_ms": 59.26
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 768,
+    "decode_layer_ms": 0.9516,
+    "num_layers": 64,
+    "estimated_full_time_ms": 60.9
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 1024,
+    "decode_layer_ms": 0.9873,
+    "num_layers": 64,
+    "estimated_full_time_ms": 63.19
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 1536,
+    "decode_layer_ms": 1.0893,
+    "num_layers": 64,
+    "estimated_full_time_ms": 69.72
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 2048,
+    "decode_layer_ms": 1.1966,
+    "num_layers": 64,
+    "estimated_full_time_ms": 76.58
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 3072,
+    "decode_layer_ms": 1.3792,
+    "num_layers": 64,
+    "estimated_full_time_ms": 88.27
+  },
+  {
+    "batch_size": 3,
+    "kv_len": 4096,
+    "decode_layer_ms": 1.5473,
+    "num_layers": 64,
+    "estimated_full_time_ms": 99.03
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 128,
+    "decode_layer_ms": 0.8833,
+    "num_layers": 64,
+    "estimated_full_time_ms": 56.53
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 256,
+    "decode_layer_ms": 0.9105,
+    "num_layers": 64,
+    "estimated_full_time_ms": 58.27
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 512,
+    "decode_layer_ms": 0.9493,
+    "num_layers": 64,
+    "estimated_full_time_ms": 60.76
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 768,
+    "decode_layer_ms": 1.0077,
+    "num_layers": 64,
+    "estimated_full_time_ms": 64.49
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 1024,
+    "decode_layer_ms": 1.0658,
+    "num_layers": 64,
+    "estimated_full_time_ms": 68.21
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 1536,
+    "decode_layer_ms": 1.1913,
+    "num_layers": 64,
+    "estimated_full_time_ms": 76.24
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 2048,
+    "decode_layer_ms": 1.3351,
+    "num_layers": 64,
+    "estimated_full_time_ms": 85.45
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 3072,
+    "decode_layer_ms": 1.5613,
+    "num_layers": 64,
+    "estimated_full_time_ms": 99.92
+  },
+  {
+    "batch_size": 4,
+    "kv_len": 4096,
+    "decode_layer_ms": 1.795,
+    "num_layers": 64,
+    "estimated_full_time_ms": 114.88
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 128,
+    "decode_layer_ms": 0.8885,
+    "num_layers": 64,
+    "estimated_full_time_ms": 56.86
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 256,
+    "decode_layer_ms": 0.9291,
+    "num_layers": 64,
+    "estimated_full_time_ms": 59.46
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 512,
+    "decode_layer_ms": 1.0073,
+    "num_layers": 64,
+    "estimated_full_time_ms": 64.47
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 768,
+    "decode_layer_ms": 1.1235,
+    "num_layers": 64,
+    "estimated_full_time_ms": 71.9
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 1024,
+    "decode_layer_ms": 1.2367,
+    "num_layers": 64,
+    "estimated_full_time_ms": 79.15
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 1536,
+    "decode_layer_ms": 1.44,
+    "num_layers": 64,
+    "estimated_full_time_ms": 92.16
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 2048,
+    "decode_layer_ms": 1.6576,
+    "num_layers": 64,
+    "estimated_full_time_ms": 106.09
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 3072,
+    "decode_layer_ms": 2.0517,
+    "num_layers": 64,
+    "estimated_full_time_ms": 131.31
+  },
+  {
+    "batch_size": 6,
+    "kv_len": 4096,
+    "decode_layer_ms": 4.7263,
+    "num_layers": 64,
+    "estimated_full_time_ms": 302.48
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 128,
+    "decode_layer_ms": 0.9078,
+    "num_layers": 64,
+    "estimated_full_time_ms": 58.1
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 256,
+    "decode_layer_ms": 0.9576,
+    "num_layers": 64,
+    "estimated_full_time_ms": 61.29
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 512,
+    "decode_layer_ms": 1.0875,
+    "num_layers": 64,
+    "estimated_full_time_ms": 69.6
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 768,
+    "decode_layer_ms": 1.2396,
+    "num_layers": 64,
+    "estimated_full_time_ms": 79.33
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 1024,
+    "decode_layer_ms": 1.3868,
+    "num_layers": 64,
+    "estimated_full_time_ms": 88.76
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 1536,
+    "decode_layer_ms": 1.6468,
+    "num_layers": 64,
+    "estimated_full_time_ms": 105.4
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 2048,
+    "decode_layer_ms": 1.9427,
+    "num_layers": 64,
+    "estimated_full_time_ms": 124.33
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 3072,
+    "decode_layer_ms": 4.8319,
+    "num_layers": 64,
+    "estimated_full_time_ms": 309.24
+  },
+  {
+    "batch_size": 8,
+    "kv_len": 4096,
+    "decode_layer_ms": 5.3024,
+    "num_layers": 64,
+    "estimated_full_time_ms": 339.35
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 128,
+    "decode_layer_ms": 0.9406,
+    "num_layers": 64,
+    "estimated_full_time_ms": 60.2
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 256,
+    "decode_layer_ms": 1.0195,
+    "num_layers": 64,
+    "estimated_full_time_ms": 65.25
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 512,
+    "decode_layer_ms": 1.2373,
+    "num_layers": 64,
+    "estimated_full_time_ms": 79.19
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 768,
+    "decode_layer_ms": 1.4335,
+    "num_layers": 64,
+    "estimated_full_time_ms": 91.74
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 1024,
+    "decode_layer_ms": 1.6234,
+    "num_layers": 64,
+    "estimated_full_time_ms": 103.9
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 1536,
+    "decode_layer_ms": 1.9905,
+    "num_layers": 64,
+    "estimated_full_time_ms": 127.39
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 2048,
+    "decode_layer_ms": 4.7996,
+    "num_layers": 64,
+    "estimated_full_time_ms": 307.17
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 3072,
+    "decode_layer_ms": 5.5252,
+    "num_layers": 64,
+    "estimated_full_time_ms": 353.61
+  },
+  {
+    "batch_size": 12,
+    "kv_len": 4096,
+    "decode_layer_ms": 6.2245,
+    "num_layers": 64,
+    "estimated_full_time_ms": 398.37
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 128,
+    "decode_layer_ms": 0.9539,
+    "num_layers": 64,
+    "estimated_full_time_ms": 61.05
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 256,
+    "decode_layer_ms": 1.0948,
+    "num_layers": 64,
+    "estimated_full_time_ms": 70.07
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 512,
+    "decode_layer_ms": 1.38,
+    "num_layers": 64,
+    "estimated_full_time_ms": 88.32
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 768,
+    "decode_layer_ms": 1.6387,
+    "num_layers": 64,
+    "estimated_full_time_ms": 104.88
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 1024,
+    "decode_layer_ms": 1.9071,
+    "num_layers": 64,
+    "estimated_full_time_ms": 122.05
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 1536,
+    "decode_layer_ms": 4.7996,
+    "num_layers": 64,
+    "estimated_full_time_ms": 307.17
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 2048,
+    "decode_layer_ms": 5.3392,
+    "num_layers": 64,
+    "estimated_full_time_ms": 341.71
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 3072,
+    "decode_layer_ms": 6.3367,
+    "num_layers": 64,
+    "estimated_full_time_ms": 405.55
+  },
+  {
+    "batch_size": 16,
+    "kv_len": 4096,
+    "decode_layer_ms": 9.6221,
+    "num_layers": 64,
+    "estimated_full_time_ms": 615.81
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 128,
+    "decode_layer_ms": 1.0063,
+    "num_layers": 64,
+    "estimated_full_time_ms": 64.4
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 256,
+    "decode_layer_ms": 1.2456,
+    "num_layers": 64,
+    "estimated_full_time_ms": 79.72
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 512,
+    "decode_layer_ms": 1.6373,
+    "num_layers": 64,
+    "estimated_full_time_ms": 104.79
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 768,
+    "decode_layer_ms": 2.0163,
+    "num_layers": 64,
+    "estimated_full_time_ms": 129.04
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 1024,
+    "decode_layer_ms": 4.743,
+    "num_layers": 64,
+    "estimated_full_time_ms": 303.55
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 1536,
+    "decode_layer_ms": 5.5272,
+    "num_layers": 64,
+    "estimated_full_time_ms": 353.74
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 2048,
+    "decode_layer_ms": 6.3615,
+    "num_layers": 64,
+    "estimated_full_time_ms": 407.14
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 3072,
+    "decode_layer_ms": 10.2037,
+    "num_layers": 64,
+    "estimated_full_time_ms": 653.04
+  },
+  {
+    "batch_size": 24,
+    "kv_len": 4096,
+    "decode_layer_ms": 14.002,
+    "num_layers": 64,
+    "estimated_full_time_ms": 896.13
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 128,
+    "decode_layer_ms": 1.0951,
+    "num_layers": 64,
+    "estimated_full_time_ms": 70.09
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 256,
+    "decode_layer_ms": 1.39,
+    "num_layers": 64,
+    "estimated_full_time_ms": 88.96
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 512,
+    "decode_layer_ms": 1.9096,
+    "num_layers": 64,
+    "estimated_full_time_ms": 122.21
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 768,
+    "decode_layer_ms": 4.8071,
+    "num_layers": 64,
+    "estimated_full_time_ms": 307.65
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 1024,
+    "decode_layer_ms": 5.3355,
+    "num_layers": 64,
+    "estimated_full_time_ms": 341.47
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 1536,
+    "decode_layer_ms": 6.2935,
+    "num_layers": 64,
+    "estimated_full_time_ms": 402.78
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 2048,
+    "decode_layer_ms": 9.7396,
+    "num_layers": 64,
+    "estimated_full_time_ms": 623.33
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 3072,
+    "decode_layer_ms": 14.086,
+    "num_layers": 64,
+    "estimated_full_time_ms": 901.5
+  },
+  {
+    "batch_size": 32,
+    "kv_len": 4096,
+    "decode_layer_ms": 18.4131,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1178.44
+  }
+]

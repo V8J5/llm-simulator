@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "gpu_type": "L20",
+    "tp": 8,
+    "price": 28000.0,
+    "gpu_memory_mb": 46000,
+    "timestamp": "2026-09-05T07:08:48.767962"
+  },
+  "prefill": [
+    {
+      "case": "P_S",
+      "batch": 1,
+      "seq": 512,
+      "layer_ms": 4.6488,
+      "total_ms": 63.75,
+      "throughput_tok_s": 8031.32,
+      "original_batch": 1,
+      "memory_oom": false
+    },
+    {
+      "case": "P_M",
+      "batch": 4,
+      "seq": 1024,
+      "layer_ms": 25.5335,
+      "total_ms": 274.94,
+      "throughput_tok_s": 3724.45,
+      "original_batch": 4,
+      "memory_oom": false
+    },
+    {
+      "case": "P_L",
+      "batch": 8,
+      "seq": 4096,
+      "layer_ms": 213.9371,
+      "total_ms": 2225.04,
+      "throughput_tok_s": 1840.87,
+      "original_batch": 8,
+      "memory_oom": false
+    },
+    {
+      "case": "P_XL",
+      "batch": 16,
+      "seq": 4096,
+      "layer_ms": 424.25,
+      "total_ms": 4417.31,
+      "throughput_tok_s": 927.26,
+      "original_batch": 16,
+      "memory_oom": false
+    }
+  ],
+  "decode": [
+    {
+      "case": "D_S",
+      "batch": 1,
+      "kv": 512,
+      "layer_ms": 2.0759,
+      "total_ms": 17.0,
+      "throughput_tok_s": 58.83,
+      "original_batch": 1,
+      "memory_oom": false
+    },
+    {
+      "case": "D_M",
+      "batch": 8,
+      "kv": 1024,
+      "layer_ms": 3.3675,
+      "total_ms": 30.07,
+      "throughput_tok_s": 33.26,
+      "original_batch": 8,
+      "memory_oom": false
+    },
+    {
+      "case": "D_L",
+      "batch": 16,
+      "kv": 4096,
+      "layer_ms": 11.1802,
+      "total_ms": 93.89,
+      "throughput_tok_s": 10.65,
+      "original_batch": 16,
+      "memory_oom": false
+    },
+    {
+      "case": "D_XL",
+      "batch": 32,
+      "kv": 4096,
+      "layer_ms": 20.1347,
+      "total_ms": 165.88,
+      "throughput_tok_s": 6.03,
+      "original_batch": 32,
+      "memory_oom": false
+    }
+  ],
+  "memory_constrained": [],
+  "summary": {
+    "avg_prefill_throughput": 3630.98,
+    "avg_decode_throughput": 27.19,
+    "combined_score": 1829.08,
+    "prefill_cases": 4,
+    "decode_cases": 4,
+    "price": 28000.0,
+    "\u6027\u4ef7\u6bd4": 0.0653
+  }
+}

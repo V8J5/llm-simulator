@@ -1,0 +1,299 @@
+{
+  "runGroupId": "20260816T164327Z-2db40ffc",
+  "createdAt": "2026-08-16T16:43:29.801320+00:00",
+  "artifactDir": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/20260816T164327Z-2db40ffc",
+  "mode": "external-endpoint",
+  "baseUrl": "http://127.0.0.1:8001",
+  "endpoint": "/v1/chat/completions",
+  "servedModelName": "Qwen3-32B",
+  "modelPath": "",
+  "pdSeparation": {
+    "prefill": {
+      "gpuSet": "",
+      "port": 8301,
+      "tensorParallelSize": null,
+      "managed": false
+    },
+    "decode": {
+      "gpuSet": "",
+      "port": 8302,
+      "tensorParallelSize": null,
+      "managed": false
+    },
+    "router": {
+      "gpuSet": "",
+      "port": 8300,
+      "managed": false
+    },
+    "components": []
+  },
+  "workload": {
+    "type": "synthetic",
+    "datasetPath": null,
+    "tracePath": null,
+    "requestCount": 5,
+    "inputTokens": {
+      "p50": 512.0,
+      "p90": 512.0,
+      "p95": 512.0,
+      "p99": 512.0
+    },
+    "outputTokens": {
+      "p50": 128.0,
+      "p90": 128.0,
+      "p95": 128.0,
+      "p99": 128.0
+    },
+    "arrivalSpanSeconds": 0,
+    "randomInputLen": 512,
+    "randomOutputLen": 128,
+    "sharegptOutputLen": null,
+    "inputTokenCap": null,
+    "outputTokenCap": null
+  },
+  "requestRates": [
+    "2"
+  ],
+  "metricPercentiles": [
+    50,
+    90,
+    95,
+    99
+  ],
+  "warmupCount": 0,
+  "repeatCount": 1,
+  "selectedPoints": [
+    {
+      "requestRate": "2",
+      "runStatus": "failed",
+      "failureReason": "all requests failed",
+      "attemptIndex": 0,
+      "isWarmup": false,
+      "artifactDir": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/20260816T164327Z-2db40ffc/01-rate_2/repeat_0",
+      "metrics": {
+        "total": 5,
+        "completed": 0,
+        "failed": 5,
+        "successRate": 0.0,
+        "errorRate": 100.0,
+        "requestThroughput": 0.0,
+        "outputTokenThroughput": 0.0,
+        "totalTokenThroughput": 0.0,
+        "promptTokens": 0,
+        "outputTokens": 0,
+        "plannedInputTokens": 2560,
+        "plannedOutputTokens": 640,
+        "actualDurationSeconds": 2.003536213874817,
+        "actualConcurrency": {
+          "peak": 1,
+          "average": 0.010343943486849852
+        },
+        "ttftMs": {
+          "p50": null,
+          "p90": null,
+          "p95": null,
+          "p99": null
+        },
+        "tpotMs": {
+          "p50": null,
+          "p90": null,
+          "p95": null,
+          "p99": null
+        },
+        "itlMs": {
+          "p50": null,
+          "p90": null,
+          "p95": null,
+          "p99": null
+        },
+        "e2eLatencyMs": {
+          "p50": 3.5798583030700684,
+          "p90": 6.654205799102783,
+          "p95": 6.654205799102783,
+          "p99": 6.654205799102783
+        },
+        "clientBackpressureMs": {
+          "p50": 0.33257198333740234,
+          "p90": 1.9957408905029297,
+          "p95": 1.9957408905029297,
+          "p99": 1.9957408905029297
+        },
+        "requestStatusCounts": {
+          "404": 5
+        },
+        "failureCategoryCounts": {
+          "http_4xx": 5
+        },
+        "gpu": {
+          "gpuMemoryPeakMb": 39449,
+          "gpuUtilizationPeakPercent": 0,
+          "gpuUtilizationAvgPercent": 0.0
+        }
+      }
+    }
+  ],
+  "rateGroups": [
+    {
+      "requestRate": "2",
+      "attempts": [
+        {
+          "requestRate": "2",
+          "runStatus": "failed",
+          "failureReason": "all requests failed",
+          "attemptIndex": 0,
+          "isWarmup": false,
+          "artifactDir": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/20260816T164327Z-2db40ffc/01-rate_2/repeat_0",
+          "metrics": {
+            "total": 5,
+            "completed": 0,
+            "failed": 5,
+            "successRate": 0.0,
+            "errorRate": 100.0,
+            "requestThroughput": 0.0,
+            "outputTokenThroughput": 0.0,
+            "totalTokenThroughput": 0.0,
+            "promptTokens": 0,
+            "outputTokens": 0,
+            "plannedInputTokens": 2560,
+            "plannedOutputTokens": 640,
+            "actualDurationSeconds": 2.003536213874817,
+            "actualConcurrency": {
+              "peak": 1,
+              "average": 0.010343943486849852
+            },
+            "ttftMs": {
+              "p50": null,
+              "p90": null,
+              "p95": null,
+              "p99": null
+            },
+            "tpotMs": {
+              "p50": null,
+              "p90": null,
+              "p95": null,
+              "p99": null
+            },
+            "itlMs": {
+              "p50": null,
+              "p90": null,
+              "p95": null,
+              "p99": null
+            },
+            "e2eLatencyMs": {
+              "p50": 3.5798583030700684,
+              "p90": 6.654205799102783,
+              "p95": 6.654205799102783,
+              "p99": 6.654205799102783
+            },
+            "clientBackpressureMs": {
+              "p50": 0.33257198333740234,
+              "p90": 1.9957408905029297,
+              "p95": 1.9957408905029297,
+              "p99": 1.9957408905029297
+            },
+            "requestStatusCounts": {
+              "404": 5
+            },
+            "failureCategoryCounts": {
+              "http_4xx": 5
+            },
+            "gpu": {
+              "gpuMemoryPeakMb": 39449,
+              "gpuUtilizationPeakPercent": 0,
+              "gpuUtilizationAvgPercent": 0.0
+            }
+          }
+        }
+      ],
+      "selectedPoint": {
+        "requestRate": "2",
+        "runStatus": "failed",
+        "failureReason": "all requests failed",
+        "attemptIndex": 0,
+        "isWarmup": false,
+        "artifactDir": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/20260816T164327Z-2db40ffc/01-rate_2/repeat_0",
+        "metrics": {
+          "total": 5,
+          "completed": 0,
+          "failed": 5,
+          "successRate": 0.0,
+          "errorRate": 100.0,
+          "requestThroughput": 0.0,
+          "outputTokenThroughput": 0.0,
+          "totalTokenThroughput": 0.0,
+          "promptTokens": 0,
+          "outputTokens": 0,
+          "plannedInputTokens": 2560,
+          "plannedOutputTokens": 640,
+          "actualDurationSeconds": 2.003536213874817,
+          "actualConcurrency": {
+            "peak": 1,
+            "average": 0.010343943486849852
+          },
+          "ttftMs": {
+            "p50": null,
+            "p90": null,
+            "p95": null,
+            "p99": null
+          },
+          "tpotMs": {
+            "p50": null,
+            "p90": null,
+            "p95": null,
+            "p99": null
+          },
+          "itlMs": {
+            "p50": null,
+            "p90": null,
+            "p95": null,
+            "p99": null
+          },
+          "e2eLatencyMs": {
+            "p50": 3.5798583030700684,
+            "p90": 6.654205799102783,
+            "p95": 6.654205799102783,
+            "p99": 6.654205799102783
+          },
+          "clientBackpressureMs": {
+            "p50": 0.33257198333740234,
+            "p90": 1.9957408905029297,
+            "p95": 1.9957408905029297,
+            "p99": 1.9957408905029297
+          },
+          "requestStatusCounts": {
+            "404": 5
+          },
+          "failureCategoryCounts": {
+            "http_4xx": 5
+          },
+          "gpu": {
+            "gpuMemoryPeakMb": 39449,
+            "gpuUtilizationPeakPercent": 0,
+            "gpuUtilizationAvgPercent": 0.0
+          }
+        }
+      },
+      "throughputAcrossRepeats": {
+        "requestThroughput": {
+          "p50": null,
+          "p90": null,
+          "p95": null,
+          "p99": null
+        },
+        "outputTokenThroughput": {
+          "p50": null,
+          "p90": null,
+          "p95": null,
+          "p99": null
+        },
+        "totalTokenThroughput": {
+          "p50": null,
+          "p90": null,
+          "p95": null,
+          "p99": null
+        }
+      },
+      "selectionRule": "output_throughput"
+    }
+  ]
+}

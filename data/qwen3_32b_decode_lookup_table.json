@@ -1,0 +1,182 @@
+[
+    {
+        "batch_size": 1,
+        "kv_length": 128,
+        "ffn_gemv_ms": 0.3765,
+        "attention_decode_ms": 0.0157
+    },
+    {
+        "batch_size": 1,
+        "kv_length": 512,
+        "ffn_gemv_ms": 0.4118,
+        "attention_decode_ms": 0.0212
+    },
+    {
+        "batch_size": 1,
+        "kv_length": 1024,
+        "ffn_gemv_ms": 0.4117,
+        "attention_decode_ms": 0.0346
+    },
+    {
+        "batch_size": 1,
+        "kv_length": 2048,
+        "ffn_gemv_ms": 0.4121,
+        "attention_decode_ms": 0.0538
+    },
+    {
+        "batch_size": 1,
+        "kv_length": 4096,
+        "ffn_gemv_ms": 0.4114,
+        "attention_decode_ms": 0.0915
+    },
+    {
+        "batch_size": 2,
+        "kv_length": 128,
+        "ffn_gemv_ms": 0.356,
+        "attention_decode_ms": 0.0157
+    },
+    {
+        "batch_size": 2,
+        "kv_length": 512,
+        "ffn_gemv_ms": 0.3558,
+        "attention_decode_ms": 0.0338
+    },
+    {
+        "batch_size": 2,
+        "kv_length": 1024,
+        "ffn_gemv_ms": 0.356,
+        "attention_decode_ms": 0.0531
+    },
+    {
+        "batch_size": 2,
+        "kv_length": 2048,
+        "ffn_gemv_ms": 0.356,
+        "attention_decode_ms": 0.0908
+    },
+    {
+        "batch_size": 2,
+        "kv_length": 4096,
+        "ffn_gemv_ms": 0.356,
+        "attention_decode_ms": 0.2373
+    },
+    {
+        "batch_size": 4,
+        "kv_length": 128,
+        "ffn_gemv_ms": 0.3558,
+        "attention_decode_ms": 0.0209
+    },
+    {
+        "batch_size": 4,
+        "kv_length": 512,
+        "ffn_gemv_ms": 0.3559,
+        "attention_decode_ms": 0.0705
+    },
+    {
+        "batch_size": 4,
+        "kv_length": 1024,
+        "ffn_gemv_ms": 0.3561,
+        "attention_decode_ms": 0.1364
+    },
+    {
+        "batch_size": 4,
+        "kv_length": 2048,
+        "ffn_gemv_ms": 0.3559,
+        "attention_decode_ms": 0.2713
+    },
+    {
+        "batch_size": 4,
+        "kv_length": 4096,
+        "ffn_gemv_ms": 0.3556,
+        "attention_decode_ms": 0.5348
+    },
+    {
+        "batch_size": 8,
+        "kv_length": 128,
+        "ffn_gemv_ms": 0.3561,
+        "attention_decode_ms": 0.0374
+    },
+    {
+        "batch_size": 8,
+        "kv_length": 512,
+        "ffn_gemv_ms": 0.3558,
+        "attention_decode_ms": 0.1331
+    },
+    {
+        "batch_size": 8,
+        "kv_length": 1024,
+        "ffn_gemv_ms": 0.3561,
+        "attention_decode_ms": 0.2654
+    },
+    {
+        "batch_size": 8,
+        "kv_length": 2048,
+        "ffn_gemv_ms": 0.3562,
+        "attention_decode_ms": 0.5225
+    },
+    {
+        "batch_size": 8,
+        "kv_length": 4096,
+        "ffn_gemv_ms": 0.356,
+        "attention_decode_ms": 1.0359
+    },
+    {
+        "batch_size": 16,
+        "kv_length": 128,
+        "ffn_gemv_ms": 0.3564,
+        "attention_decode_ms": 0.0705
+    },
+    {
+        "batch_size": 16,
+        "kv_length": 512,
+        "ffn_gemv_ms": 0.3564,
+        "attention_decode_ms": 0.2647
+    },
+    {
+        "batch_size": 16,
+        "kv_length": 1024,
+        "ffn_gemv_ms": 0.3563,
+        "attention_decode_ms": 0.5206
+    },
+    {
+        "batch_size": 16,
+        "kv_length": 2048,
+        "ffn_gemv_ms": 0.3563,
+        "attention_decode_ms": 1.0281
+    },
+    {
+        "batch_size": 16,
+        "kv_length": 4096,
+        "ffn_gemv_ms": 0.3561,
+        "attention_decode_ms": 2.0457
+    },
+    {
+        "batch_size": 32,
+        "kv_length": 128,
+        "ffn_gemv_ms": 0.369,
+        "attention_decode_ms": 0.132
+    },
+    {
+        "batch_size": 32,
+        "kv_length": 512,
+        "ffn_gemv_ms": 0.3675,
+        "attention_decode_ms": 0.4964
+    },
+    {
+        "batch_size": 32,
+        "kv_length": 1024,
+        "ffn_gemv_ms": 0.368,
+        "attention_decode_ms": 0.9838
+    },
+    {
+        "batch_size": 32,
+        "kv_length": 2048,
+        "ffn_gemv_ms": 0.3684,
+        "attention_decode_ms": 1.9632
+    },
+    {
+        "batch_size": 32,
+        "kv_length": 4096,
+        "ffn_gemv_ms": 0.3678,
+        "attention_decode_ms": 3.9205
+    }
+]

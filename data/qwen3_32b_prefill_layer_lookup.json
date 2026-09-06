@@ -1,0 +1,632 @@
+[
+  {
+    "batch_size": 1,
+    "seq_len": 128,
+    "prefill_layer_ms": 2.3193,
+    "num_layers": 64,
+    "estimated_full_time_ms": 148.44
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 256,
+    "prefill_layer_ms": 3.0157,
+    "num_layers": 64,
+    "estimated_full_time_ms": 193.0
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 512,
+    "prefill_layer_ms": 4.6488,
+    "num_layers": 64,
+    "estimated_full_time_ms": 297.52
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 768,
+    "prefill_layer_ms": 5.9524,
+    "num_layers": 64,
+    "estimated_full_time_ms": 380.95
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 1024,
+    "prefill_layer_ms": 7.6217,
+    "num_layers": 64,
+    "estimated_full_time_ms": 487.79
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 1536,
+    "prefill_layer_ms": 10.9941,
+    "num_layers": 64,
+    "estimated_full_time_ms": 703.62
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 2048,
+    "prefill_layer_ms": 14.0111,
+    "num_layers": 64,
+    "estimated_full_time_ms": 896.71
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 3072,
+    "prefill_layer_ms": 20.9644,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1341.72
+  },
+  {
+    "batch_size": 1,
+    "seq_len": 4096,
+    "prefill_layer_ms": 27.0992,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1734.35
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 128,
+    "prefill_layer_ms": 3.0024,
+    "num_layers": 64,
+    "estimated_full_time_ms": 192.15
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 256,
+    "prefill_layer_ms": 4.624,
+    "num_layers": 64,
+    "estimated_full_time_ms": 295.94
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 512,
+    "prefill_layer_ms": 7.5411,
+    "num_layers": 64,
+    "estimated_full_time_ms": 482.63
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 768,
+    "prefill_layer_ms": 10.8318,
+    "num_layers": 64,
+    "estimated_full_time_ms": 693.24
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 1024,
+    "prefill_layer_ms": 13.7391,
+    "num_layers": 64,
+    "estimated_full_time_ms": 879.3
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 1536,
+    "prefill_layer_ms": 20.4158,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1306.61
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 2048,
+    "prefill_layer_ms": 26.0554,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1667.55
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 3072,
+    "prefill_layer_ms": 39.7477,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2543.85
+  },
+  {
+    "batch_size": 2,
+    "seq_len": 4096,
+    "prefill_layer_ms": 53.1974,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3404.63
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 128,
+    "prefill_layer_ms": 3.7223,
+    "num_layers": 64,
+    "estimated_full_time_ms": 238.23
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 256,
+    "prefill_layer_ms": 5.8916,
+    "num_layers": 64,
+    "estimated_full_time_ms": 377.06
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 512,
+    "prefill_layer_ms": 10.775,
+    "num_layers": 64,
+    "estimated_full_time_ms": 689.6
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 768,
+    "prefill_layer_ms": 14.9468,
+    "num_layers": 64,
+    "estimated_full_time_ms": 956.6
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 1024,
+    "prefill_layer_ms": 20.219,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1294.02
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 1536,
+    "prefill_layer_ms": 29.2031,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1869.0
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 2048,
+    "prefill_layer_ms": 38.9737,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2494.32
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 3072,
+    "prefill_layer_ms": 58.9473,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3772.63
+  },
+  {
+    "batch_size": 3,
+    "seq_len": 4096,
+    "prefill_layer_ms": 79.2328,
+    "num_layers": 64,
+    "estimated_full_time_ms": 5070.9
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 128,
+    "prefill_layer_ms": 4.6176,
+    "num_layers": 64,
+    "estimated_full_time_ms": 295.53
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 256,
+    "prefill_layer_ms": 7.503,
+    "num_layers": 64,
+    "estimated_full_time_ms": 480.19
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 512,
+    "prefill_layer_ms": 13.5949,
+    "num_layers": 64,
+    "estimated_full_time_ms": 870.07
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 768,
+    "prefill_layer_ms": 20.116,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1287.42
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 1024,
+    "prefill_layer_ms": 25.5335,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1634.14
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 1536,
+    "prefill_layer_ms": 38.5885,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2469.66
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 2048,
+    "prefill_layer_ms": 51.1481,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3273.48
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 3072,
+    "prefill_layer_ms": 77.7006,
+    "num_layers": 64,
+    "estimated_full_time_ms": 4972.84
+  },
+  {
+    "batch_size": 4,
+    "seq_len": 4096,
+    "prefill_layer_ms": 105.0098,
+    "num_layers": 64,
+    "estimated_full_time_ms": 6720.63
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 128,
+    "prefill_layer_ms": 5.8808,
+    "num_layers": 64,
+    "estimated_full_time_ms": 376.37
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 256,
+    "prefill_layer_ms": 10.7201,
+    "num_layers": 64,
+    "estimated_full_time_ms": 686.09
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 512,
+    "prefill_layer_ms": 20.0149,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1280.95
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 768,
+    "prefill_layer_ms": 28.759,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1840.58
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 1024,
+    "prefill_layer_ms": 38.213,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2445.63
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 1536,
+    "prefill_layer_ms": 57.2378,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3663.22
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 2048,
+    "prefill_layer_ms": 76.1843,
+    "num_layers": 64,
+    "estimated_full_time_ms": 4875.8
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 3072,
+    "prefill_layer_ms": 117.4784,
+    "num_layers": 64,
+    "estimated_full_time_ms": 7518.62
+  },
+  {
+    "batch_size": 6,
+    "seq_len": 4096,
+    "prefill_layer_ms": 159.5894,
+    "num_layers": 64,
+    "estimated_full_time_ms": 10213.72
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 128,
+    "prefill_layer_ms": 7.5179,
+    "num_layers": 64,
+    "estimated_full_time_ms": 481.15
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 256,
+    "prefill_layer_ms": 13.538,
+    "num_layers": 64,
+    "estimated_full_time_ms": 866.43
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 512,
+    "prefill_layer_ms": 25.2823,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1618.07
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 768,
+    "prefill_layer_ms": 38.0028,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2432.18
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 1024,
+    "prefill_layer_ms": 50.1534,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3209.82
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 1536,
+    "prefill_layer_ms": 75.4311,
+    "num_layers": 64,
+    "estimated_full_time_ms": 4827.59
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 2048,
+    "prefill_layer_ms": 100.9574,
+    "num_layers": 64,
+    "estimated_full_time_ms": 6461.27
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 3072,
+    "prefill_layer_ms": 156.7814,
+    "num_layers": 64,
+    "estimated_full_time_ms": 10034.01
+  },
+  {
+    "batch_size": 8,
+    "seq_len": 4096,
+    "prefill_layer_ms": 213.9371,
+    "num_layers": 64,
+    "estimated_full_time_ms": 13691.97
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 128,
+    "prefill_layer_ms": 10.7531,
+    "num_layers": 64,
+    "estimated_full_time_ms": 688.2
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 256,
+    "prefill_layer_ms": 19.9344,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1275.8
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 512,
+    "prefill_layer_ms": 37.9433,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2428.37
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 768,
+    "prefill_layer_ms": 56.7061,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3629.19
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 1024,
+    "prefill_layer_ms": 75.1619,
+    "num_layers": 64,
+    "estimated_full_time_ms": 4810.36
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 1536,
+    "prefill_layer_ms": 115.0931,
+    "num_layers": 64,
+    "estimated_full_time_ms": 7365.96
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 2048,
+    "prefill_layer_ms": 154.1702,
+    "num_layers": 64,
+    "estimated_full_time_ms": 9866.89
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 3072,
+    "prefill_layer_ms": 237.3511,
+    "num_layers": 64,
+    "estimated_full_time_ms": 15190.47
+  },
+  {
+    "batch_size": 12,
+    "seq_len": 4096,
+    "prefill_layer_ms": 322.8725,
+    "num_layers": 64,
+    "estimated_full_time_ms": 20663.84
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 128,
+    "prefill_layer_ms": 13.5718,
+    "num_layers": 64,
+    "estimated_full_time_ms": 868.6
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 256,
+    "prefill_layer_ms": 25.3904,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1624.99
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 512,
+    "prefill_layer_ms": 50.167,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3210.69
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 768,
+    "prefill_layer_ms": 75.1364,
+    "num_layers": 64,
+    "estimated_full_time_ms": 4808.73
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 1024,
+    "prefill_layer_ms": 99.9008,
+    "num_layers": 64,
+    "estimated_full_time_ms": 6393.65
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 1536,
+    "prefill_layer_ms": 153.5576,
+    "num_layers": 64,
+    "estimated_full_time_ms": 9827.69
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 2048,
+    "prefill_layer_ms": 208.1032,
+    "num_layers": 64,
+    "estimated_full_time_ms": 13318.6
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 3072,
+    "prefill_layer_ms": 317.3061,
+    "num_layers": 64,
+    "estimated_full_time_ms": 20307.59
+  },
+  {
+    "batch_size": 16,
+    "seq_len": 4096,
+    "prefill_layer_ms": 424.25,
+    "num_layers": 64,
+    "estimated_full_time_ms": 27152.0
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 128,
+    "prefill_layer_ms": 19.9346,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1275.81
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 256,
+    "prefill_layer_ms": 37.9551,
+    "num_layers": 64,
+    "estimated_full_time_ms": 2429.13
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 512,
+    "prefill_layer_ms": 74.4336,
+    "num_layers": 64,
+    "estimated_full_time_ms": 4763.75
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 768,
+    "prefill_layer_ms": 113.4678,
+    "num_layers": 64,
+    "estimated_full_time_ms": 7261.94
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 1024,
+    "prefill_layer_ms": 151.1089,
+    "num_layers": 64,
+    "estimated_full_time_ms": 9670.97
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 1536,
+    "prefill_layer_ms": 229.8741,
+    "num_layers": 64,
+    "estimated_full_time_ms": 14711.94
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 2048,
+    "prefill_layer_ms": 308.7339,
+    "num_layers": 64,
+    "estimated_full_time_ms": 19758.97
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 3072,
+    "prefill_layer_ms": 467.8559,
+    "num_layers": 64,
+    "estimated_full_time_ms": 29942.78
+  },
+  {
+    "batch_size": 24,
+    "seq_len": 4096,
+    "prefill_layer_ms": 635.9861,
+    "num_layers": 64,
+    "estimated_full_time_ms": 40703.11
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 128,
+    "prefill_layer_ms": 25.1864,
+    "num_layers": 64,
+    "estimated_full_time_ms": 1611.93
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 256,
+    "prefill_layer_ms": 49.592,
+    "num_layers": 64,
+    "estimated_full_time_ms": 3173.89
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 512,
+    "prefill_layer_ms": 98.2681,
+    "num_layers": 64,
+    "estimated_full_time_ms": 6289.16
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 768,
+    "prefill_layer_ms": 150.103,
+    "num_layers": 64,
+    "estimated_full_time_ms": 9606.59
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 1024,
+    "prefill_layer_ms": 202.202,
+    "num_layers": 64,
+    "estimated_full_time_ms": 12940.93
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 1536,
+    "prefill_layer_ms": 305.3037,
+    "num_layers": 64,
+    "estimated_full_time_ms": 19539.44
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 2048,
+    "prefill_layer_ms": 407.0982,
+    "num_layers": 64,
+    "estimated_full_time_ms": 26054.28
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 3072,
+    "prefill_layer_ms": 624.001,
+    "num_layers": 64,
+    "estimated_full_time_ms": 39936.06
+  },
+  {
+    "batch_size": 32,
+    "seq_len": 4096,
+    "prefill_layer_ms": 846.6446,
+    "num_layers": 64,
+    "estimated_full_time_ms": 54185.25
+  }
+]

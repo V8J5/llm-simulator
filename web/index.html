@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI 推理硬件 Benchmark 平台</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f2f5; padding: 20px; }
+        .container { max-width: 1400px; margin: auto; }
+        
+        .header { background: linear-gradient(135deg, #1a1a2e, #16213e); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; }
+        .header h1 { font-size: 28px; }
+        .header p { opacity: 0.8; margin-top: 8px; }
+        
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px; }
+        .card h2 { font-size: 16px; margin-bottom: 12px; color: #1a1a2e; display: flex; align-items: center; gap: 8px; }
+        .card h2 .badge { font-size: 11px; background: #e8e8e8; padding: 2px 10px; border-radius: 12px; font-weight: normal; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+        @media (max-width: 768px) { .grid-2 { grid-template-columns: 1fr; } }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th { background: #1a1a2e; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px 12px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #f8f9fa; }
+        
+        .gpu-tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: 600; font-size: 12px; }
+        .gpu-nvidia { background: #76b900; color: white; }
+        .gpu-huawei { background: #ff0000; color: white; }
+        .gpu-other { background: #4ecdc4; color: white; }
+        
+        .status { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; }
+        .status-pending { background: #ffc107; color: #333; }
+        .status-running { background: #17a2b8; color: white; }
+        .status-completed { background: #28a745; color: white; }
+        .status-failed { background: #dc3545; color: white; }
+        
+        .btn { padding: 10px 24px; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .btn-primary { background: #1a1a2e; color: white; }
+        .btn-primary:hover { background: #2d2d5e; }
+        .btn-success { background: #28a745; color: white; }
+        .btn-success:hover { background: #218838; }
+        .btn-danger { background: #dc3545; color: white; }
+        .btn-danger:hover { background: #c82333; }
+        
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 4px; font-size: 14px; }
+        .form-group input, .form-group select { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; }
+        .form-group input[type="checkbox"] { width: auto; padding: 0; margin-right: 6px; }
+        
+        .log-container { background: #1a1a2e; color: #00ff88; padding: 16px; border-radius: 8px; height: 200px; overflow-y: auto; font-family: monospace; font-size: 13px; white-space: pre-wrap; }
+        .log-container .log-error { color: #ff6b6b; }
+        .log-container .log-warning { color: #ffc107; }
+        .log-container .log-success { color: #00ff88; }
+        
+        .flex { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+        .flex-between { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; }
+        
+        .hidden { display: none; }
+        .mt-16 { margin-top: 16px; }
+        .mb-16 { margin-bottom: 16px; }
+        .text-center { text-align: center; }
+
+        .chart-container { position: relative; max-height: 500px; }
+        .chart-container canvas { max-height: 500px; }
+
+        .checkbox-label { display: flex; align-items: center; gap: 6px; cursor: pointer; font-weight: normal; font-size: 14px; }
+        .checkbox-label input[type="checkbox"] { width: 16px; height: 16px; cursor: pointer; }
+        .help-text { font-size: 12px; color: #999; margin-left: 4px; }
+
+        .radar-controls { display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
+        .radar-controls .btn-sm { padding: 4px 16px; font-size: 13px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+        .radar-controls .btn-sm:hover { background: #f0f0f0; }
+        .radar-controls .btn-sm.active { background: #1a1a2e; color: white; border-color: #1a1a2e; }
+    </style>
+</head>
+<body>
+<div class="container">
+    
+    <!-- 头部 -->
+    <div class="header flex-between">
+        <div>
+            <h1>🔬 AI 推理硬件 Benchmark</h1>
+            <p>基于仿真 + Profiling 的跨硬件推理能力对比平台</p>
+        </div>
+        <div>
+            <button class="btn btn-success" onclick="showAddModal()">➕ 添加新硬件</button>
+            <button class="btn btn-primary" onclick="refreshData()" style="margin-left:8px;">🔄 刷新</button>
+        </div>
+    </div>
+    
+    <!-- 添加硬件弹窗 -->
+    <div id="addModal" class="card hidden" style="border: 2px solid #28a745;">
+        <div class="flex-between">
+            <h2>📥 添加新硬件 (自动 Profiling)</h2>
+            <button class="btn btn-danger" onclick="hideAddModal()">✕</button>
+        </div>
+        <form id="profileForm" onsubmit="startProfile(event)">
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>GPU 型号 <span style="color:red;">*</span></label>
+                    <select id="gpuType" required onchange="toggleGpuInput()">
+                        <option value="">-- 请选择 --</option>
+                        <optgroup label="NVIDIA">
+                            <option value="L20" data-price="28000">L20</option>
+                            <option value="L40" data-price="25000">L40</option>
+                            <option value="A100" data-price="120000">A100</option>
+                            <option value="A800" data-price="80000">A800</option>
+                            <option value="H100" data-price="250000">H100</option>
+                            <option value="H800" data-price="200000">H800</option>
+                            <option value="RTX4090" data-price="16000">RTX 4090</option>
+                            <option value="RTX5090" data-price="30000">RTX 5090</option>
+                            <option value="V100" data-price="50000">V100</option>
+                            <option value="T4" data-price="10000">T4</option>
+                        </optgroup>
+                        <optgroup label="华为昇腾">
+                            <option value="昇腾910B" data-price="120000">昇腾 910B</option>
+                            <option value="昇腾910C" data-price="150000">昇腾 910C</option>
+                            <option value="昇腾310" data-price="5000">昇腾 310</option>
+                        </optgroup>
+                        <optgroup label="寒武纪">
+                            <option value="寒武纪MLU370" data-price="80000">寒武纪 MLU370</option>
+                            <option value="寒武纪MLU290" data-price="120000">寒武纪 MLU290</option>
+                        </optgroup>
+                        <optgroup label="海光">
+                            <option value="海光DCU" data-price="100000">海光 DCU</option>
+                        </optgroup>
+                        <optgroup label="AMD">
+                            <option value="AMD_MI250X" data-price="150000">AMD MI250X</option>
+                            <option value="AMD_MI300X" data-price="200000">AMD MI300X</option>
+                        </optgroup>
+                        <optgroup label="其他">
+                            <option value="__other__" data-price="">✏️ 手动输入</option>
+                        </optgroup>
+                    </select>
+                    <input id="gpuTypeOther" type="text" placeholder="请输入 GPU 型号" style="display:none; margin-top: 8px;">
+                </div>
+                <div class="form-group">
+                    <label>TP 大小 <span style="color:red;">*</span></label>
+                    <div style="display: flex; gap: 12px; flex-wrap: wrap; padding: 8px 0;">
+                        <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
+                            <input type="checkbox" name="tp" value="1" checked> 1
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
+                            <input type="checkbox" name="tp" value="2"> 2
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
+                            <input type="checkbox" name="tp" value="4"> 4
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
+                            <input type="checkbox" name="tp" value="8"> 8
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 4px; cursor: pointer;">
+                            <input type="checkbox" name="tp" value="16"> 16
+                        </label>
+                    </div>
+                    <span style="font-size: 12px; color: #999;">💡 选中的 TP 配置将依次采集（串行），总耗时 = 单个 TP × 数量</span>
+                </div>
+
+                <!-- ===== 新增：跳过层时间采集选项 ===== -->
+                <div class="form-group" style="grid-column: 1 / -1; margin-bottom: 4px;">
+                    <div style="display: flex; align-items: center; gap: 12px; padding: 4px 0; flex-wrap: wrap;">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="skipLayerBench" checked>
+                            <span>⏭️ 跳过层时间采集</span>
+                        </label>
+                        <span class="help-text">(如果已有层时间数据，建议勾选以节省 15-20 分钟)</span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>目标机器 IP <span style="color:red;">*</span></label>
+                    <input id="hostIp" placeholder="192.168.1.100" required>
+                </div>
+                <div class="form-group">
+                    <label>SSH 端口</label>
+                    <input id="sshPort" type="number" value="22">
+                </div>
+                <div class="form-group">
+                    <label>SSH 用户名 <span style="color:red;">*</span></label>
+                    <input id="sshUser" placeholder="root" required>
+                </div>
+                <div class="form-group">
+                    <label>SSH 密码 <span style="color:#999;">(可选，使用密钥可留空)</span></label>
+                    <input id="sshPassword" type="password" placeholder="密码">
+                </div>
+                <div class="form-group">
+                    <label>显卡价格 (元) <span style="color:#999;">(自动填充，可手动修改)</span></label>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <input id="gpuPrice" type="number" placeholder="选择型号自动填充" step="1000" style="flex:1;">
+                        <span id="priceTag" style="font-size:12px;color:#28a745;background:#e8f5e9;padding:2px 12px;border-radius:12px;white-space:nowrap;">💰 市场参考价</span>
+                    </div>
+                </div>
+            </div>
+            <div class="flex" style="margin-top:16px;">
+                <button type="button" id="startProfileBtn" class="btn btn-success">🚀 开始采集</button>
+                <button type="button" class="btn btn-primary" onclick="hideAddModal()">取消</button>
+            </div>
+        </form>
+        
+        <!-- 采集进度 -->
+        <div id="profileProgress" class="hidden mt-16">
+            <div class="flex-between">
+                <span><strong>任务状态:</strong> <span id="taskStatus">运行中...</span></span>
+                <span><strong>任务ID:</strong> <span id="taskIdDisplay"></span></span>
+            </div>
+            <div class="log-container" id="taskLogs">等待日志...</div>
+        </div>
+    </div>
+    
+    <!-- ===== 雷达图 ===== -->
+    <div class="card">
+        <div class="flex-between" style="margin-bottom: 8px;">
+            <h2 style="margin:0;">📊 推理性能雷达图 <span class="badge">归一化对比</span></h2>
+            <div class="radar-controls">
+                <button class="btn-sm active" data-mode="L20">L20</button>
+                <button class="btn-sm" data-mode="RTX5090">RTX5090</button>
+                <button class="btn-sm" data-mode="best">极限对比</button>
+            </div>
+        </div>
+        <div class="chart-container">
+            <canvas id="radarChart" height="200"></canvas>
+        </div>
+    </div>
+    
+    <!-- 综合评分 + 吞吐量 -->
+    <div class="grid-2">
+        <div class="card">
+            <h2>📊 综合评分对比</h2>
+            <canvas id="scoreChart" height="200"></canvas>
+        </div>
+        <div class="card">
+            <h2>📊 Prefill vs Decode 吞吐</h2>
+            <canvas id="throughputChart" height="200"></canvas>
+        </div>
+    </div>
+    
+    <!-- 详细数据表 -->
+    <div class="card">
+        <h2>📋 详细对比数据</h2>
+        <div id="tableContainer">加载中...</div>
+    </div>
+    
+</div>
+
+<script>
+    let currentTaskId = null;
+    let logPollingInterval = null;
+    let chartInstances = {};
+    let radarMode = 'L20'; // 当前雷达图模式
+
+    // ================= 显示/隐藏弹窗 =================
+    function showAddModal() {
+        document.getElementById('addModal').classList.remove('hidden');
+        document.getElementById('profileProgress').classList.add('hidden');
+        document.getElementById('profileForm').reset();
+        document.getElementById('skipLayerBench').checked = true;
+        const priceTag = document.getElementById('priceTag');
+        priceTag.textContent = '💰 选择型号自动填充';
+        priceTag.style.color = '#28a745';
+        priceTag.style.background = '#e8f5e9';
+        document.getElementById('gpuTypeOther').style.display = 'none';
+        document.getElementById('gpuTypeOther').required = false;
+        if (logPollingInterval) {
+            clearInterval(logPollingInterval);
+            logPollingInterval = null;
+        }
+    }
+
+    // ================= 绑定“开始采集”按钮 =================
+    document.addEventListener('DOMContentLoaded', function() {
+        const startBtn = document.getElementById('startProfileBtn');
+        if (startBtn) {
+            startBtn.addEventListener('click', function(e) {
+                startProfile(e);
+            });
+        }
+        // 雷达图切换按钮
+        document.querySelectorAll('.radar-controls .btn-sm').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.radar-controls .btn-sm').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                radarMode = this.dataset.mode;
+                if (dataCache) {
+                    renderCharts(dataCache);
+                }
+            });
+        });
+    });
+    
+    function hideAddModal() {
+        document.getElementById('addModal').classList.add('hidden');
+        if (logPollingInterval) {
+            clearInterval(logPollingInterval);
+            logPollingInterval = null;
+        }
+    }
+
+    // ================= 获取选中的 TP 值 =================
+    function getSelectedTps() {
+        const checkboxes = document.querySelectorAll('input[name="tp"]:checked');
+        return Array.from(checkboxes).map(cb => parseInt(cb.value));
+    }
+    
+    // ================= 提交采集任务 =================
+    async function startProfile(e) {
+        e.preventDefault();
+        console.log('✅ startProfile 被调用了');
+        const select = document.getElementById('gpuType');
+        let gpuType = select.value;
+        if (gpuType === '__other__') {
+            gpuType = document.getElementById('gpuTypeOther').value.trim();
+        }
+        const host = document.getElementById('hostIp').value.trim();
+        const user = document.getElementById('sshUser').value.trim();
+        const password = document.getElementById('sshPassword').value;
+        const tps = getSelectedTps();
+        const port = parseInt(document.getElementById('sshPort').value) || 22;
+        const price = parseFloat(document.getElementById('gpuPrice').value) || null;
+        const skipLayerBench = document.getElementById('skipLayerBench').checked;
+        if (!gpuType || !host || !user || tps.length === 0) {
+            alert('请填写完整信息并至少选择一个 TP');
+            return;
+        }
+        const data = { 
+            gpu_type: gpuType, 
+            host, 
+            user, 
+            password, 
+            tps: tps,
+            port, 
+            price,
+            skip_layer_bench: skipLayerBench
+        };
+        console.log('🚀 提交任务:', data);
+        try {
+            const response = await fetch('/api/profile/start', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            const result = await response.json();
+            if (response.ok) {
+                currentTaskId = result.task_id;
+                document.getElementById('taskIdDisplay').textContent = currentTaskId;
+                document.getElementById('taskStatus').textContent = '运行中...';
+                document.getElementById('profileProgress').classList.remove('hidden');
+                document.getElementById('taskLogs').textContent = '⏳ 任务已提交，等待执行...';
+                let logIndex = 0;
+                if (logPollingInterval) clearInterval(logPollingInterval);
+                logPollingInterval = setInterval(() => pollLogs(logIndex, (newIndex) => { logIndex = newIndex; }), 1000);
+            } else {
+                alert('提交失败: ' + (result.error || '未知错误'));
+            }
+        } catch (error) {
+            console.error('请求失败:', error);
+            alert('请求失败: ' + error.message);
+        }
+    }
+    
+    // ================= 轮询日志 =================
+    async function pollLogs(since, updateSince) {
+        if (!currentTaskId) return;
+        try {
+            const response = await fetch(`/api/tasks/${currentTaskId}/logs?since=${since}`);
+            const data = await response.json();
+            const logContainer = document.getElementById('taskLogs');
+            if (data.logs && data.logs.length > 0) {
+                data.logs.forEach(line => {
+                    const div = document.createElement('div');
+                    div.textContent = line;
+                    if (line.includes('❌') || line.includes('error')) {
+                        div.style.color = '#ff6b6b';
+                    } else if (line.includes('✅') || line.includes('完成')) {
+                        div.style.color = '#00ff88';
+                    } else if (line.includes('⚠️')) {
+                        div.style.color = '#ffc107';
+                    }
+                    logContainer.appendChild(div);
+                });
+                logContainer.scrollTop = logContainer.scrollHeight;
+                updateSince(since + data.logs.length);
+            }
+            const statusResponse = await fetch(`/api/tasks/${currentTaskId}`);
+            const statusData = await statusResponse.json();
+            if (statusData.status === 'completed') {
+                document.getElementById('taskStatus').textContent = '✅ 采集完成！';
+                document.getElementById('taskStatus').style.color = '#28a745';
+                if (logPollingInterval) {
+                    clearInterval(logPollingInterval);
+                    logPollingInterval = null;
+                }
+                setTimeout(() => { refreshData(); }, 2000);
+            } else if (statusData.status === 'failed') {
+                document.getElementById('taskStatus').textContent = '❌ 采集失败';
+                document.getElementById('taskStatus').style.color = '#dc3545';
+                if (logPollingInterval) {
+                    clearInterval(logPollingInterval);
+                    logPollingInterval = null;
+                }
+            }
+        } catch (error) {
+            console.error('日志轮询失败:', error);
+        }
+    }
+    
+    // ================= 刷新数据 =================
+    let dataCache = null;
+    async function refreshData() {
+        try {
+            const response = await fetch('/api/summary');
+            dataCache = await response.json();
+            renderCharts(dataCache);
+            renderTable(dataCache);
+        } catch (error) {
+            console.error('加载数据失败:', error);
+            document.getElementById('tableContainer').innerHTML = '<p style="color:red;">加载数据失败，请检查后端服务</p>';
+        }
+    }
+    
+    // ================= 渲染图表 =================
+    function renderCharts(data) {
+        if (!data || data.length === 0) {
+            document.getElementById('tableContainer').innerHTML = '<p>暂无数据，请先采集硬件 Profiling 数据</p>';
+            return;
+        }
+
+        const labels = data.map(d => `${d.gpu} (TP=${d.tp})`);
+        const colors = data.map(d => d.color || '#4ecdc4');
+
+        // 1. 雷达图（根据模式过滤）
+        const radarCtx = document.getElementById('radarChart').getContext('2d');
+        const dimensions = ['P_S', 'P_M', 'P_L', 'D_L', 'D_M'];
+        const dimLabels = ['Prefill S', 'Prefill M', 'Prefill L', 'Decode L', 'Decode M'];
+        let radarData = [];
+        if (radarMode === 'L20') {
+            radarData = data.filter(d => d.gpu === 'L20');
+        } else if (radarMode === 'RTX5090') {
+            radarData = data.filter(d => d.gpu === 'RTX5090');
+        } else { // best
+            // 取 L20 和 RTX5090 中 TP 最大的（或指定的 TP=8）
+            const l20_best = data.find(d => d.gpu === 'L20' && d.tp === 8);
+            const rtx_best = data.find(d => d.gpu === 'RTX5090' && d.tp === 8);
+            if (l20_best) radarData.push(l20_best);
+            if (rtx_best) radarData.push(rtx_best);
+        }
+        if (radarData.length === 0) {
+            // fallback: 显示所有数据，避免空白
+            radarData = data;
+        }
+        const radarColors = ['#1a73e8', '#ea4335', '#fbbc04', '#34a853', '#ff6d01', '#46bdc6', '#7baaf7', '#f57c00'];
+        const radarColorMap = {};
+        radarData.forEach((d, i) => {
+            radarColorMap[d.gpu + '_' + d.tp] = radarColors[i % radarColors.length];
+        });
+
+        // 归一化基准：取所有数据（不只是当前显示）的最大值，保证归一化稳定
+        const maxValues = {};
+        dimensions.forEach(dim => {
+            maxValues[dim] = Math.max(1, ...data.map(d => d.case_scores?.[dim] || 0));
+        });
+
+        if (chartInstances.radar) chartInstances.radar.destroy();
+        chartInstances.radar = new Chart(radarCtx, {
+            type: 'radar',
+            data: {
+                labels: dimLabels,
+                datasets: radarData.map((d, i) => ({
+                    label: `${d.gpu} (TP=${d.tp})`,
+                    data: dimensions.map(dim => ((d.case_scores?.[dim] || 0) / maxValues[dim])),
+                    borderColor: radarColors[i % radarColors.length],
+                    backgroundColor: radarColors[i % radarColors.length] + '33',
+                    fill: true,
+                    pointBackgroundColor: radarColors[i % radarColors.length],
+                    pointRadius: 4,
+                    borderWidth: 2
+                }))
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10 } }
+                },
+                scales: {
+                    r: {
+                        min: 0,
+                        max: 1,
+                        ticks: { stepSize: 0.2, font: { size: 9 } },
+                        pointLabels: { font: { size: 10 } }
+                    }
+                }
+            }
+        });
+
+        // 2. 综合评分柱状图
+        const scoreCtx = document.getElementById('scoreChart').getContext('2d');
+        if (chartInstances.score) chartInstances.score.destroy();
+        chartInstances.score = new Chart(scoreCtx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: '综合评分',
+                    data: data.map(d => d.combined_score || 0),
+                    backgroundColor: colors,
+                    borderColor: colors,
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { display: false },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#333',
+                        font: { weight: 'bold', size: 11 },
+                        formatter: (value) => value.toFixed(0)
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '综合评分' }
+                    }
+                }
+            }
+        });
+
+        // 3. 吞吐量对比
+        const tpCtx = document.getElementById('throughputChart').getContext('2d');
+        if (chartInstances.throughput) chartInstances.throughput.destroy();
+        chartInstances.throughput = new Chart(tpCtx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [
+                    { 
+                        label: 'Prefill Avg (tok/s)', 
+                        data: data.map(d => d.prefill_avg || 0), 
+                        backgroundColor: '#4ecdc4',
+                        borderColor: '#4ecdc4',
+                        borderWidth: 1
+                    },
+                    { 
+                        label: 'Decode Avg (tok/s)', 
+                        data: data.map(d => d.decode_avg || 0), 
+                        backgroundColor: '#45b7d1',
+                        borderColor: '#45b7d1',
+                        borderWidth: 1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    datalabels: {
+                        anchor: 'end',
+                        align: 'end',
+                        color: '#333',
+                        font: { weight: 'bold', size: 10 },
+                        formatter: (value) => value.toFixed(1)
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: { display: true, text: '吞吐量 (tok/s)' }
+                    }
+                }
+            }
+        });
+    }
+    
+    // ================= 渲染表格 =================
+    function renderTable(data) {
+        if (!data || data.length === 0) {
+            document.getElementById('tableContainer').innerHTML = '<p>暂无数据</p>';
+            return;
+        }
+        let html = `
+            <table>
+                <thead>
+                    <tr>
+                        <th>GPU</th>
+                        <th>TP</th>
+                        <th>Prefill Avg (tok/s)</th>
+                        <th>Decode Avg (tok/s)</th>
+                        <th>综合评分</th>
+                        <th>性价比 (分/元)</th>
+                    </tr>
+                </thead>
+                <tbody>
+        `;
+        data.forEach(d => {
+            const gpuClass = d.gpu.includes('L20') ? 'gpu-nvidia' : 
+                            d.gpu.includes('昇腾') ? 'gpu-huawei' : 'gpu-other';
+            html += `
+                <tr>
+                    <td><span class="gpu-tag ${gpuClass}">${d.gpu}</span></td>
+                    <td>${d.tp || 1}</td>
+                    <td>${d.prefill_avg?.toFixed(2) || 0}</td>
+                    <td>${d.decode_avg?.toFixed(2) || 0}</td>
+                    <td><strong>${d.combined_score?.toFixed(2) || 0}</strong></td>
+                    <td>${d.price_performance ? d.price_performance.toFixed(4) : '-'}</td>
+                </tr>
+            `;
+        });
+        html += '</tbody></table>';
+        document.getElementById('tableContainer').innerHTML = html;
+    }
+
+    // ================= GPU 价格自动填充 =================
+    function onGpuTypeChange() {
+        const select = document.getElementById('gpuType');
+        const otherInput = document.getElementById('gpuTypeOther');
+        const priceInput = document.getElementById('gpuPrice');
+        const priceTag = document.getElementById('priceTag');
+        const selectedOption = select.options[select.selectedIndex];
+        if (select.value === '__other__') {
+            otherInput.style.display = 'block';
+            otherInput.required = true;
+            priceInput.value = '';
+            priceTag.textContent = '✏️ 请手动输入';
+            priceTag.style.color = '#ffc107';
+            priceTag.style.background = '#fff3cd';
+            return;
+        } else {
+            otherInput.style.display = 'none';
+            otherInput.required = false;
+        }
+        const price = selectedOption ? selectedOption.dataset.price : null;
+        if (price && parseInt(price) > 0) {
+            priceInput.value = price;
+            priceTag.textContent = `💰 参考价 ¥${parseInt(price).toLocaleString()}`;
+            priceTag.style.color = '#28a745';
+            priceTag.style.background = '#e8f5e9';
+        } else if (select.value) {
+            priceInput.value = '';
+            priceTag.textContent = '⚠️ 价格未知，请手动输入';
+            priceTag.style.color = '#dc3545';
+            priceTag.style.background = '#f8d7da';
+        } else {
+            priceInput.value = '';
+            priceTag.textContent = '💰 选择型号自动填充';
+            priceTag.style.color = '#28a745';
+            priceTag.style.background = '#e8f5e9';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const priceInput = document.getElementById('gpuPrice');
+        priceInput.addEventListener('input', function() {
+            const tag = document.getElementById('priceTag');
+            if (this.value && parseInt(this.value) > 0) {
+                tag.textContent = `✏️ 手动 ¥${parseInt(this.value).toLocaleString()}`;
+                tag.style.color = '#17a2b8';
+                tag.style.background = '#d1ecf1';
+            } else if (this.value === '') {
+                tag.textContent = '💰 选择型号自动填充';
+                tag.style.color = '#28a745';
+                tag.style.background = '#e8f5e9';
+            }
+        });
+    });
+
+    function toggleGpuInput() {
+        const select = document.getElementById('gpuType');
+        const otherInput = document.getElementById('gpuTypeOther');
+        if (select.value === '__other__') {
+            otherInput.style.display = 'block';
+            otherInput.required = true;
+        } else {
+            otherInput.style.display = 'none';
+            otherInput.required = false;
+        }
+        onGpuTypeChange();
+    }
+    
+    // ================= 自动刷新 =================
+    refreshData();
+    setInterval(refreshData, 30000);
+</script>
+</body>
+</html>

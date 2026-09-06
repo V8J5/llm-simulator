@@ -1,0 +1,1 @@
+python -m vllm.entrypoints.openai.api_server --model /data/home/public/weight/Qwen3-32B --served-model-name Qwen3-32B --host 127.0.0.1 --port 8302 --tensor-parallel-size 4 --trust-remote-code --kv-transfer-config '{"kv_connector":"PyNcclConnector","kv_role":"kv_consumer","kv_buffer_size":5e9,"engine_id":"my_pd_cluster"}'
