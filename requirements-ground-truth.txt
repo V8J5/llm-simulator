@@ -1,0 +1,3 @@
+# Only required by scripts/collect_vllm_ground_truth.py
+openai>=1.30
+transformers>=4.40

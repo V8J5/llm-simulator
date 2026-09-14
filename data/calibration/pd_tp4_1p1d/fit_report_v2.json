@@ -1,0 +1,270 @@
+{
+  "schema_version": 1,
+  "experiment_type": "pd_stage_calibration",
+  "selected": {
+    "objective": 27.333970849168917,
+    "macro_ttft_mape_pct": 14.768789337390634,
+    "macro_tpot_mape_pct": 19.782289208786015,
+    "macro_e2e_mape_pct": 15.884035815307861,
+    "scenarios": [
+      {
+        "name": "calibration_isolated",
+        "request_count": 8,
+        "ttft_mape_pct": 12.926961846126035,
+        "ttft_bias_pct": -10.264859311239404,
+        "tpot_mape_pct": 0.5852780403079897,
+        "tpot_bias_pct": -0.06669269607889684,
+        "e2e_mape_pct": 1.2921132271894558,
+        "e2e_bias_pct": -0.5306219472792102
+      },
+      {
+        "name": "calibration_medium",
+        "request_count": 20,
+        "ttft_mape_pct": 9.621858020929269,
+        "ttft_bias_pct": -0.3908339773148898,
+        "tpot_mape_pct": 33.42429912870572,
+        "tpot_bias_pct": -19.084925448848487,
+        "e2e_mape_pct": 28.158099112728586,
+        "e2e_bias_pct": -19.08380733407133
+      },
+      {
+        "name": "calibration_saturated",
+        "request_count": 20,
+        "ttft_mape_pct": 21.7575481451166,
+        "ttft_bias_pct": -9.987184947688267,
+        "tpot_mape_pct": 25.33729045734433,
+        "tpot_bias_pct": -10.29139162449287,
+        "e2e_mape_pct": 18.201895106005544,
+        "e2e_bias_pct": -12.61978874491453
+      }
+    ],
+    "parameters": {
+      "prefill_factor": 1.0,
+      "decode_base_factor": 0.825925925925926,
+      "batch_exponent": 0.0,
+      "kv_exponent": -0.05185185185185186,
+      "iteration_overhead_ms": 6.1111111111111125,
+      "transfer_ms_per_128mb": 11.972222222222221
+    },
+    "transfer_provenance": {
+      "runtime_fields": "derived from ground-truth deployment manifest",
+      "kv_transfer_bandwidth_assumed": false,
+      "kv_transfer_latency_assumed": true
+    }
+  },
+  "evaluation_count": 335,
+  "parameter_ranges": {
+    "prefill_factor": [
+      0.5,
+      2.0
+    ],
+    "decode_base_factor": [
+      0.5,
+      1.5
+    ],
+    "batch_exponent": [
+      -0.5,
+      0.5
+    ],
+    "kv_exponent": [
+      -0.35,
+      0.35
+    ],
+    "iteration_overhead_ms": [
+      0.0,
+      20.0
+    ],
+    "transfer_ms_per_128mb": [
+      5.0,
+      256.0
+    ]
+  },
+  "search_history": [
+    {
+      "start": 0,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 0.0,
+        "transfer_ms_per_128mb": 10.24
+      },
+      "objective": 30.6305912035599
+    },
+    {
+      "start": 0,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.11666666666666667,
+        "iteration_overhead_ms": 0.0,
+        "transfer_ms_per_128mb": 10.24
+      },
+      "objective": 30.11891722448907
+    },
+    {
+      "start": 0,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 0.5555555555555556,
+        "transfer_ms_per_128mb": 20.691111111111113
+      },
+      "objective": 29.040343599525556
+    },
+    {
+      "start": 0,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 1.0277777777777777,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.05185185185185186,
+        "iteration_overhead_ms": 0.7407407407407408,
+        "transfer_ms_per_128mb": 12.845555555555556
+      },
+      "objective": 28.440298620577085
+    },
+    {
+      "start": 1,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.25,
+        "decode_base_factor": 0.9,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 5.0,
+        "transfer_ms_per_128mb": 85.0
+      },
+      "objective": 44.34803690472956
+    },
+    {
+      "start": 1,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.9,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 5.0,
+        "transfer_ms_per_128mb": 5.0
+      },
+      "objective": 29.754646471170776
+    },
+    {
+      "start": 1,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.8444444444444444,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 6.1111111111111125,
+        "transfer_ms_per_128mb": 11.972222222222221
+      },
+      "objective": 27.9835458064682
+    },
+    {
+      "start": 1,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.825925925925926,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.05185185185185186,
+        "iteration_overhead_ms": 6.1111111111111125,
+        "transfer_ms_per_128mb": 11.972222222222221
+      },
+      "objective": 27.333970849168917
+    },
+    {
+      "start": 2,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.5,
+        "decode_base_factor": 1.1,
+        "batch_exponent": -0.15,
+        "kv_exponent": 0.1,
+        "iteration_overhead_ms": 3.0,
+        "transfer_ms_per_128mb": 128.0
+      },
+      "objective": 79.09295414802179
+    },
+    {
+      "start": 2,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 0.75,
+        "decode_base_factor": 0.8333333333333333,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.11666666666666667,
+        "iteration_overhead_ms": 6.666666666666667,
+        "transfer_ms_per_128mb": 130.5
+      },
+      "objective": 33.93863712554963
+    },
+    {
+      "start": 2,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 0.5833333333333334,
+        "decode_base_factor": 0.7777777777777777,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 7.777777777777777,
+        "transfer_ms_per_128mb": 144.44444444444446
+      },
+      "objective": 32.279640559321095
+    },
+    {
+      "start": 2,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 0.5277777777777778,
+        "decode_base_factor": 0.7592592592592592,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.06481481481481483,
+        "iteration_overhead_ms": 8.148148148148147,
+        "transfer_ms_per_128mb": 139.7962962962963
+      },
+      "objective": 31.64576887144339
+    }
+  ],
+  "sources": [
+    {
+      "name": "calibration_isolated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_isolated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_medium",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_medium.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_saturated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_saturated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_3.json"
+      ]
+    }
+  ],
+  "holdout_policy": "Freeze this config before rerunning validation_trace.csv. No validation or holdout request is used during fitting."
+}

@@ -2,76 +2,76 @@
     {
         "world_size": 2,
         "msg_size_mb": 0.01,
-        "allreduce_ms": 2.9957
+        "allreduce_ms": 4.4241
     },
     {
         "world_size": 2,
         "msg_size_mb": 0.02,
-        "allreduce_ms": 0.0243
+        "allreduce_ms": 0.0234
     },
     {
         "world_size": 2,
         "msg_size_mb": 0.05,
-        "allreduce_ms": 0.0228
+        "allreduce_ms": 0.0233
     },
     {
         "world_size": 2,
         "msg_size_mb": 0.1,
-        "allreduce_ms": 0.0258
+        "allreduce_ms": 0.0282
     },
     {
         "world_size": 2,
         "msg_size_mb": 0.2,
-        "allreduce_ms": 0.0271
+        "allreduce_ms": 0.0268
     },
     {
         "world_size": 2,
         "msg_size_mb": 0.5,
-        "allreduce_ms": 0.0353
+        "allreduce_ms": 0.035
     },
     {
         "world_size": 2,
         "msg_size_mb": 1,
-        "allreduce_ms": 0.0569
+        "allreduce_ms": 0.0568
     },
     {
         "world_size": 2,
         "msg_size_mb": 2,
-        "allreduce_ms": 0.091
+        "allreduce_ms": 0.0877
     },
     {
         "world_size": 2,
         "msg_size_mb": 4,
-        "allreduce_ms": 0.1605
+        "allreduce_ms": 0.1576
     },
     {
         "world_size": 2,
         "msg_size_mb": 8,
-        "allreduce_ms": 0.2833
+        "allreduce_ms": 0.2873
     },
     {
         "world_size": 2,
         "msg_size_mb": 16,
-        "allreduce_ms": 0.5505
+        "allreduce_ms": 0.5491
     },
     {
         "world_size": 2,
         "msg_size_mb": 32,
-        "allreduce_ms": 1.0855
+        "allreduce_ms": 1.0868
     },
     {
         "world_size": 2,
         "msg_size_mb": 64,
-        "allreduce_ms": 2.1566
+        "allreduce_ms": 2.1598
     },
     {
         "world_size": 2,
         "msg_size_mb": 128,
-        "allreduce_ms": 4.3591
+        "allreduce_ms": 4.3626
     },
     {
         "world_size": 2,
         "msg_size_mb": 256,
-        "allreduce_ms": 8.6035
+        "allreduce_ms": 8.5779
     }
 ]

@@ -1,0 +1,3 @@
+stage,tp_size,batch_size,prompt_length,observed_attention_ms,predicted_attention_ms,attention_error_pct,observed_ffn_ms,predicted_ffn_ms,ffn_error_pct,observed_total_compute_ms,predicted_total_compute_ms,total_compute_error_pct,extrapolated,predicted_bottleneck,observed_bottleneck,bottleneck_match,kv_length
+prefill,4,2,256,0.3498816013336181,0.37249599974602465,6.463443155115583,1.2397888008505105,1.257491190172732,1.4278552371240487,1.5896704021841286,1.6299871899187566,2.5361727612991167,False,ffn,ffn,True,
+decode,4,2,,0.13567360043525695,0.17022239947691561,25.464643770654007,0.28209279961884026,0.32890720088034875,16.595390355501248,0.4177664000540972,0.4991296003572644,19.475764516397522,False,ffn,ffn,True,256

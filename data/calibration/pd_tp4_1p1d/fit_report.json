@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "experiment_type": "pd_stage_calibration",
+  "selected": {
+    "objective": 27.345171630849308,
+    "macro_ttft_mape_pct": 14.794055700662291,
+    "macro_tpot_mape_pct": 19.783838562260193,
+    "macro_e2e_mape_pct": 15.889423822382085,
+    "scenarios": [
+      {
+        "name": "calibration_isolated",
+        "request_count": 8,
+        "ttft_mape_pct": 13.170617064929036,
+        "ttft_bias_pct": -11.053538351134168,
+        "tpot_mape_pct": 0.5852780403079982,
+        "tpot_bias_pct": -0.06669269607890535,
+        "e2e_mape_pct": 1.2845459628953049,
+        "e2e_bias_pct": -0.6300302215522424
+      },
+      {
+        "name": "calibration_medium",
+        "request_count": 20,
+        "ttft_mape_pct": 9.416749243676842,
+        "ttft_bias_pct": -0.6208533171167934,
+        "tpot_mape_pct": 33.4140776855164,
+        "tpot_bias_pct": -19.075797163255718,
+        "e2e_mape_pct": 28.1810459201076,
+        "e2e_bias_pct": -19.100679065322332
+      },
+      {
+        "name": "calibration_saturated",
+        "request_count": 20,
+        "ttft_mape_pct": 21.794800793380993,
+        "ttft_bias_pct": -10.069182060390009,
+        "tpot_mape_pct": 25.35215996095618,
+        "tpot_bias_pct": -10.310371472025253,
+        "e2e_mape_pct": 18.202679584143347,
+        "e2e_bias_pct": -12.663803384407057
+      }
+    ],
+    "parameters": {
+      "prefill_factor": 1.0,
+      "decode_base_factor": 0.825925925925926,
+      "batch_exponent": 0.0,
+      "kv_exponent": -0.05185185185185186,
+      "iteration_overhead_ms": 6.1111111111111125
+    },
+    "transfer_provenance": {
+      "runtime_fields": "derived from ground-truth deployment manifest",
+      "kv_transfer_bandwidth_assumed": true,
+      "kv_transfer_latency_assumed": true
+    }
+  },
+  "evaluation_count": 273,
+  "parameter_ranges": {
+    "prefill_factor": [
+      0.5,
+      2.0
+    ],
+    "decode_base_factor": [
+      0.5,
+      1.5
+    ],
+    "batch_exponent": [
+      -0.5,
+      0.5
+    ],
+    "kv_exponent": [
+      -0.35,
+      0.35
+    ],
+    "iteration_overhead_ms": [
+      0.0,
+      20.0
+    ]
+  },
+  "search_history": [
+    {
+      "start": 0,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 0.0
+      },
+      "objective": 30.6305912035599
+    },
+    {
+      "start": 0,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.11666666666666667,
+        "iteration_overhead_ms": 0.0
+      },
+      "objective": 30.11891722448907
+    },
+    {
+      "start": 0,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 0.5555555555555556
+      },
+      "objective": 29.125541372620283
+    },
+    {
+      "start": 0,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 1.0277777777777777,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.06481481481481483,
+        "iteration_overhead_ms": 0.7407407407407408
+      },
+      "objective": 28.452937982420863
+    },
+    {
+      "start": 1,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.25,
+        "decode_base_factor": 0.9,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 5.0
+      },
+      "objective": 37.14441222965638
+    },
+    {
+      "start": 1,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.9,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 5.0
+      },
+      "objective": 29.65683456624811
+    },
+    {
+      "start": 1,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.8444444444444444,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 6.1111111111111125
+      },
+      "objective": 28.02305905538906
+    },
+    {
+      "start": 1,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.825925925925926,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.05185185185185186,
+        "iteration_overhead_ms": 6.1111111111111125
+      },
+      "objective": 27.345171630849308
+    },
+    {
+      "start": 2,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.5,
+        "decode_base_factor": 1.1,
+        "batch_exponent": -0.15,
+        "kv_exponent": 0.1,
+        "iteration_overhead_ms": 3.0
+      },
+      "objective": 66.03615207222336
+    },
+    {
+      "start": 2,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.8333333333333333,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.11666666666666667,
+        "iteration_overhead_ms": 6.666666666666667
+      },
+      "objective": 28.813946719844786
+    },
+    {
+      "start": 2,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.7777777777777777,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 7.777777777777777
+      },
+      "objective": 27.470494269661696
+    },
+    {
+      "start": 2,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.7777777777777777,
+        "batch_exponent": 0.0,
+        "kv_exponent": -0.05185185185185186,
+        "iteration_overhead_ms": 7.777777777777777
+      },
+      "objective": 27.367581250456936
+    }
+  ],
+  "sources": [
+    {
+      "name": "calibration_isolated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_isolated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_medium",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_medium.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_saturated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_saturated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_3.json"
+      ]
+    }
+  ],
+  "holdout_policy": "Freeze this config before rerunning validation_trace.csv. No validation or holdout request is used during fitting."
+}

@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "experiment_type": "pd_stage_calibration",
+  "selected": {
+    "objective": 10.10135432890775,
+    "macro_ttft_mape_pct": 13.26732469028571,
+    "macro_tpot_mape_pct": 5.081971488011509,
+    "macro_e2e_mape_pct": 2.5054613286416063,
+    "scenarios": [
+      {
+        "name": "calibration_isolated",
+        "request_count": 8,
+        "ttft_mape_pct": 14.481835858201583,
+        "ttft_bias_pct": -13.047146021523371,
+        "tpot_mape_pct": 1.7872546774162388,
+        "tpot_bias_pct": -0.33817685604790537,
+        "e2e_mape_pct": 1.3918395155195569,
+        "e2e_bias_pct": -0.9510978697217034
+      },
+      {
+        "name": "calibration_medium",
+        "request_count": 20,
+        "ttft_mape_pct": 5.831484088712384,
+        "ttft_bias_pct": 0.47769157890915476,
+        "tpot_mape_pct": 2.4437710450359367,
+        "tpot_bias_pct": 1.9228954965441243,
+        "e2e_mape_pct": 2.7358247951210912,
+        "e2e_bias_pct": 2.621602170075232
+      },
+      {
+        "name": "calibration_saturated",
+        "request_count": 20,
+        "ttft_mape_pct": 19.48865412394316,
+        "ttft_bias_pct": 19.48865412394316,
+        "tpot_mape_pct": 11.01488874158235,
+        "tpot_bias_pct": -10.598154799357665,
+        "e2e_mape_pct": 3.3887196752841704,
+        "e2e_bias_pct": 3.3887196752841704
+      }
+    ],
+    "parameters": {
+      "prefill_factor": 1.0,
+      "decode_base_factor": 0.6481481481481481,
+      "batch_exponent": -0.1851851851851852,
+      "kv_exponent": -0.07777777777777778,
+      "iteration_overhead_ms": 1.851851851851852,
+      "transfer_ms_per_128mb": 9.361851851851853
+    },
+    "transfer_provenance": {
+      "runtime_fields": "derived from ground-truth deployment manifest",
+      "kv_transfer_bandwidth_assumed": false,
+      "kv_transfer_latency_assumed": true,
+      "decode_kv_load_policy_source": "derived from deployment.kv_connector.name"
+    }
+  },
+  "evaluation_count": 334,
+  "parameter_ranges": {
+    "prefill_factor": [
+      0.5,
+      2.0
+    ],
+    "decode_base_factor": [
+      0.5,
+      1.5
+    ],
+    "batch_exponent": [
+      -0.5,
+      0.5
+    ],
+    "kv_exponent": [
+      -0.35,
+      0.35
+    ],
+    "iteration_overhead_ms": [
+      0.0,
+      20.0
+    ],
+    "transfer_ms_per_128mb": [
+      5.0,
+      256.0
+    ]
+  },
+  "search_history": [
+    {
+      "start": 0,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 1.0,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 0.0,
+        "transfer_ms_per_128mb": 10.24
+      },
+      "objective": 35.9248110833834
+    },
+    {
+      "start": 0,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.6666666666666666,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.11666666666666667,
+        "iteration_overhead_ms": 0.0,
+        "transfer_ms_per_128mb": 10.24
+      },
+      "objective": 12.250261171898359
+    },
+    {
+      "start": 0,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.6666666666666666,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.11666666666666667,
+        "iteration_overhead_ms": 1.6666666666666667,
+        "transfer_ms_per_128mb": 10.24
+      },
+      "objective": 11.759715418699498
+    },
+    {
+      "start": 0,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 1.0,
+        "decode_base_factor": 0.6481481481481481,
+        "batch_exponent": -0.1851851851851852,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 1.851851851851852,
+        "transfer_ms_per_128mb": 9.361851851851853
+      },
+      "objective": 10.10135432890775
+    },
+    {
+      "start": 1,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.25,
+        "decode_base_factor": 0.9,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 5.0,
+        "transfer_ms_per_128mb": 85.0
+      },
+      "objective": 67.45794954708745
+    },
+    {
+      "start": 1,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 0.75,
+        "decode_base_factor": 0.6666666666666666,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 3.3333333333333335,
+        "transfer_ms_per_128mb": 46.833333333333336
+      },
+      "objective": 19.174470792389418
+    },
+    {
+      "start": 1,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 0.9166666666666666,
+        "decode_base_factor": 0.6666666666666666,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.03888888888888889,
+        "iteration_overhead_ms": 2.2222222222222223,
+        "transfer_ms_per_128mb": 32.888888888888886
+      },
+      "objective": 12.741096557198642
+    },
+    {
+      "start": 1,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 0.8888888888888888,
+        "decode_base_factor": 0.6851851851851851,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.05185185185185186,
+        "iteration_overhead_ms": 1.851851851851852,
+        "transfer_ms_per_128mb": 32.888888888888886
+      },
+      "objective": 12.033909207166445
+    },
+    {
+      "start": 2,
+      "round": -1,
+      "parameters": {
+        "prefill_factor": 1.5,
+        "decode_base_factor": 1.1,
+        "batch_exponent": -0.15,
+        "kv_exponent": 0.1,
+        "iteration_overhead_ms": 3.0,
+        "transfer_ms_per_128mb": 128.0
+      },
+      "objective": 118.46984793334
+    },
+    {
+      "start": 2,
+      "round": 0,
+      "parameters": {
+        "prefill_factor": 0.5,
+        "decode_base_factor": 0.6666666666666666,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 3.0,
+        "transfer_ms_per_128mb": 128.0
+      },
+      "objective": 17.87808366317062
+    },
+    {
+      "start": 2,
+      "round": 1,
+      "parameters": {
+        "prefill_factor": 0.5,
+        "decode_base_factor": 0.6666666666666666,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.03888888888888889,
+        "iteration_overhead_ms": 3.0,
+        "transfer_ms_per_128mb": 128.0
+      },
+      "objective": 16.92654924787639
+    },
+    {
+      "start": 2,
+      "round": 2,
+      "parameters": {
+        "prefill_factor": 0.5,
+        "decode_base_factor": 0.6481481481481481,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.06481481481481481,
+        "iteration_overhead_ms": 3.3518518518518516,
+        "transfer_ms_per_128mb": 128.0
+      },
+      "objective": 16.434138968171908
+    }
+  ],
+  "sources": [
+    {
+      "name": "calibration_isolated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_isolated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_isolated/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_medium",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_medium.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_medium/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_saturated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_saturated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/calibration_tp4_1p1d/calibration_saturated/repeat_3.json"
+      ]
+    }
+  ],
+  "holdout_policy": "Freeze this config before rerunning validation_trace.csv. No validation or holdout request is used during fitting."
+}

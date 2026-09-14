@@ -1,0 +1,157 @@
+{
+  "schema_version": 1,
+  "experiment_type": "pd_remote_kv_readiness_analysis",
+  "interpretation": "post_prefill_to_first_byte_ms includes remote-KV readiness and decode admission; it is not raw interconnect transfer time",
+  "scenarios": [
+    {
+      "scenario": "isolated",
+      "run_file": "C:\\Users\\LHZ15\\Desktop\\timing_diagnostics\\isolated.json",
+      "timing_log": "C:\\Users\\LHZ15\\Desktop\\timing_diagnostics\\isolated_timing.log",
+      "deployment_config_sha256": "bff5c74d83bbbe76cc3ffeec8a6bee487340360ae0f108df2de0a74db3ab8088",
+      "total_requests": 8,
+      "successful_requests": 8,
+      "aligned_timing_records": 8,
+      "cohort_threshold_ms": 50.0,
+      "readiness_cohort_count": 8,
+      "multi_request_cohort_count": 0,
+      "largest_readiness_cohort": 1,
+      "prefill_service_ms": {
+        "count": 8,
+        "mean": 299.56575,
+        "p50": 255.3375,
+        "p90": 599.6742999999999,
+        "p99": 600.5632299999999,
+        "min": 86.474,
+        "max": 600.6619999999999
+      },
+      "post_prefill_to_first_byte_ms": {
+        "count": 8,
+        "mean": 30.615875000000003,
+        "p50": 29.994499999999988,
+        "p90": 33.5195,
+        "p99": 38.84614999999999,
+        "min": 26.25,
+        "max": 39.43799999999999
+      },
+      "decode_headers_ms": {
+        "count": 8,
+        "mean": 9.063875,
+        "p50": 8.5715,
+        "p90": 11.368699999999999,
+        "p99": 11.689369999999998,
+        "min": 7.183,
+        "max": 11.725
+      },
+      "client_minus_proxy_first_byte_ms": {
+        "count": 8,
+        "mean": 5.72751785137504,
+        "p50": 5.78309940171242,
+        "p90": 6.130807226490975,
+        "p99": 6.248228734071258,
+        "min": 5.172587535798527,
+        "max": 6.261275568246845
+      },
+      "post_prefill_wait_over_100ms_ratio": 0.0
+    },
+    {
+      "scenario": "medium",
+      "run_file": "C:\\Users\\LHZ15\\Desktop\\timing_diagnostics\\medium.json",
+      "timing_log": "C:\\Users\\LHZ15\\Desktop\\timing_diagnostics\\medium_timing.log",
+      "deployment_config_sha256": "bff5c74d83bbbe76cc3ffeec8a6bee487340360ae0f108df2de0a74db3ab8088",
+      "total_requests": 20,
+      "successful_requests": 20,
+      "aligned_timing_records": 20,
+      "cohort_threshold_ms": 50.0,
+      "readiness_cohort_count": 8,
+      "multi_request_cohort_count": 4,
+      "largest_readiness_cohort": 6,
+      "prefill_service_ms": {
+        "count": 20,
+        "mean": 985.3063,
+        "p50": 1039.56,
+        "p90": 1481.8138000000004,
+        "p99": 1657.0097799999999,
+        "min": 85.28999999999999,
+        "max": 1663.648
+      },
+      "post_prefill_to_first_byte_ms": {
+        "count": 20,
+        "mean": 252.28099999999998,
+        "p50": 33.64449999999988,
+        "p90": 834.5042000000003,
+        "p99": 1067.4303199999997,
+        "min": 25.680999999999926,
+        "max": 1067.6339999999998
+      },
+      "decode_headers_ms": {
+        "count": 20,
+        "mean": 7.94975,
+        "p50": 7.471,
+        "p90": 9.950000000000001,
+        "p99": 11.733619999999998,
+        "min": 6.141,
+        "max": 11.962
+      },
+      "client_minus_proxy_first_byte_ms": {
+        "count": 20,
+        "mean": 6.890910204848678,
+        "p50": 7.1741410602629685,
+        "p90": 8.382303848570496,
+        "p99": 8.904448811909708,
+        "min": 3.911980951726491,
+        "max": 8.969147479891944
+      },
+      "post_prefill_wait_over_100ms_ratio": 0.25
+    },
+    {
+      "scenario": "saturated",
+      "run_file": "C:\\Users\\LHZ15\\Desktop\\timing_diagnostics\\saturated.json",
+      "timing_log": "C:\\Users\\LHZ15\\Desktop\\timing_diagnostics\\saturated_timing.log",
+      "deployment_config_sha256": "bff5c74d83bbbe76cc3ffeec8a6bee487340360ae0f108df2de0a74db3ab8088",
+      "total_requests": 20,
+      "successful_requests": 20,
+      "aligned_timing_records": 20,
+      "cohort_threshold_ms": 50.0,
+      "readiness_cohort_count": 3,
+      "multi_request_cohort_count": 2,
+      "largest_readiness_cohort": 13,
+      "prefill_service_ms": {
+        "count": 20,
+        "mean": 2475.40315,
+        "p50": 2755.62,
+        "p90": 3823.3630000000003,
+        "p99": 3906.79057,
+        "min": 599.976,
+        "max": 3916.233
+      },
+      "post_prefill_to_first_byte_ms": {
+        "count": 20,
+        "mean": 743.6033499999999,
+        "p50": 976.195,
+        "p90": 1691.9424,
+        "p99": 1692.2088899999999,
+        "min": 33.072,
+        "max": 1692.241
+      },
+      "decode_headers_ms": {
+        "count": 20,
+        "mean": 7.29965,
+        "p50": 7.02,
+        "p90": 8.9782,
+        "p99": 10.041279999999999,
+        "min": 5.24,
+        "max": 10.21
+      },
+      "client_minus_proxy_first_byte_ms": {
+        "count": 20,
+        "mean": 6.771298836076307,
+        "p50": 6.736780480504194,
+        "p90": 7.880687508148049,
+        "p99": 8.196372352998,
+        "min": 4.964630844414273,
+        "max": 8.219596011042995
+      },
+      "post_prefill_wait_over_100ms_ratio": 0.55
+    }
+  ]
+}

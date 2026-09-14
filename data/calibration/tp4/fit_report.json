@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "configuration": {
+    "tp_size": 4,
+    "num_gpu_blocks": 22136,
+    "block_size_tokens": 16,
+    "max_num_batched_tokens": 8192,
+    "max_num_seqs": 32,
+    "factor_range": [
+      0.4,
+      1.2
+    ]
+  },
+  "selected": {
+    "decode_factor": 0.603125,
+    "objective_tpot_mape_pct": 11.743518429095849,
+    "scenarios": [
+      {
+        "name": "calibration_isolated",
+        "request_count": 8,
+        "tpot_mape_pct": 39.02315389844251,
+        "e2e_mape_pct": 36.46664472762129,
+        "ttft_mape_pct": 18.114132750008768
+      },
+      {
+        "name": "calibration_medium",
+        "request_count": 20,
+        "tpot_mape_pct": 3.2624453521696504,
+        "e2e_mape_pct": 3.0663831136269426,
+        "ttft_mape_pct": 7.5627025885543775
+      },
+      {
+        "name": "calibration_saturated",
+        "request_count": 20,
+        "tpot_mape_pct": 9.312737318283379,
+        "e2e_mape_pct": 4.090154866400251,
+        "ttft_mape_pct": 12.515988143581293
+      }
+    ]
+  },
+  "sources": [
+    {
+      "name": "calibration_isolated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_isolated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_isolated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_isolated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_isolated/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_medium",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_medium.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_medium/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_medium/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_medium/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_saturated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_saturated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_saturated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_saturated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_saturated/repeat_3.json"
+      ]
+    }
+  ],
+  "search_curve": [
+    {
+      "decode_factor": 0.4,
+      "objective_tpot_mape_pct": 27.632228436668058
+    },
+    {
+      "decode_factor": 0.45,
+      "objective_tpot_mape_pct": 22.732683017373716
+    },
+    {
+      "decode_factor": 0.5,
+      "objective_tpot_mape_pct": 18.03616313013184
+    },
+    {
+      "decode_factor": 0.55,
+      "objective_tpot_mape_pct": 14.272139735679408
+    },
+    {
+      "decode_factor": 0.55625,
+      "objective_tpot_mape_pct": 13.845084261302025
+    },
+    {
+      "decode_factor": 0.5625,
+      "objective_tpot_mape_pct": 13.418030965242059
+    },
+    {
+      "decode_factor": 0.56875,
+      "objective_tpot_mape_pct": 12.993410450002804
+    },
+    {
+      "decode_factor": 0.575,
+      "objective_tpot_mape_pct": 12.601412853367416
+    },
+    {
+      "decode_factor": 0.58125,
+      "objective_tpot_mape_pct": 12.274753352882941
+    },
+    {
+      "decode_factor": 0.5875,
+      "objective_tpot_mape_pct": 12.055186498886515
+    },
+    {
+      "decode_factor": 0.59375,
+      "objective_tpot_mape_pct": 11.871055124105283
+    },
+    {
+      "decode_factor": 0.6,
+      "objective_tpot_mape_pct": 11.783437387009492
+    },
+    {
+      "decode_factor": 0.60078125,
+      "objective_tpot_mape_pct": 11.7724875493399
+    },
+    {
+      "decode_factor": 0.6015625,
+      "objective_tpot_mape_pct": 11.761535792552513
+    },
+    {
+      "decode_factor": 0.60234375,
+      "objective_tpot_mape_pct": 11.75058079884159
+    },
+    {
+      "decode_factor": 0.603125,
+      "objective_tpot_mape_pct": 11.743518429095849
+    },
+    {
+      "decode_factor": 0.60390625,
+      "objective_tpot_mape_pct": 11.745481878318884
+    },
+    {
+      "decode_factor": 0.6046875,
+      "objective_tpot_mape_pct": 11.747823488228974
+    },
+    {
+      "decode_factor": 0.60546875,
+      "objective_tpot_mape_pct": 11.750158618608333
+    },
+    {
+      "decode_factor": 0.60625,
+      "objective_tpot_mape_pct": 11.759887254468344
+    },
+    {
+      "decode_factor": 0.60703125,
+      "objective_tpot_mape_pct": 11.774752388167903
+    },
+    {
+      "decode_factor": 0.6078125,
+      "objective_tpot_mape_pct": 11.791023880069082
+    },
+    {
+      "decode_factor": 0.60859375,
+      "objective_tpot_mape_pct": 11.816802020273387
+    },
+    {
+      "decode_factor": 0.609375,
+      "objective_tpot_mape_pct": 11.842575614284996
+    },
+    {
+      "decode_factor": 0.61015625,
+      "objective_tpot_mape_pct": 11.868349700541955
+    },
+    {
+      "decode_factor": 0.6109375,
+      "objective_tpot_mape_pct": 11.894130982438005
+    },
+    {
+      "decode_factor": 0.61171875,
+      "objective_tpot_mape_pct": 11.919902408802601
+    },
+    {
+      "decode_factor": 0.6125,
+      "objective_tpot_mape_pct": 11.945678029407036
+    },
+    {
+      "decode_factor": 0.61875,
+      "objective_tpot_mape_pct": 12.207277702833528
+    },
+    {
+      "decode_factor": 0.625,
+      "objective_tpot_mape_pct": 12.511661202303506
+    },
+    {
+      "decode_factor": 0.63125,
+      "objective_tpot_mape_pct": 12.807333002397186
+    },
+    {
+      "decode_factor": 0.6375,
+      "objective_tpot_mape_pct": 13.117616406950788
+    },
+    {
+      "decode_factor": 0.64375,
+      "objective_tpot_mape_pct": 13.452167819462197
+    },
+    {
+      "decode_factor": 0.65,
+      "objective_tpot_mape_pct": 13.786724411690239
+    },
+    {
+      "decode_factor": 0.7,
+      "objective_tpot_mape_pct": 16.952620167972604
+    },
+    {
+      "decode_factor": 0.75,
+      "objective_tpot_mape_pct": 20.280449425785903
+    },
+    {
+      "decode_factor": 0.8,
+      "objective_tpot_mape_pct": 23.58846695091816
+    },
+    {
+      "decode_factor": 0.85,
+      "objective_tpot_mape_pct": 26.920586500034705
+    },
+    {
+      "decode_factor": 0.9,
+      "objective_tpot_mape_pct": 30.230020203702555
+    },
+    {
+      "decode_factor": 0.95,
+      "objective_tpot_mape_pct": 33.8619064945861
+    },
+    {
+      "decode_factor": 1.0,
+      "objective_tpot_mape_pct": 38.47171521613451
+    },
+    {
+      "decode_factor": 1.05,
+      "objective_tpot_mape_pct": 43.528957401739795
+    },
+    {
+      "decode_factor": 1.1,
+      "objective_tpot_mape_pct": 48.79549308328405
+    },
+    {
+      "decode_factor": 1.15,
+      "objective_tpot_mape_pct": 54.12047494295828
+    },
+    {
+      "decode_factor": 1.2,
+      "objective_tpot_mape_pct": 59.56077182339133
+    }
+  ],
+  "holdout_policy": "validation_trace.csv is excluded from fitting and must be used only after this configuration is generated"
+}

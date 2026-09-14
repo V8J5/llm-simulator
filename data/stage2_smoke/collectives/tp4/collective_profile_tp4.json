@@ -1,0 +1,304 @@
+{
+  "schema_version": 2,
+  "profile_type": "collective",
+  "metadata": {
+    "captured_at_utc": "2026-09-12T11:29:07.123904+00:00",
+    "host": {
+      "hostname": "djs-l20",
+      "platform": "Linux-5.15.0-164-generic-x86_64-with-glibc2.35",
+      "python": "3.10.20 (main, Jun 11 2026, 15:17:37) [GCC 14.3.0]",
+      "executable": "/data/home/lihaozhe/miniconda3/envs/llm-simulator/bin/python3.10"
+    },
+    "software": {
+      "torch": "2.10.0",
+      "vllm": "0.19.0",
+      "transformers": "4.57.6",
+      "triton": "3.6.0",
+      "numpy": "2.2.6",
+      "openai": "2.52.0",
+      "nvidia-nccl-cu12": "2.27.5"
+    },
+    "torch_runtime": {
+      "available": true,
+      "torch_version": "2.10.0+cu128",
+      "cuda_build_version": "12.8",
+      "cuda_available": true,
+      "visible_device_count": 4,
+      "visible_devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 2,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 3,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        }
+      ],
+      "nccl_version": [
+        2,
+        27,
+        5
+      ],
+      "cudnn_version": 91002
+    },
+    "cuda": {
+      "visible_devices": "0,1,2,3",
+      "nvidia_smi_query": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+      "topology": "\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tGPU4\tGPU5\tGPU6\tGPU7\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU1\tNODE\t X \tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU2\tNODE\tNODE\t X \tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU3\tNODE\tNODE\tNODE\t X \tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU4\tSYS\tSYS\tSYS\tSYS\t X \tNODE\tNODE\tNODE\t32-63,96-127\t1\t\tN/A\nGPU5\tSYS\tSYS\tSYS\tSYS\tNODE\t X \tNODE\tNODE\t32-63,96-127\t1\t\tN/A\nGPU6\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\t X \tNODE\t32-63,96-127\t1\t\tN/A\nGPU7\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tNODE\t X \t32-63,96-127\t1\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks"
+    },
+    "model": {},
+    "benchmark": {
+      "kind": "tensor_parallel_collective_microbenchmark",
+      "backend": "nccl",
+      "world_size": 4,
+      "dtype": "bfloat16",
+      "warmup": 2,
+      "repeats": 5,
+      "timer": "torch.cuda.Event; maximum across ranks",
+      "message_size_semantics": "payload size per rank"
+    },
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "0,1,2,3",
+      "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1"
+    },
+    "source": {
+      "project_root": "/data/home/lihaozhe/llm-simulator",
+      "git_commit": "3a1a69aa8fff64fd6863aeb763b532e09fa886e4",
+      "git_dirty": true
+    }
+  },
+  "measurements": [
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 4,
+      "message_size_mb_per_rank": 0.1,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.1138688012957573,
+        "std_ms": 0.006968790972374493,
+        "min_ms": 0.10016000270843506,
+        "p50_ms": 0.11766400188207626,
+        "p90_ms": 0.11836159974336624,
+        "p99_ms": 0.1186265617609024,
+        "max_ms": 0.11865600198507309
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 4,
+      "message_size_mb_per_rank": 0.1,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.12878719866275787,
+        "std_ms": 0.008967847738153381,
+        "min_ms": 0.11398400366306305,
+        "p50_ms": 0.12937599420547485,
+        "p90_ms": 0.13722879886627198,
+        "p99_ms": 0.14176767587661743,
+        "max_ms": 0.1422719955444336
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 4,
+      "message_size_mb_per_rank": 0.1,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.1298815965652466,
+        "std_ms": 0.009493817904524825,
+        "min_ms": 0.11100800335407257,
+        "p50_ms": 0.1350719928741455,
+        "p90_ms": 0.1353919953107834,
+        "p99_ms": 0.13550719618797302,
+        "max_ms": 0.13551999628543854
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 4,
+      "message_size_mb_per_rank": 0.1,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.07037440091371536,
+        "std_ms": 0.002716075464113457,
+        "min_ms": 0.06838399916887283,
+        "p50_ms": 0.06915199756622314,
+        "p90_ms": 0.07331200242042542,
+        "p99_ms": 0.07550080299377442,
+        "max_ms": 0.07574400305747986
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 4,
+      "message_size_mb_per_rank": 1.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.20609280169010163,
+        "std_ms": 0.011601888423458842,
+        "min_ms": 0.18956799805164337,
+        "p50_ms": 0.20588800311088562,
+        "p90_ms": 0.2180288016796112,
+        "p99_ms": 0.22504447877407074,
+        "max_ms": 0.2258239984512329
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 4,
+      "message_size_mb_per_rank": 1.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.2647167980670929,
+        "std_ms": 0.010900358155086137,
+        "min_ms": 0.24368000030517578,
+        "p50_ms": 0.27008000016212463,
+        "p90_ms": 0.2726143956184387,
+        "p99_ms": 0.27286783218383787,
+        "max_ms": 0.2728959918022156
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 4,
+      "message_size_mb_per_rank": 1.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.280268794298172,
+        "std_ms": 0.0052720881036126795,
+        "min_ms": 0.27238398790359497,
+        "p50_ms": 0.28198400139808655,
+        "p90_ms": 0.2856767952442169,
+        "p99_ms": 0.2874508726596832,
+        "max_ms": 0.2876479923725128
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 4,
+      "message_size_mb_per_rank": 1.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.12076160162687302,
+        "std_ms": 0.004865238802505093,
+        "min_ms": 0.11555200070142746,
+        "p50_ms": 0.11964800208806992,
+        "p90_ms": 0.12631040215492248,
+        "p99_ms": 0.12938624411821364,
+        "max_ms": 0.12972800433635712
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 4,
+      "message_size_mb_per_rank": 16.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 1.4860160112380982,
+        "std_ms": 0.005989634870722913,
+        "min_ms": 1.4784640073776245,
+        "p50_ms": 1.4856640100479126,
+        "p90_ms": 1.4929152250289917,
+        "p99_ms": 1.4955187273025512,
+        "max_ms": 1.4958080053329468
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 4,
+      "message_size_mb_per_rank": 16.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 3.053721570968628,
+        "std_ms": 0.014010431916140119,
+        "min_ms": 3.039328098297119,
+        "p50_ms": 3.048352003097534,
+        "p90_ms": 3.0710015296936035,
+        "p99_ms": 3.074319314956665,
+        "max_ms": 3.074687957763672
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 4,
+      "message_size_mb_per_rank": 16.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 3.0749823570251467,
+        "std_ms": 0.01113244553141252,
+        "min_ms": 3.065471887588501,
+        "p50_ms": 3.071743965148926,
+        "p90_ms": 3.08789119720459,
+        "p99_ms": 3.0950450992584226,
+        "max_ms": 3.0958399772644043
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 4,
+      "message_size_mb_per_rank": 16.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 5,
+        "mean_ms": 0.8376703977584838,
+        "std_ms": 0.017333210605810258,
+        "min_ms": 0.8166720271110535,
+        "p50_ms": 0.8447359800338745,
+        "p90_ms": 0.8551935911178589,
+        "p99_ms": 0.8564953422546386,
+        "max_ms": 0.8566399812698364
+      }
+    }
+  ]
+}

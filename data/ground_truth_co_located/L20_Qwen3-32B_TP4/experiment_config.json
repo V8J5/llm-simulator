@@ -1,0 +1,20 @@
+{
+  "hardware": "NVIDIA L20",
+  "num_gpus": 4,
+  "tp_size": 4,
+  "dtype": "bfloat16",
+  "vllm_version": "0.19.0",
+  "pytorch_version": "2.10.0+cu128",
+  "cuda_version": "12.8",
+  "driver_version": "575.51.03",
+  "gpu_memory_utilization": 0.85,
+  "max_model_len": 8192,
+  "max_num_batched_tokens": 8192,
+  "max_num_seqs": 32,
+  "block_size_tokens": 16,
+  "enable_prefix_caching": false,
+  "enforce_eager": true,
+  "arrival_interval_ms": 100,
+  "prompt_tokens": 512,
+  "output_tokens": 128
+}

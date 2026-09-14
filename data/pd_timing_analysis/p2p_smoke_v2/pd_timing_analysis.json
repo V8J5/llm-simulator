@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "experiment_type": "pd_remote_kv_readiness_analysis",
+  "interpretation": "post_prefill_to_first_byte_ms includes remote-KV readiness and decode admission; it is not raw interconnect transfer time",
+  "scenarios": [
+    {
+      "scenario": "p2p_smoke_v2",
+      "run_file": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/tp4_1p1d/p2p_timing_smoke_v2.json",
+      "timing_log": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/timing_diagnostics/p2p_timing_smoke_v2_timing.log",
+      "deployment_config_sha256": "bff5c74d83bbbe76cc3ffeec8a6bee487340360ae0f108df2de0a74db3ab8088",
+      "total_requests": 2,
+      "successful_requests": 2,
+      "aligned_timing_records": 2,
+      "cohort_threshold_ms": 50.0,
+      "readiness_cohort_count": 2,
+      "multi_request_cohort_count": 0,
+      "largest_readiness_cohort": 1,
+      "prefill_service_ms": {
+        "count": 2,
+        "mean": 140.8625,
+        "p50": 140.8625,
+        "p90": 180.2589,
+        "p99": 189.12309,
+        "min": 91.61699999999999,
+        "max": 190.108
+      },
+      "post_prefill_to_first_byte_ms": {
+        "count": 2,
+        "mean": 37.372,
+        "p50": 37.372,
+        "p90": 37.425599999999996,
+        "p99": 37.437659999999994,
+        "min": 37.30500000000001,
+        "max": 37.43899999999999
+      },
+      "decode_headers_ms": {
+        "count": 2,
+        "mean": 7.8445,
+        "p50": 7.8445,
+        "p90": 7.8777,
+        "p99": 7.8851700000000005,
+        "min": 7.803,
+        "max": 7.886
+      },
+      "client_minus_proxy_first_byte_ms": {
+        "count": 2,
+        "mean": 5.8104318085908915,
+        "p50": 5.8104318085908915,
+        "p90": 6.28872242295742,
+        "p99": 6.396337811189889,
+        "min": 5.212568540632731,
+        "max": 6.408295076549052
+      },
+      "post_prefill_wait_over_100ms_ratio": 0.0,
+      "kv_event_source": "p2p_worker_blocking_receive",
+      "kv_state_timing": {
+        "prefill_complete_to_kv_receive_start_ms": {
+          "count": 2,
+          "mean": -128.02956430715324,
+          "p50": -128.02956430715324,
+          "p90": -87.14081368426083,
+          "p99": -77.94084479411005,
+          "min": -179.1405025857687,
+          "max": -76.91862602853774
+        },
+        "kv_receive_duration_ms": {
+          "count": 2,
+          "mean": 121.73037277534604,
+          "p50": 121.73037277534604,
+          "p90": 162.27943086996675,
+          "p99": 171.4029689412564,
+          "min": 71.04405015707016,
+          "max": 172.41669539362192
+        },
+        "kv_receive_complete_to_first_byte_ms": {
+          "count": 2,
+          "mean": 43.67119153180718,
+          "p50": 43.67119153180718,
+          "p90": 44.064484060078854,
+          "p99": 44.15297487893998,
+          "min": 43.17957587146759,
+          "max": 44.16280719214677
+        }
+      }
+    }
+  ]
+}

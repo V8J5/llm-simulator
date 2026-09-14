@@ -1,0 +1,3 @@
+arrival_time_ms,prompt_len,output_len
+0,128,8
+1000,512,8

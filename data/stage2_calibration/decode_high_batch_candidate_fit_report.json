@@ -1,0 +1,505 @@
+{
+  "schema_version": 1,
+  "experiment_type": "fixed_batch_decode_shape_calibration",
+  "configuration": {
+    "reference_batch_size": 4.0,
+    "reference_kv_len": 512.0,
+    "forbidden_validation_batches": [
+      1,
+      4,
+      8
+    ],
+    "forbidden_validation_lengths": [
+      128,
+      512,
+      1024
+    ]
+  },
+  "runtime_identity": {
+    "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+    "vllm_version": "0.19.0",
+    "dtype": "bfloat16"
+  },
+  "tp": {
+    "2": {
+      "point_count": 9,
+      "baseline_mape_pct": 16.304321301219204,
+      "fitted_mape_pct": 2.9922292965198305,
+      "parameters": {
+        "base_factor": 0.9316436033052701,
+        "batch_exponent": 0.10358534396612454,
+        "kv_exponent": 0.07032494257091285,
+        "reference_batch_size": 4.0,
+        "reference_kv_len": 512.0,
+        "batch_size_min": 2,
+        "batch_size_max": 6,
+        "kv_len_min": 80,
+        "kv_len_max": 784,
+        "min_factor": 0.2,
+        "max_factor": 2.0
+      },
+      "points": [
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b2_l256.json",
+          "source_sha256": "8968b84f8787db7c1f3dd741f3dafa9fbdf2244893ed42470f04eba7c3d58132",
+          "tp_size": 2,
+          "batch_size": 2,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 50.338608067562824,
+          "baseline_predicted_ms": 62.3316,
+          "calibration_factor": 0.8293716284670112,
+          "calibrated_predicted_ms": 51.696060596954354
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b2_l64.json",
+          "source_sha256": "8048404d69b43301d0f4bb0af9fe221587bd419581ac25b3e1086b4fe361fa36",
+          "tp_size": 2,
+          "batch_size": 2,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 48.77629018418731,
+          "baseline_predicted_ms": 62.1949,
+          "calibration_factor": 0.760979487611984,
+          "calibrated_predicted_ms": 47.32904313407858
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b2_l768.json",
+          "source_sha256": "34e7cc87a2a8460111b33aeaae82d70039f98e6f80446b9baa60995a7d6efe6a",
+          "tp_size": 2,
+          "batch_size": 2,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 53.64937120948428,
+          "baseline_predicted_ms": 62.3933,
+          "calibration_factor": 0.8934718360539791,
+          "calibrated_predicted_ms": 55.74665630846673
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b3_l256.json",
+          "source_sha256": "dfd8fa4f2d7451b4e9e401de0b780216e52d2cbb924318e0585c41409377e324",
+          "tp_size": 2,
+          "batch_size": 3,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 52.230171348539095,
+          "baseline_predicted_ms": 60.7505,
+          "calibration_factor": 0.8649473020745044,
+          "calibrated_predicted_ms": 52.54598107467719
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b3_l64.json",
+          "source_sha256": "ecd1526fa0c83728c854a06415bab91bac4d0c4e1fa949a07c5076afde228ab8",
+          "tp_size": 2,
+          "batch_size": 3,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 49.23126598199209,
+          "baseline_predicted_ms": 60.5527,
+          "calibration_factor": 0.7936214986768202,
+          "calibrated_predicted_ms": 48.05592452292789
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b3_l768.json",
+          "source_sha256": "dc2274a1d93bd14f24af34cf2e2b7f380f74f9d89fa3908560c4e32060238876",
+          "tp_size": 2,
+          "batch_size": 3,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 58.792026192750974,
+          "baseline_predicted_ms": 60.7986,
+          "calibration_factor": 0.9317970708774758,
+          "calibrated_predicted_ms": 56.6519573934513
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b6_l256.json",
+          "source_sha256": "d020e7a5153c864c0b45b472d906de908c223f9b0596f89a8e5961eff366e463",
+          "tp_size": 2,
+          "batch_size": 6,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 52.93436725807499,
+          "baseline_predicted_ms": 59.6245,
+          "calibration_factor": 0.9293342520020518,
+          "calibrated_predicted_ms": 55.41109010849633
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b6_l64.json",
+          "source_sha256": "b8c92fde0d96040b5578b10f84dbcba63f04849131776d08452ce28ce8ce8499",
+          "tp_size": 2,
+          "batch_size": 6,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 49.868500459351736,
+          "baseline_predicted_ms": 59.5416,
+          "calibration_factor": 0.8526989333068526,
+          "calibrated_predicted_ms": 50.7710588073833
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp2/decode_b6_l768.json",
+          "source_sha256": "d7aecfbc77faee76ac165aec11fa29b54193d7d53896bdeb77b6634053aad5f4",
+          "tp_size": 2,
+          "batch_size": 6,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 62.48715188935079,
+          "baseline_predicted_ms": 59.7707,
+          "calibration_factor": 1.0011603386757901,
+          "calibrated_predicted_ms": 59.84005425488905
+        }
+      ]
+    },
+    "4": {
+      "point_count": 17,
+      "baseline_mape_pct": 21.315981913839266,
+      "fitted_mape_pct": 15.861505553248776,
+      "parameters": {
+        "base_factor": 0.9603756940233678,
+        "batch_exponent": 0.12077256985993062,
+        "kv_exponent": 0.14246240779218985,
+        "reference_batch_size": 4.0,
+        "reference_kv_len": 512.0,
+        "batch_size_min": 2,
+        "batch_size_max": 32,
+        "kv_len_min": 80,
+        "kv_len_max": 784,
+        "min_factor": 0.2,
+        "max_factor": 2.0
+      },
+      "points": [
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b2_l256.json",
+          "source_sha256": "8cd424cd157289d187b54e3282666446929c2dd88b8d4b876486a7bbb47beb91",
+          "tp_size": 4,
+          "batch_size": 2,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 31.70630089958669,
+          "baseline_predicted_ms": 39.3176,
+          "calibration_factor": 0.8071428795590038,
+          "calibrated_predicted_ms": 31.734920881349087
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b2_l64.json",
+          "source_sha256": "a620d02c98bc9f6dfc49bb336f82ef3caec649943b181769b168a74cb59e1df9",
+          "tp_size": 4,
+          "batch_size": 2,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 31.021468696855408,
+          "baseline_predicted_ms": 39.1443,
+          "calibration_factor": 0.678007743028755,
+          "calibrated_predicted_ms": 26.540138495440495
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b2_l768.json",
+          "source_sha256": "f11163909bbb066cac3cb430a35569aae0d302c6b96998ce7b84d52e181b2613",
+          "tp_size": 4,
+          "batch_size": 2,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 32.69248528866678,
+          "baseline_predicted_ms": 39.3693,
+          "calibration_factor": 0.938527725962243,
+          "calibrated_predicted_ms": 36.949179601725334
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b3_l256.json",
+          "source_sha256": "433e4fae7ae13ec4b8b279daf517c220e7b969ae72cfec1394133cc6fe927c4a",
+          "tp_size": 4,
+          "batch_size": 3,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 32.06014778718726,
+          "baseline_predicted_ms": 36.988,
+          "calibration_factor": 0.8476516539432322,
+          "calibrated_predicted_ms": 31.35293937605227
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b3_l64.json",
+          "source_sha256": "8a886bbf6b4fbfa5261da85a216d6dbfaaee6380b9b70cf5d3be727193b88745",
+          "tp_size": 4,
+          "batch_size": 3,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 31.083413933847755,
+          "baseline_predicted_ms": 36.7363,
+          "calibration_factor": 0.7120355011725397,
+          "calibrated_predicted_ms": 26.157549781724768
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b3_l768.json",
+          "source_sha256": "1687cfbd23b719343321c0be02b83d8cb3e1e573e8485f16e58c8ea859a4c148",
+          "tp_size": 4,
+          "batch_size": 3,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 36.50835353720893,
+          "baseline_predicted_ms": 37.0398,
+          "calibration_factor": 0.9856304247125801,
+          "calibrated_predicted_ms": 36.507553805269026
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b6_l256.json",
+          "source_sha256": "e7b53f3cbd5b1ad198416ed02b47ecfe50f8f9bf8c748a5717b3a01cc02c320e",
+          "tp_size": 4,
+          "batch_size": 6,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 32.07809368221884,
+          "baseline_predicted_ms": 35.4866,
+          "calibration_factor": 0.921666027906922,
+          "calibrated_predicted_ms": 32.70679366592178
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b6_l64.json",
+          "source_sha256": "31d4a1e041dda38c39d098a752f018e626b3c884dc3a6afbff7f9964d5508b3f",
+          "tp_size": 4,
+          "batch_size": 6,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 30.900428218493328,
+          "baseline_predicted_ms": 35.4074,
+          "calibration_factor": 0.7742082836050943,
+          "calibrated_predicted_ms": 27.41270238091902
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4/decode_b6_l768.json",
+          "source_sha256": "d842377bdb1358a8d16077f6504c2bf182729c68796df0834cf8e5ad0f5db32d",
+          "tp_size": 4,
+          "batch_size": 6,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 39.24735867515153,
+          "baseline_predicted_ms": 35.5278,
+          "calibration_factor": 1.0716926868521086,
+          "calibrated_predicted_ms": 38.074883439944344
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b12_l256.json",
+          "source_sha256": "9004929129f6adb21798e973b413606d206d8c5e338f1837a832a9d80a00367b",
+          "tp_size": 4,
+          "batch_size": 12,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 32.35921167892047,
+          "baseline_predicted_ms": 41.9194,
+          "calibration_factor": 1.002143112735096,
+          "calibrated_predicted_ms": 42.00923799998758
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b12_l768.json",
+          "source_sha256": "fe904d669f344bab796cb58b26c9bccb591f835a94d5e5a8a7b6a5773368ce53",
+          "tp_size": 4,
+          "batch_size": 12,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 40.070750677163666,
+          "baseline_predicted_ms": 42.095,
+          "calibration_factor": 1.1652696449454807,
+          "calibrated_predicted_ms": 49.05202570398001
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b16_l256.json",
+          "source_sha256": "d298ef14dc8311c8995ed941ebe53fc3c23a6f220bf234a467db8a36c4c7e39a",
+          "tp_size": 4,
+          "batch_size": 16,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 34.381113145300134,
+          "baseline_predicted_ms": 49.655,
+          "calibration_factor": 1.0375736128366282,
+          "calibrated_predicted_ms": 51.52071774540278
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b16_l768.json",
+          "source_sha256": "0a8ca35f0d61b1b6e6be9537d64bf7deb5d5949600d19b53e7199b0312b1fd3d",
+          "tp_size": 4,
+          "batch_size": 16,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 58.10173693105518,
+          "baseline_predicted_ms": 49.9284,
+          "calibration_factor": 1.206467439700437,
+          "calibrated_predicted_ms": 60.2369889163393
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b24_l256.json",
+          "source_sha256": "0051663d70bd5d44750da4a1ac1cb8558fa55ae25d988d85c22d5bdbfc13e4ad",
+          "tp_size": 4,
+          "batch_size": 24,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 42.1436067931788,
+          "baseline_predicted_ms": 51.5677,
+          "calibration_factor": 1.0896472127578616,
+          "calibrated_predicted_ms": 56.19060057333358
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b24_l768.json",
+          "source_sha256": "c15d436519b7c5b8fda518867b699d2349366699f86aebd66b34f89649aa2ca5",
+          "tp_size": 4,
+          "batch_size": 24,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 84.61332680260274,
+          "baseline_predicted_ms": 52.0439,
+          "calibration_factor": 1.2670174594732002,
+          "calibrated_predicted_ms": 65.94052995907728
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b32_l256.json",
+          "source_sha256": "c2fd038ab1eb7cd61819a160640a0db8c07f8e62f8516ad57e7068930290c58a",
+          "tp_size": 4,
+          "batch_size": 32,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 51.634718492184014,
+          "baseline_predicted_ms": 46.4812,
+          "calibration_factor": 1.1281713967707465,
+          "calibrated_predicted_ms": 52.438760327580425
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b32_l768.json",
+          "source_sha256": "7286d8f6887d3783d8114ed5c78f177950904c0bdee2825b5e3cc0c5d378937c",
+          "tp_size": 4,
+          "batch_size": 32,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 112.86859588869045,
+          "baseline_predicted_ms": 47.2527,
+          "calibration_factor": 1.3118125208332387,
+          "calibrated_predicted_ms": 61.98668350317678
+        }
+      ]
+    },
+    "8": {
+      "point_count": 9,
+      "baseline_mape_pct": 31.44554737730417,
+      "fitted_mape_pct": 2.0985195056634307,
+      "parameters": {
+        "base_factor": 0.8288307639837326,
+        "batch_exponent": 0.21698228740369865,
+        "kv_exponent": 0.05490746658943088,
+        "reference_batch_size": 4.0,
+        "reference_kv_len": 512.0,
+        "batch_size_min": 2,
+        "batch_size_max": 6,
+        "kv_len_min": 80,
+        "kv_len_max": 784,
+        "min_factor": 0.2,
+        "max_factor": 2.0
+      },
+      "points": [
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b2_l256.json",
+          "source_sha256": "5af6db6936d632c66478ab131cae6c2e6c8d97b5dbcbd7031fd75ce7f7f8baf7",
+          "tp_size": 8,
+          "batch_size": 2,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 31.34652101985549,
+          "baseline_predicted_ms": 46.5526,
+          "calibration_factor": 0.6887546539331265,
+          "calibrated_predicted_ms": 32.06331990268726
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b2_l64.json",
+          "source_sha256": "7f3b6056630d4115549cbdea900013ef1ea9c82cc97a57220cff898754dcac80",
+          "tp_size": 8,
+          "batch_size": 2,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 30.495678054629476,
+          "baseline_predicted_ms": 46.3696,
+          "calibration_factor": 0.6439948369354436,
+          "calibrated_predicted_ms": 29.861782990761743
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b2_l768.json",
+          "source_sha256": "0af36a06cd8f355870f8144e8cdf51c47d211d41688b808cd44b92f85c467219",
+          "tp_size": 8,
+          "batch_size": 2,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 32.97535379126828,
+          "baseline_predicted_ms": 46.5943,
+          "calibration_factor": 0.7299751872359836,
+          "calibrated_predicted_ms": 34.01268286662959
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b3_l256.json",
+          "source_sha256": "2ed7a17ae716fa25ffb4f438ff6e2a017abb8f56df73ad9d35534c77b4568725",
+          "tp_size": 8,
+          "batch_size": 3,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 32.17266703618684,
+          "baseline_predicted_ms": 42.8752,
+          "calibration_factor": 0.7520959163362176,
+          "calibrated_predicted_ms": 32.2462628320986
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b3_l64.json",
+          "source_sha256": "615a2122752c83ee2bb9da5f25e47a6900ca34b13ea2241ed212af0ac1574438",
+          "tp_size": 8,
+          "batch_size": 3,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 30.55506014001412,
+          "baseline_predicted_ms": 42.6409,
+          "calibration_factor": 0.7032197666250285,
+          "calibrated_predicted_ms": 29.98592374668118
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b3_l768.json",
+          "source_sha256": "d977f239973be869b66a6d56e0ac48028ef3825102853a3d2b72abb62ca86a4c",
+          "tp_size": 8,
+          "batch_size": 3,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 35.429038841771394,
+          "baseline_predicted_ms": 42.9133,
+          "calibration_factor": 0.7971072924325453,
+          "calibrated_predicted_ms": 34.20650437234555
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b6_l256.json",
+          "source_sha256": "d6b9ad691503ee8a8db4e006768d1236f25275c48925e52c74e85f1040ea6bd9",
+          "tp_size": 8,
+          "batch_size": 6,
+          "initial_kv_length": 256,
+          "representative_kv_length": 272,
+          "observed_ms": 32.66218119704809,
+          "baseline_predicted_ms": 38.0917,
+          "calibration_factor": 0.8741609612430491,
+          "calibrated_predicted_ms": 33.298277087381855
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b6_l64.json",
+          "source_sha256": "a7242065059aef39742dace5655f22fa97e55039505039352260ffb406cd6648",
+          "tp_size": 8,
+          "batch_size": 6,
+          "initial_kv_length": 64,
+          "representative_kv_length": 80,
+          "observed_ms": 30.485903552155875,
+          "baseline_predicted_ms": 38.0258,
+          "calibration_factor": 0.8173522203825389,
+          "calibrated_predicted_ms": 31.080472061822345
+        },
+        {
+          "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp8/decode_b6_l768.json",
+          "source_sha256": "82388834754879c7f5a08806d443aa7b0162de8064f24376b91ab99be3ac09b4",
+          "tp_size": 8,
+          "batch_size": 6,
+          "initial_kv_length": 768,
+          "representative_kv_length": 784,
+          "observed_ms": 36.044976301825066,
+          "baseline_predicted_ms": 38.1523,
+          "calibration_factor": 0.9264776763595401,
+          "calibrated_predicted_ms": 35.34725425177208
+        }
+      ]
+    }
+  }
+}

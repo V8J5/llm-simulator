@@ -4,13 +4,15 @@ from typing import Dict, Any
 
 @dataclass
 class HardwareConfig:
-    """NVIDIA L20 48GB 硬件配置"""
+    """Accelerator-independent hardware description (L20 defaults retained)."""
     gpu_name: str = "L20"
-    memory_gb: int = 48
+    vendor: str = "NVIDIA"
+    memory_gb: float = 48
     tflops_fp16: float = 119.5  
     memory_bandwidth_gbps: float = 864.0
     interconnect: str = "PCIe Gen4 x16" 
-    nvlink_bandwidth_gbps: float = 0.0 
+    interconnect_bandwidth_gbps: float = 64.0
+    runtime: str = "CUDA"
 
 # 定义所有支持的模型参数库
 MODEL_REGISTRY = {
@@ -20,6 +22,8 @@ MODEL_REGISTRY = {
         "num_hidden_layers": 64,   
         "num_attention_heads": 64,
         "num_key_value_heads": 8,  
+        "head_dim": 128,
+        "num_parameters": 32_000_000_000,
         "vocab_size": 151936,      
         "max_position_embeddings": 40960,
         "description": "Target Model (Dense)"
@@ -30,6 +34,8 @@ MODEL_REGISTRY = {
         "num_hidden_layers": 28,   # 7B 只有 28 层
         "num_attention_heads": 28,
         "num_key_value_heads": 4,  # GQA 比例不同
+        "head_dim": 128,
+        "num_parameters": 7_600_000_000,
         "vocab_size": 152064,      # Qwen2.5 词表略大
         "max_position_embeddings": 32768,
         "description": "Proxy Model for Profiling (Dense)"
@@ -52,8 +58,7 @@ class ModelConfig:
 
     @property
     def total_params(self):
-        # 简化估算参数量
-        return self.hidden_size * self.hidden_size * self.num_hidden_layers * 2
+        return self.num_parameters
 
 # 使用示例：
 # config_32b = ModelConfig(model_name="Qwen3-32B")

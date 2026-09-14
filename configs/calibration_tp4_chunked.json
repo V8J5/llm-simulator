@@ -1,0 +1,27 @@
+{
+  "schema_version": 2,
+  "prefill": {
+    "4": 1.0
+  },
+  "decode": {
+    "4": {
+      "base_factor": 0.6,
+      "reference_batch_size": 8.0,
+      "reference_kv_len": 1024.0,
+      "batch_exponent": -0.16666666666666669,
+      "kv_exponent": -0.05185185185185186,
+      "min_factor": 0.2,
+      "max_factor": 2.0
+    }
+  },
+  "iteration_overhead_ms": {
+    "4": 3.3333333333333335
+  },
+  "metadata": {
+    "method": "multi-start coordinate search",
+    "objective": "macro TPOT MAPE + 0.20 * macro E2E MAPE",
+    "fit_dataset": "independent calibration traces only",
+    "validation_policy": "no validation or holdout trace used",
+    "calibration_role": "online_continuous_batch_colocated"
+  }
+}

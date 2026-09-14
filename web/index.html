@@ -73,6 +73,17 @@
         .radar-controls .btn-sm { padding: 4px 16px; font-size: 13px; border: 1px solid #ddd; background: white; cursor: pointer; border-radius: 6px; transition: all 0.2s; }
         .radar-controls .btn-sm:hover { background: #f0f0f0; }
         .radar-controls .btn-sm.active { background: #1a1a2e; color: white; border-color: #1a1a2e; }
+        .protocol-grid { display:grid; grid-template-columns:1.2fr 1fr; gap:24px; }
+        .protocol-note { color:#5f6368; line-height:1.6; font-size:13px; }
+        .metric-row { display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:14px; }
+        .metric { background:#f7f8fa; border-radius:10px; padding:14px; }
+        .metric .value { font-size:24px; font-weight:700; color:#1a1a2e; }
+        .metric .label { font-size:12px; color:#777; margin-top:4px; }
+        .trust-badge { padding:4px 10px; border-radius:12px; font-size:12px; font-weight:600; }
+        .trust-provisional { background:#fff3cd; color:#856404; }
+        .trust-verified { background:#d4edda; color:#155724; }
+        .trust-invalid { background:#f8d7da; color:#721c24; }
+        @media (max-width: 768px) { .protocol-grid, .metric-row { grid-template-columns:1fr; } }
     </style>
 </head>
 <body>
@@ -87,6 +98,32 @@
         <div>
             <button class="btn btn-success" onclick="showAddModal()">➕ 添加新硬件</button>
             <button class="btn btn-primary" onclick="refreshData()" style="margin-left:8px;">🔄 刷新</button>
+        </div>
+    </div>
+
+    <!-- 版本化负载规范 + 严格同负载相对比较 -->
+    <div class="protocol-grid">
+        <div class="card">
+            <h2>🧭 推荐负载 <span id="protocolBadge" class="badge">加载中</span></h2>
+            <div id="workloadSummary" class="protocol-note">正在读取 BenchmarkSpec...</div>
+        </div>
+        <div class="card">
+            <div class="flex-between">
+                <h2>⚖️ 相对性能 <span class="badge">同模型 · 同 TP · 同负载</span></h2>
+                <span id="trustStatus" class="trust-badge trust-invalid">未计算</span>
+            </div>
+            <div class="flex">
+                <select id="referenceGpu" aria-label="基准硬件"></select>
+                <span>→</span>
+                <select id="candidateGpu" aria-label="候选硬件"></select>
+                <button class="btn btn-primary" onclick="loadRelativeComparison()">比较</button>
+            </div>
+            <div class="metric-row">
+                <div class="metric"><div id="prefillSpeedup" class="value">—</div><div class="label">预测 P-Score</div><div id="prefillValidation" class="label"></div></div>
+                <div class="metric"><div id="decodeSpeedup" class="value">—</div><div class="label">预测 D-Score</div><div id="decodeValidation" class="label"></div></div>
+                <div class="metric"><div id="pairedCases" class="value">—</div><div class="label">有效配对 Case</div></div>
+            </div>
+            <div id="relativeExplanation" class="protocol-note" style="margin-top:12px;">请选择相同 TP 的两套硬件。</div>
         </div>
     </div>
     
@@ -227,7 +264,7 @@
     <!-- 综合评分 + 吞吐量 -->
     <div class="grid-2">
         <div class="card">
-            <h2>📊 综合评分对比</h2>
+            <h2>📊 旧综合评分 <span class="badge">仅兼容展示，不用于排名</span></h2>
             <canvas id="scoreChart" height="200"></canvas>
         </div>
         <div class="card">
@@ -249,6 +286,7 @@
     let logPollingInterval = null;
     let chartInstances = {};
     let radarMode = 'L20'; // 当前雷达图模式
+    let benchmarkOptions = [];
 
     // ================= 显示/隐藏弹窗 =================
     function showAddModal() {
@@ -287,6 +325,7 @@
                 }
             });
         });
+        loadBenchmarkProtocol();
     });
     
     function hideAddModal() {
@@ -295,6 +334,77 @@
             clearInterval(logPollingInterval);
             logPollingInterval = null;
         }
+    }
+
+    async function loadBenchmarkProtocol() {
+        try {
+            const [specResponse, optionResponse] = await Promise.all([
+                fetch('/api/benchmark/spec'), fetch('/api/benchmark/options')
+            ]);
+            const spec = await specResponse.json();
+            benchmarkOptions = await optionResponse.json();
+            document.getElementById('protocolBadge').textContent = `协议 v${spec.protocol_version}`;
+            const p = spec.workloads.prefill.map(x => `${x.case}: B${x.batch_size}/L${x.prompt_length}`).join('，');
+            const d = spec.workloads.decode.map(x => `${x.case}: B${x.batch_size}/KV${x.kv_length}`).join('，');
+            document.getElementById('workloadSummary').innerHTML =
+                `<strong>${spec.model.name}</strong> · ${spec.model.dtype} · ${spec.model.attention_type}<br>` +
+                `Prefill：${p}<br>Decode：${d}<br>` +
+                `<strong>公平性：</strong>固定负载排名中 OOM 记为不可行，禁止偷偷降低 Batch；硬件最优 Batch 另列为 best-feasible。`;
+            populateComparisonSelectors();
+        } catch (error) {
+            document.getElementById('workloadSummary').textContent = `规范加载失败：${error.message}`;
+        }
+    }
+
+    function populateComparisonSelectors() {
+        const reference = document.getElementById('referenceGpu');
+        const candidate = document.getElementById('candidateGpu');
+        const html = benchmarkOptions.map(x =>
+            `<option value="${x.gpu}::${x.tp}">${x.gpu} (TP=${x.tp})</option>`).join('');
+        reference.innerHTML = html;
+        candidate.innerHTML = html;
+        if (benchmarkOptions.length > 1) candidate.selectedIndex = 1;
+    }
+
+    async function loadRelativeComparison() {
+        const referenceValue = document.getElementById('referenceGpu').value;
+        const candidateValue = document.getElementById('candidateGpu').value;
+        if (!referenceValue || !candidateValue) return;
+        const [reference, referenceTp] = referenceValue.split('::');
+        const [candidate, candidateTp] = candidateValue.split('::');
+        const badge = document.getElementById('trustStatus');
+        if (referenceTp !== candidateTp) {
+            badge.className = 'trust-badge trust-invalid';
+            badge.textContent = 'invalid';
+            document.getElementById('relativeExplanation').textContent = 'TP 不同，不能进入严格同负载排名。';
+            return;
+        }
+        const tp = referenceTp.replace('TP', '');
+        const response = await fetch(`/api/benchmark/relative?reference=${encodeURIComponent(reference)}&candidate=${encodeURIComponent(candidate)}&tp=${tp}`);
+        const result = await response.json();
+        if (!response.ok) {
+            document.getElementById('relativeExplanation').textContent = result.error || '比较失败';
+            return;
+        }
+        badge.className = `trust-badge trust-${result.status}`;
+        badge.textContent = result.status;
+        const fmt = value => value == null ? '—' : `${value.toFixed(2)}×`;
+        document.getElementById('prefillSpeedup').textContent = fmt(result.scores.prefill_speedup);
+        document.getElementById('decodeSpeedup').textContent = fmt(result.scores.decode_speedup);
+        document.getElementById('pairedCases').textContent = result.scores.paired_prefill_cases + result.scores.paired_decode_cases;
+        const validation = result.validation || {};
+        document.getElementById('prefillValidation').textContent = validation.ground_truth_complete
+            ? `真实 ${fmt(validation.ground_truth_prefill_speedup)} · 误差 ${validation.prefill_score_error_pct.toFixed(1)}%`
+            : '尚无真实 A/B 数据';
+        document.getElementById('decodeValidation').textContent = validation.ground_truth_complete
+            ? `真实 ${fmt(validation.ground_truth_decode_speedup)} · 误差 ${validation.decode_score_error_pct.toFixed(1)}%`
+            : '尚无真实 A/B 数据';
+        const warnings = result.compatibility.warnings.length ? `；注意：${result.compatibility.warnings.join('；')}` : '';
+        const verified = validation.ground_truth_complete
+            ? `；逐点 MAPE ${validation.relative_mape_pct.toFixed(1)}%，排序一致率 ${(validation.rank_agreement_ratio * 100).toFixed(0)}%`
+            : '';
+        document.getElementById('relativeExplanation').textContent =
+            `${candidate} 相对 ${reference}。${result.status_explanation}${verified}${warnings}`;
     }
 
     // ================= 获取选中的 TP 值 =================
@@ -525,7 +635,7 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: '综合评分' }
+                        title: { display: true, text: '旧评分（不可跨 P/D 解读）' }
                     }
                 }
             }
@@ -592,7 +702,7 @@
                         <th>TP</th>
                         <th>Prefill Avg (tok/s)</th>
                         <th>Decode Avg (tok/s)</th>
-                        <th>综合评分</th>
+                        <th>旧综合评分（不用于排名）</th>
                         <th>性价比 (分/元)</th>
                     </tr>
                 </thead>

@@ -24,15 +24,20 @@ def main():
         num_layers=64,
         hidden_size=5120,
         num_kv_heads=8,
-        head_dim=80,
+        head_dim=128,
         num_params=32_000_000_000
     )
     
     # 2. 成本模型
     engine = LLMCostModel(DATA_DIR)
     
-    # 3. KV Cache 资源池 (L20 46GB，预留 26GB 给权重和 workspace)
-    kv_pool = KVBlockPool(total_kv_memory_mb=20000, block_size_mb=64)
+    # 3. KV Cache 资源池。若能获取 vLLM metrics，应直接传入
+    # num_gpu_blocks；该旧验证脚本只有显存预算，因此用 TP=4 反推。
+    kv_pool = KVBlockPool.from_memory_budget(
+        total_kv_memory_mib=20000,
+        block_size_tokens=16,
+        kv_bytes_per_token_per_rank=estimator.kv_bytes_per_token_per_rank(4),
+    )
     
     # 4. 通信模型
     comm_model = CommunicationModel(
@@ -79,7 +84,7 @@ def main():
                     seq_len=prompt,
                     num_layers=64,
                     num_kv_heads=8,
-                    head_dim=80,
+                    head_dim=128,
                     tp_size=tp
                 )
                 can_allocate, msg, needed, available = checker.simulate_allocate(
@@ -87,7 +92,7 @@ def main():
                     seq_len=prompt,
                     num_layers=64,
                     num_kv_heads=8,
-                    head_dim=80,
+                    head_dim=128,
                     tp_size=tp
                 )
                 
@@ -162,7 +167,7 @@ def main():
                     seq_len=kv_len,
                     num_layers=64,
                     num_kv_heads=8,
-                    head_dim=80,
+                    head_dim=128,
                     tp_size=tp
                 )
                 can_allocate, msg, needed, available = checker.simulate_allocate(
@@ -170,7 +175,7 @@ def main():
                     seq_len=kv_len,
                     num_layers=64,
                     num_kv_heads=8,
-                    head_dim=80,
+                    head_dim=128,
                     tp_size=tp
                 )
                 

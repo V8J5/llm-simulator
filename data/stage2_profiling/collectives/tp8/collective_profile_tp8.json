@@ -1,0 +1,1156 @@
+{
+  "schema_version": 2,
+  "profile_type": "collective",
+  "metadata": {
+    "captured_at_utc": "2026-09-12T11:52:42.821407+00:00",
+    "host": {
+      "hostname": "djs-l20",
+      "platform": "Linux-5.15.0-164-generic-x86_64-with-glibc2.35",
+      "python": "3.10.20 (main, Jun 11 2026, 15:17:37) [GCC 14.3.0]",
+      "executable": "/data/home/lihaozhe/miniconda3/envs/llm-simulator/bin/python3.10"
+    },
+    "software": {
+      "torch": "2.10.0",
+      "vllm": "0.19.0",
+      "transformers": "4.57.6",
+      "triton": "3.6.0",
+      "numpy": "2.2.6",
+      "openai": "2.52.0",
+      "nvidia-nccl-cu12": "2.27.5"
+    },
+    "torch_runtime": {
+      "available": true,
+      "torch_version": "2.10.0+cu128",
+      "cuda_build_version": "12.8",
+      "cuda_available": true,
+      "visible_device_count": 8,
+      "visible_devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 1,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 2,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 3,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 4,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 5,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 6,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        },
+        {
+          "index": 7,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        }
+      ],
+      "nccl_version": [
+        2,
+        27,
+        5
+      ],
+      "cudnn_version": 91002
+    },
+    "cuda": {
+      "visible_devices": "0,1,2,3,4,5,6,7",
+      "nvidia_smi_query": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+      "topology": "\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tGPU4\tGPU5\tGPU6\tGPU7\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU1\tNODE\t X \tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU2\tNODE\tNODE\t X \tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU3\tNODE\tNODE\tNODE\t X \tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU4\tSYS\tSYS\tSYS\tSYS\t X \tNODE\tNODE\tNODE\t32-63,96-127\t1\t\tN/A\nGPU5\tSYS\tSYS\tSYS\tSYS\tNODE\t X \tNODE\tNODE\t32-63,96-127\t1\t\tN/A\nGPU6\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\t X \tNODE\t32-63,96-127\t1\t\tN/A\nGPU7\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tNODE\t X \t32-63,96-127\t1\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks"
+    },
+    "model": {},
+    "benchmark": {
+      "kind": "tensor_parallel_collective_microbenchmark",
+      "backend": "nccl",
+      "world_size": 8,
+      "dtype": "bfloat16",
+      "warmup": 10,
+      "repeats": 50,
+      "timer": "torch.cuda.Event; maximum across ranks",
+      "message_size_semantics": "payload size per rank"
+    },
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "0,1,2,3,4,5,6,7",
+      "TORCH_NCCL_ASYNC_ERROR_HANDLING": "1"
+    },
+    "source": {
+      "project_root": "/data/home/lihaozhe/llm-simulator",
+      "git_commit": "3a1a69aa8fff64fd6863aeb763b532e09fa886e4",
+      "git_dirty": true
+    }
+  },
+  "measurements": [
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.01,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.1700518399477005,
+        "std_ms": 0.20903600613764417,
+        "min_ms": 0.08486399799585342,
+        "p50_ms": 0.12174399942159653,
+        "p90_ms": 0.12916799932718276,
+        "p99_ms": 1.1554975938796996,
+        "max_ms": 1.1841919422149658
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.01,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.18680511832237243,
+        "std_ms": 0.323919772646651,
+        "min_ms": 0.0783040001988411,
+        "p50_ms": 0.10406400263309479,
+        "p90_ms": 0.1114303968846798,
+        "p99_ms": 1.6097222089767451,
+        "max_ms": 1.7207679748535156
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.01,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.07381439961493015,
+        "std_ms": 0.0556974267321964,
+        "min_ms": 0.0533440001308918,
+        "p50_ms": 0.058400001376867294,
+        "p90_ms": 0.09035840034484864,
+        "p99_ms": 0.2913430333137506,
+        "max_ms": 0.4418239891529083
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.01,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.06769407995045185,
+        "std_ms": 0.0052677642692022155,
+        "min_ms": 0.054816000163555145,
+        "p50_ms": 0.06641599908471107,
+        "p90_ms": 0.07575680240988732,
+        "p99_ms": 0.0828729572892189,
+        "max_ms": 0.08566399663686752
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.02,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.1797478386759758,
+        "std_ms": 0.39453668547888265,
+        "min_ms": 0.0674239993095398,
+        "p50_ms": 0.07195200026035309,
+        "p90_ms": 0.10643520131707192,
+        "p99_ms": 1.9230393326282493,
+        "max_ms": 2.1174399852752686
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.02,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.061793280094861985,
+        "std_ms": 0.006531190004560898,
+        "min_ms": 0.04931199923157692,
+        "p50_ms": 0.05991999991238117,
+        "p90_ms": 0.07141119986772537,
+        "p99_ms": 0.07894080109894275,
+        "max_ms": 0.08035200089216232
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.02,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.13271552190184593,
+        "std_ms": 0.3271137593913222,
+        "min_ms": 0.05369599908590317,
+        "p50_ms": 0.06708800047636032,
+        "p90_ms": 0.08318399786949159,
+        "p99_ms": 1.6218294948339438,
+        "max_ms": 2.2359681129455566
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.02,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.07691007971763611,
+        "std_ms": 0.06995666858556616,
+        "min_ms": 0.05036799982190132,
+        "p50_ms": 0.06526399776339531,
+        "p90_ms": 0.07273920178413391,
+        "p99_ms": 0.35328767031431113,
+        "max_ms": 0.5606399774551392
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.05,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.10921471938490868,
+        "std_ms": 0.20387583197687378,
+        "min_ms": 0.0658240020275116,
+        "p50_ms": 0.07622399926185608,
+        "p90_ms": 0.09178240299224855,
+        "p99_ms": 0.8690835076570484,
+        "max_ms": 1.5321279764175415
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.05,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.1987616004049778,
+        "std_ms": 0.4681340051497875,
+        "min_ms": 0.07744000107049942,
+        "p50_ms": 0.08331200107932091,
+        "p90_ms": 0.1009984016418457,
+        "p99_ms": 2.4071132874488828,
+        "max_ms": 2.4397120475769043
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.05,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.24906943634152412,
+        "std_ms": 0.5332209132849545,
+        "min_ms": 0.08300799876451492,
+        "p50_ms": 0.09281599894165993,
+        "p90_ms": 0.11500799655914307,
+        "p99_ms": 2.290043771266937,
+        "max_ms": 2.3956799507141113
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.05,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.06556607954204083,
+        "std_ms": 0.004835924233596575,
+        "min_ms": 0.051872000098228455,
+        "p50_ms": 0.06438399851322174,
+        "p90_ms": 0.07011199742555618,
+        "p99_ms": 0.08224959664046765,
+        "max_ms": 0.08271999657154083
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.1,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.12350335925817489,
+        "std_ms": 0.2347724726416263,
+        "min_ms": 0.07407999783754349,
+        "p50_ms": 0.07892799749970436,
+        "p90_ms": 0.09212159961462021,
+        "p99_ms": 1.1028735870122883,
+        "max_ms": 1.718783974647522
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.1,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.22936063885688782,
+        "std_ms": 0.39367649766087137,
+        "min_ms": 0.14550399780273438,
+        "p50_ms": 0.15030399709939957,
+        "p90_ms": 0.15399039536714554,
+        "p99_ms": 2.1320089709758743,
+        "max_ms": 2.4883840084075928
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.1,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.2323078417778015,
+        "std_ms": 0.35749565215197127,
+        "min_ms": 0.15964800119400024,
+        "p50_ms": 0.16591999679803848,
+        "p90_ms": 0.1796064034104347,
+        "p99_ms": 1.798030431270596,
+        "max_ms": 2.614880084991455
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.1,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.057408000156283376,
+        "std_ms": 0.004151188186196056,
+        "min_ms": 0.044064000248909,
+        "p50_ms": 0.05619199946522713,
+        "p90_ms": 0.06438719779253006,
+        "p99_ms": 0.06813664078712463,
+        "max_ms": 0.06934399902820587
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.2,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.14176832094788552,
+        "std_ms": 0.3030172534928547,
+        "min_ms": 0.09017600119113922,
+        "p50_ms": 0.09838399663567543,
+        "p90_ms": 0.10296640023589135,
+        "p99_ms": 1.2082720293104605,
+        "max_ms": 2.262752056121826
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.2,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.36473728001117706,
+        "std_ms": 0.42658047029687146,
+        "min_ms": 0.2574720084667206,
+        "p50_ms": 0.26497600972652435,
+        "p90_ms": 0.271452808380127,
+        "p99_ms": 2.407880010604858,
+        "max_ms": 2.4890239238739014
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.2,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.5087065625190735,
+        "std_ms": 0.5287995245968274,
+        "min_ms": 0.3272959887981415,
+        "p50_ms": 0.33289599418640137,
+        "p90_ms": 0.5096064031124133,
+        "p99_ms": 2.402001032829284,
+        "max_ms": 2.571392059326172
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.2,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.059463679939508435,
+        "std_ms": 0.020938461327611884,
+        "min_ms": 0.04841599985957146,
+        "p50_ms": 0.05615999922156334,
+        "p90_ms": 0.060310400649905206,
+        "p99_ms": 0.13787712015211556,
+        "max_ms": 0.20476800203323364
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.5,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.3397164821624756,
+        "std_ms": 0.547706704127571,
+        "min_ms": 0.15414400398731232,
+        "p50_ms": 0.1578879952430725,
+        "p90_ms": 0.30595519840717494,
+        "p99_ms": 2.160434260368347,
+        "max_ms": 2.2013120651245117
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.5,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.3708799988031387,
+        "std_ms": 0.4313879456922153,
+        "min_ms": 0.2537919878959656,
+        "p50_ms": 0.2633119970560074,
+        "p90_ms": 0.27818560898303984,
+        "p99_ms": 2.186090871095656,
+        "max_ms": 2.487679958343506
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.5,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.32905728042125704,
+        "std_ms": 0.3263026010563988,
+        "min_ms": 0.253248006105423,
+        "p50_ms": 0.2614879906177521,
+        "p90_ms": 0.27056320309638976,
+        "p99_ms": 1.920826259851455,
+        "max_ms": 2.0945920944213867
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 0.5,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.10641535967588425,
+        "std_ms": 0.22721022490464834,
+        "min_ms": 0.07004799693822861,
+        "p50_ms": 0.07327999919652939,
+        "p90_ms": 0.07751680091023445,
+        "p99_ms": 0.9070441488176553,
+        "max_ms": 1.6967359781265259
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 1.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.2944659173488617,
+        "std_ms": 0.39417051750914955,
+        "min_ms": 0.2062080055475235,
+        "p50_ms": 0.2144639939069748,
+        "p90_ms": 0.21977279782295228,
+        "p99_ms": 2.224459130764007,
+        "max_ms": 2.3355519771575928
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 1.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.5180979228019714,
+        "std_ms": 0.3006642237367811,
+        "min_ms": 0.45206400752067566,
+        "p50_ms": 0.458639994263649,
+        "p90_ms": 0.47622079849243165,
+        "p99_ms": 1.888846431970594,
+        "max_ms": 2.4548161029815674
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 1.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.5246931236982345,
+        "std_ms": 0.26234568998050584,
+        "min_ms": 0.45292800664901733,
+        "p50_ms": 0.46427200734615326,
+        "p90_ms": 0.47526398897171024,
+        "p99_ms": 1.732241287231444,
+        "max_ms": 1.9965120553970337
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 1.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.10633215993642807,
+        "std_ms": 0.0033373266289575165,
+        "min_ms": 0.10073599964380264,
+        "p50_ms": 0.10619200021028519,
+        "p90_ms": 0.10945279896259308,
+        "p99_ms": 0.11774752177298067,
+        "max_ms": 0.1226240023970604
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 2.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.3661516785621643,
+        "std_ms": 0.28340340086925425,
+        "min_ms": 0.2816320061683655,
+        "p50_ms": 0.3112320005893707,
+        "p90_ms": 0.31925758719444275,
+        "p99_ms": 1.7496374368667598,
+        "max_ms": 1.890239953994751
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 2.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.9795871961116791,
+        "std_ms": 0.40379244471289566,
+        "min_ms": 0.843999981880188,
+        "p50_ms": 0.8575519919395447,
+        "p90_ms": 0.939366418123246,
+        "p99_ms": 2.726539528369903,
+        "max_ms": 2.7835519313812256
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 2.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.9398323214054107,
+        "std_ms": 0.28564463120864114,
+        "min_ms": 0.8500480055809021,
+        "p50_ms": 0.8664320111274719,
+        "p90_ms": 0.8880672216415405,
+        "p99_ms": 2.1336115252971646,
+        "max_ms": 2.265887975692749
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 2.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.17176127910614014,
+        "std_ms": 0.018904736155950314,
+        "min_ms": 0.16582399606704712,
+        "p50_ms": 0.16892800480127335,
+        "p90_ms": 0.17131519317626953,
+        "p99_ms": 0.24019038990139935,
+        "max_ms": 0.3036159873008728
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 4.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.5075219184160232,
+        "std_ms": 0.1637094913175396,
+        "min_ms": 0.4694400131702423,
+        "p50_ms": 0.4805759936571121,
+        "p90_ms": 0.5009823858737945,
+        "p99_ms": 1.1142393493652323,
+        "max_ms": 1.6488959789276123
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 4.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 1.6796384072303772,
+        "std_ms": 0.017322335934208247,
+        "min_ms": 1.6564160585403442,
+        "p50_ms": 1.677776038646698,
+        "p90_ms": 1.6986719846725464,
+        "p99_ms": 1.73184605717659,
+        "max_ms": 1.7580159902572632
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 4.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 1.7264019179344177,
+        "std_ms": 0.10618059273903895,
+        "min_ms": 1.678048014640808,
+        "p50_ms": 1.7123199701309204,
+        "p90_ms": 1.7272959709167481,
+        "p99_ms": 2.113180201053618,
+        "max_ms": 2.464224100112915
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 4.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.32486399948596956,
+        "std_ms": 0.19870993040988416,
+        "min_ms": 0.290336012840271,
+        "p50_ms": 0.296655997633934,
+        "p90_ms": 0.3002528041601181,
+        "p99_ms": 1.0236751717328998,
+        "max_ms": 1.7157119512557983
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 8.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.9007084798812867,
+        "std_ms": 0.17825299006724363,
+        "min_ms": 0.8600320219993591,
+        "p50_ms": 0.8726879954338074,
+        "p90_ms": 0.8918175756931305,
+        "p99_ms": 1.5327369910478565,
+        "max_ms": 2.146656036376953
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 8.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 3.311984648704529,
+        "std_ms": 0.016916995831381062,
+        "min_ms": 3.2734720706939697,
+        "p50_ms": 3.3108960390090942,
+        "p90_ms": 3.336140823364258,
+        "p99_ms": 3.3457881474494933,
+        "max_ms": 3.34716796875
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 8.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 3.3673375940322874,
+        "std_ms": 0.04038698351191183,
+        "min_ms": 3.318880081176758,
+        "p50_ms": 3.3591359853744507,
+        "p90_ms": 3.394476842880249,
+        "p99_ms": 3.525111320018768,
+        "max_ms": 3.5913279056549072
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 8.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.42760192036628725,
+        "std_ms": 0.018462646244887217,
+        "min_ms": 0.38729599118232727,
+        "p50_ms": 0.4262879937887192,
+        "p90_ms": 0.4511391997337341,
+        "p99_ms": 0.46326528310775755,
+        "max_ms": 0.46646401286125183
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 16.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 1.6786195135116577,
+        "std_ms": 0.11486605508158507,
+        "min_ms": 1.6430399417877197,
+        "p50_ms": 1.6626079678535461,
+        "p90_ms": 1.6764800310134889,
+        "p99_ms": 2.0909222304821,
+        "max_ms": 2.47871994972229
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 16.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 6.571632003784179,
+        "std_ms": 0.018702396466947383,
+        "min_ms": 6.533120155334473,
+        "p50_ms": 6.5714240074157715,
+        "p90_ms": 6.595241641998291,
+        "p99_ms": 6.616731233596802,
+        "max_ms": 6.626688003540039
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 16.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 6.677481603622437,
+        "std_ms": 0.04574164968685111,
+        "min_ms": 6.635392189025879,
+        "p50_ms": 6.671264171600342,
+        "p90_ms": 6.702467203140259,
+        "p99_ms": 6.878125143051148,
+        "max_ms": 6.9203200340271
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 16.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 0.8443551993370056,
+        "std_ms": 0.0921507678900102,
+        "min_ms": 0.7477759718894958,
+        "p50_ms": 0.8366720080375671,
+        "p90_ms": 0.8623295783996582,
+        "p99_ms": 1.1711615914106357,
+        "max_ms": 1.4640640020370483
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 32.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 3.2795379114151,
+        "std_ms": 0.05715065692255988,
+        "min_ms": 3.2415359020233154,
+        "p50_ms": 3.266975998878479,
+        "p90_ms": 3.2902592420578003,
+        "p99_ms": 3.546199939250946,
+        "max_ms": 3.5936319828033447
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 32.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 13.082750148773194,
+        "std_ms": 0.02381275422428663,
+        "min_ms": 13.023807525634766,
+        "p50_ms": 13.081488132476807,
+        "p90_ms": 13.11611852645874,
+        "p99_ms": 13.125943336486817,
+        "max_ms": 13.12707233428955
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 32.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 13.222110633850098,
+        "std_ms": 0.039418335176567454,
+        "min_ms": 13.122367858886719,
+        "p50_ms": 13.221727848052979,
+        "p90_ms": 13.27194528579712,
+        "p99_ms": 13.311912689208985,
+        "max_ms": 13.322527885437012
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 32.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 1.632717432975769,
+        "std_ms": 0.026057905922634066,
+        "min_ms": 1.574079990386963,
+        "p50_ms": 1.6359359622001648,
+        "p90_ms": 1.665062379837036,
+        "p99_ms": 1.6764182376861572,
+        "max_ms": 1.678879976272583
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 64.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 6.468827543258667,
+        "std_ms": 0.020533991884604603,
+        "min_ms": 6.432767868041992,
+        "p50_ms": 6.467679977416992,
+        "p90_ms": 6.490086364746094,
+        "p99_ms": 6.533483829498291,
+        "max_ms": 6.567776203155518
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 64.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 26.0812154006958,
+        "std_ms": 0.027218323522099033,
+        "min_ms": 26.038272857666016,
+        "p50_ms": 26.08027172088623,
+        "p90_ms": 26.10847396850586,
+        "p99_ms": 26.160966720581055,
+        "max_ms": 26.162080764770508
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 64.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 26.258278465270998,
+        "std_ms": 0.04323454300310964,
+        "min_ms": 26.172544479370117,
+        "p50_ms": 26.25870418548584,
+        "p90_ms": 26.32280578613281,
+        "p99_ms": 26.355973072052002,
+        "max_ms": 26.356992721557617
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 64.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 3.2685939359664915,
+        "std_ms": 0.0526466621327477,
+        "min_ms": 3.1664960384368896,
+        "p50_ms": 3.259200096130371,
+        "p90_ms": 3.2890976667404175,
+        "p99_ms": 3.4867557692527766,
+        "max_ms": 3.581023931503296
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 128.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 12.789242267608643,
+        "std_ms": 0.022046610052378915,
+        "min_ms": 12.7423677444458,
+        "p50_ms": 12.790079593658447,
+        "p90_ms": 12.819280242919922,
+        "p99_ms": 12.828861055374146,
+        "max_ms": 12.831071853637695
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 128.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 52.08364562988281,
+        "std_ms": 0.03469711063613708,
+        "min_ms": 52.01811218261719,
+        "p50_ms": 52.08475112915039,
+        "p90_ms": 52.135083770751955,
+        "p99_ms": 52.155611000061036,
+        "max_ms": 52.16009521484375
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 128.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 52.28490928649902,
+        "std_ms": 0.09988672768224546,
+        "min_ms": 52.086334228515625,
+        "p50_ms": 52.27631950378418,
+        "p90_ms": 52.40918960571289,
+        "p99_ms": 52.48766445159912,
+        "max_ms": 52.505760192871094
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 128.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 6.4959609317779545,
+        "std_ms": 0.03223044805245931,
+        "min_ms": 6.38486385345459,
+        "p50_ms": 6.499743938446045,
+        "p90_ms": 6.525603008270264,
+        "p99_ms": 6.550292625427246,
+        "max_ms": 6.556000232696533
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_reduce",
+      "world_size": 8,
+      "message_size_mb_per_rank": 256.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 25.477907218933105,
+        "std_ms": 0.03990249483445087,
+        "min_ms": 25.390432357788086,
+        "p50_ms": 25.476880073547363,
+        "p90_ms": 25.53643798828125,
+        "p99_ms": 25.571441764831544,
+        "max_ms": 25.579391479492188
+      }
+    },
+    {
+      "status": "success",
+      "operation": "all_gather",
+      "world_size": 8,
+      "message_size_mb_per_rank": 256.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 104.076396484375,
+        "std_ms": 0.05078317262971317,
+        "min_ms": 103.96883392333984,
+        "p50_ms": 104.08654403686523,
+        "p90_ms": 104.12413787841797,
+        "p99_ms": 104.18326614379883,
+        "max_ms": 104.18889617919922
+      }
+    },
+    {
+      "status": "success",
+      "operation": "reduce_scatter",
+      "world_size": 8,
+      "message_size_mb_per_rank": 256.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 104.30243423461914,
+        "std_ms": 0.19611703866071564,
+        "min_ms": 103.98534393310547,
+        "p50_ms": 104.27259063720703,
+        "p90_ms": 104.5527557373047,
+        "p99_ms": 104.70942825317383,
+        "max_ms": 104.74800109863281
+      }
+    },
+    {
+      "status": "success",
+      "operation": "p2p",
+      "world_size": 8,
+      "message_size_mb_per_rank": 256.0,
+      "dtype": "bfloat16",
+      "timing": {
+        "count": 50,
+        "mean_ms": 12.95830722808838,
+        "std_ms": 0.040451544627217714,
+        "min_ms": 12.873120307922363,
+        "p50_ms": 12.958767890930176,
+        "p90_ms": 13.01296033859253,
+        "p99_ms": 13.022152795791627,
+        "max_ms": 13.022591590881348
+      }
+    }
+  ]
+}

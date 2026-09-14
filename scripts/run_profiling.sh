@@ -1,39 +1,54 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# Collect stage-2 operator/collective profiles and validate interpolation holdouts.
+"""采集训练网格和独立 Holdout 网格
+"""
 
-# 脚本：run_profiling.sh
-# 功能：一键启动 L20 上的 vLLM 全维度性能剖析
+set -euo pipefail
 
-set -e # 遇到错误则退出
+PROJECT_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+cd "$PROJECT_ROOT"
 
-echo "========================================"
-echo "🚀 LLM 仿真器 - L20 性能剖析脚本"
-echo "========================================"
+: "${MODEL_PATH:?Set MODEL_PATH to the local model directory}"
+OUTPUT_ROOT="${OUTPUT_ROOT:-data/stage2_profiling}"
+TP_SIZES="${TP_SIZES:-1 2 4 8}"
+GPU_LIST="${GPU_LIST:-0,1,2,3,4,5,6,7}"
+DTYPE="${DTYPE:-bfloat16}"
 
-# 1. 检查依赖
-echo "🔍 正在检查依赖..."
-if ! command -v python &> /dev/null; then
-    echo "❌ 错误: 未找到 python 命令"
-    exit 1
-fi
+devices_for_tp() {
+  local count="$1"
+  awk -F, -v n="$count" '{for(i=1;i<=n;i++){printf "%s%s", $i, (i<n ? "," : "")}}' \
+    <<<"$GPU_LIST"
+}
 
-# 2. 激活 Conda 环境 (请根据你的实际环境名修改)
-CONDA_ENV="llm-simulator"
-echo "⚡ 正在激活 Conda 环境: $CONDA_ENV"
-source $(conda info --base)/etc/profile.d/conda.sh
-conda activate $CONDA_ENV
+mkdir -p "$OUTPUT_ROOT/training" "$OUTPUT_ROOT/holdout" \
+  "$OUTPUT_ROOT/collectives" "$OUTPUT_ROOT/holdout_reports"
 
-# 3. 检查 vLLM 是否安装
-python -c "import vllm" 2>/dev/null || { echo "❌ 错误: 未找到 vllm 库，请检查环境"; exit 1; }
+for tp in $TP_SIZES; do
+  echo "[TP${tp}] operator training grid"
+  CUDA_VISIBLE_DEVICES="$(devices_for_tp "$tp")" python scripts/operator_micro_bench.py \
+    --model "$MODEL_PATH" --tp-size "$tp" --stage both --dtype "$DTYPE" \
+    --batch-sizes 1,2,4,8,16,32 \
+    --prefill-lengths 128,512,1024,2048,4096 \
+    --decode-kv-lengths 128,512,1024,2048,4096 \
+    --output-dir "$OUTPUT_ROOT/training/tp${tp}"
 
-# 4. 创建数据目录
-mkdir -p ../data
+  echo "[TP${tp}] independent operator holdout grid"
+  CUDA_VISIBLE_DEVICES="$(devices_for_tp "$tp")" python scripts/operator_micro_bench.py \
+    --model "$MODEL_PATH" --tp-size "$tp" --stage both --dtype "$DTYPE" \
+    --batch-sizes 3,6,12,24 \
+    --prefill-lengths 256,768,1536,3072 \
+    --decode-kv-lengths 256,768,1536,3072 \
+    --output-dir "$OUTPUT_ROOT/holdout/tp${tp}"
 
-# 5. 运行核心压测脚本
-echo "🏃 开始执行压测..."
-python /data/home/lihaozhe/llm-simulator/scripts/profile_vllm.py
+  echo "[TP${tp}] NCCL collective grid"
+  CUDA_VISIBLE_DEVICES="$(devices_for_tp "$tp")" torchrun --standalone \
+    --nproc-per-node "$tp" scripts/collective_micro_bench.py \
+    --dtype "$DTYPE" --output-dir "$OUTPUT_ROOT/collectives/tp${tp}"
 
-echo "========================================"
-echo "✅ 所有压测完成！"
-echo "📊 结果文件: ../data/profiling_results.csv"
-echo "📝 服务日志: vllm_server.log"
-echo "========================================"
+  python scripts/validate_operator_holdout.py \
+    --training-profile "$OUTPUT_ROOT/training/tp${tp}/operator_profile_tp${tp}.json" \
+    --holdout-profile "$OUTPUT_ROOT/holdout/tp${tp}/operator_profile_tp${tp}.json" \
+    --output-dir "$OUTPUT_ROOT/holdout_reports/tp${tp}"
+done
+
+echo "Stage-2 profiling completed under $OUTPUT_ROOT"

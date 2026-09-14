@@ -1,193 +1,378 @@
 #!/usr/bin/env python3
-"""
-采集 PD 分离真实 Ground Truth
-用法: python scripts/collect_pd_ground_truth.py
+"""Collect auditable ground truth through a vLLM PD proxy/router.
 
-运行命令：
-    export NCCL_P2P_DISABLE=1
-    CUDA_VISIBLE_DEVICES=0,1 python -m vllm.entrypoints.openai.api_server \
-    --model /data/home/public/weight/Qwen3-32B \
-    --tensor-parallel-size 2 \
-    --port 8000 \
-    --trust-remote-code \
-    --gpu-memory-utilization 0.85 \
-    --max-model-len 8192 \
-    --enforce-eager \
-    --kv-transfer-config '{"kv_connector":"P2pNcclConnector","kv_role":"kv_producer","kv_buffer_size":5e9,"kv_port":14581,"engine_id":"my_pd_cluster"}'
-
-    export NCCL_P2P_DISABLE=1
-    CUDA_VISIBLE_DEVICES=2,3,4,5 python -m vllm.entrypoints.openai.api_server \
-    --model /data/home/public/weight/Qwen3-32B \
-    --tensor-parallel-size 2 \
-    --port 8001 \
-    --trust-remote-code \
-    --gpu-memory-utilization 0.85 \
-    --max-model-len 8192 \
-    --enforce-eager \
-    --kv-transfer-config '{"kv_connector":"P2pNcclConnector","kv_role":"kv_consumer","kv_buffer_size":5e9,"kv_ip":"10.199.6.2","kv_port":14581,"engine_id":"my_pd_cluster"}'
-
-
-    http_proxy="" https_proxy="" all_proxy="" curl -v -X POST http://localhost:8000/v1/completions \
-    -H "Content-Type: application/json" \
-    -d '{
-        "model": "/data/home/public/weight/Qwen3-32B",
-        "prompt": "Hello",
-        "max_tokens": 5,
-        "request_id": "___decode_addr_10.199.6.2:14581_test001"
-    }'
-
+The collector never sends requests directly to a prefill or decode worker.
+It replays absolute trace arrivals against the OpenAI-compatible proxy, uses
+text prompts verified to round-trip to exact token lengths, and optionally
+samples worker Prometheus endpoints.
 """
 
+from __future__ import annotations
+
+import argparse
+import asyncio
 import csv
-import time
+import hashlib
 import json
-import os
-from openai import OpenAI
-from datetime import datetime
+import math
+import re
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Any, Dict, List, Sequence, Tuple
 
-# ================= 强制禁用代理（覆盖环境变量） =================
-os.environ['http_proxy'] = ''
-os.environ['https_proxy'] = ''
-os.environ['HTTP_PROXY'] = ''
-os.environ['HTTPS_PROXY'] = ''
-os.environ['all_proxy'] = ''
 
-# ================= 配置 =================
-VLLM_URL = "http://localhost:8001"  # Decode 节点地址
-TRACE_FILE = "/data/home/lihaozhe/llm-simulator/data/trace/validation_trace.csv"
-OUTPUT_DIR = "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/"
-os.makedirs(OUTPUT_DIR, exist_ok=True)
+PROMETHEUS_LINE = re.compile(
+    r"^([A-Za-z_:][A-Za-z0-9_:]*)(\{[^}]*\})?\s+"
+    r"([-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][-+]?\d+)?|[-+]?Inf|NaN)$")
 
-# ================= 读取 Trace =================
-requests_data = []
-with open(TRACE_FILE, 'r') as f:
-    reader = csv.DictReader(f)
-    for row in reader:
-        requests_data.append({
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--base-url", required=True,
+                        help="PD proxy OpenAI base URL, normally .../v1")
+    parser.add_argument("--model", required=True,
+                        help="model name exposed by the PD proxy")
+    parser.add_argument("--tokenizer", help="HF tokenizer path; defaults to model")
+    parser.add_argument("--trace", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--deployment-config", type=Path, required=True,
+                        help="JSON manifest describing P/D workers and connector")
+    parser.add_argument("--api-key", default="EMPTY")
+    parser.add_argument("--max-concurrency", type=int, default=256)
+    parser.add_argument("--timeout", type=float, default=600.0)
+    parser.add_argument("--warmup-requests", type=int, default=1)
+    parser.add_argument("--warmup-prompt-len", type=int, default=32)
+    # A one-token end-to-end request is a pathological case for vLLM 0.19's
+    # P2pNcclConnector: both proxy phases become max_tokens=1 and the TP decode
+    # workers can stall in sample_tokens. Keep PD warmup representative.
+    parser.add_argument("--warmup-output-len", type=int, default=8)
+    parser.add_argument("--allow-early-stop", action="store_true",
+                        help="do not require actual_output_tokens == output_len")
+    parser.add_argument("--repeat-id", default="repeat_1")
+    parser.add_argument("--component-metrics-url", action="append", default=[],
+                        metavar="NAME=URL",
+                        help="repeat for prefill/decode /metrics endpoints")
+    parser.add_argument("--metrics-interval-ms", type=float, default=500.0)
+    parser.add_argument("--metrics-prefix", action="append",
+                        default=["vllm:", "vllm_"],
+                        help="Prometheus metric prefix to retain")
+    return parser.parse_args()
+
+
+def load_trace(path: Path) -> List[Dict[str, Any]]:
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        rows = [{
+            "request_id": f"req_{index + 1}",
             "arrival_time_ms": float(row["arrival_time_ms"]),
             "prompt_len": int(row["prompt_len"]),
-            "output_len": int(row["output_len"])
-        })
+            "output_len": int(row["output_len"]),
+        } for index, row in enumerate(csv.DictReader(handle))]
+    if not rows:
+        raise ValueError("trace must contain at least one request")
+    if any(row["arrival_time_ms"] < 0 or row["prompt_len"] <= 0 or
+           row["output_len"] <= 0 for row in rows):
+        raise ValueError("trace lengths and arrival times are invalid")
+    if any(rows[index]["arrival_time_ms"] > rows[index + 1]["arrival_time_ms"]
+           for index in range(len(rows) - 1)):
+        raise ValueError("trace arrival_time_ms must be non-decreasing")
+    return rows
 
-print(f"📋 加载了 {len(requests_data)} 个请求")
-print(f"🔗 连接 vLLM: {VLLM_URL}")
 
-# ================= 初始化 Client =================
-client = OpenAI(
-    base_url=f"{VLLM_URL}/v1",
-    api_key="EMPTY",  # vLLM 默认不需要 API Key
-    timeout=600.0
-)
+def load_deployment(path: Path) -> Tuple[Dict[str, Any], str]:
+    raw = path.read_bytes()
+    value = json.loads(raw.decode("utf-8-sig"))
+    if not isinstance(value, dict):
+        raise ValueError("deployment config must be a JSON object")
+    required = {"vllm_version", "prefill", "decode", "router", "kv_connector"}
+    missing = sorted(required - value.keys())
+    if missing:
+        raise ValueError(f"deployment config is missing fields: {missing}")
+    return value, hashlib.sha256(raw).hexdigest()
 
-# ================= 发送请求，逐条记录 =================
-results = []
-start_time = time.time()
 
-# Prefill 节点的 IP 和端口（与你的实际配置一致）
-PREFILL_IP = "10.199.6.2"
-PREFILL_PORT = 8000
+def parse_metrics_endpoints(values: Sequence[str]) -> Dict[str, str]:
+    endpoints: Dict[str, str] = {}
+    for value in values:
+        if "=" not in value:
+            raise ValueError("component metrics endpoint must use NAME=URL")
+        name, url = (part.strip() for part in value.split("=", 1))
+        if not name or not url or name in endpoints:
+            raise ValueError(f"invalid or duplicate metrics endpoint: {value}")
+        endpoints[name] = url
+    return endpoints
 
-# ===== 新增：Decode 节点的 IP 和端口（就是你 curl 里的 14581，但注意是 NCCL 通信端口） =====
-# 注意：这里的 DECODE_PORT 是 vLLM 启动命令里 --kv-transfer-config 中的 kv_port（即 14581），
-# 而不是 HTTP 服务端口 8001。NCCL 通信走的是这个端口。
-DECODE_IP = "10.199.6.2"    # 如果你 Consumer 和 Producer 在同一台机器，填同一个 IP
-DECODE_KV_PORT = 14581      # 这个端口在 Producer 的 curl 命令里出现过（对应 decode_addr）
 
-for idx, req in enumerate(requests_data):
-    prompt = "请用一句话回答：" + "假设你是一个AI助手。" * (req["prompt_len"] // 10)  # 凑够 token 数
-    
-    # 记录发送时间（模拟 arrival_time 对齐）
-    send_time = start_time + req["arrival_time_ms"] / 1000.0
-    current_time = time.time()
-    if current_time < send_time:
-        time.sleep(send_time - current_time)
-    
-    request_start = time.time()
-    
-    try:
-        # ===== 修复：使用完整格式的 request_id =====
-        # 格式: cmpl-___prefill_addr_IP:PORT___decode_addr_IP:PORT___suffix
-        custom_request_id = (
-            f"cmpl-"
-            f"___prefill_addr_{PREFILL_IP}:{PREFILL_PORT}___"
-            f"decode_addr_{DECODE_IP}:{DECODE_KV_PORT}___"
-            f"req_{idx+1}"
-        )
-        
-        stream = client.chat.completions.create(
-            model="/data/home/public/weight/Qwen3-32B",
-            messages=[{"role": "user", "content": prompt}],
-            max_tokens=req["output_len"],
-            temperature=0.0,
-            stream=True,
-            extra_body={"request_id": custom_request_id}
-        )
-        
-        ttft = None
-        first_token_time = None
-        tokens_received = 0
-        last_token_time = None
-        
-        for chunk in stream:
-            if chunk.choices[0].delta.content is not None:
-                if first_token_time is None:
-                    first_token_time = time.time()
-                    ttft = (first_token_time - request_start) * 1000  # 转 ms
-                tokens_received += 1
-                last_token_time = time.time()
-        
-        end_time = time.time()
-        e2e_ms = (end_time - request_start) * 1000
-        tpot_ms = (e2e_ms - ttft) / tokens_received if tokens_received > 0 else 0
-        
-        results.append({
-            "request_id": custom_request_id,
-            "arrival_time_ms": req["arrival_time_ms"],
-            "ttft_ms": round(ttft or 0, 2),
-            "tpot_ms": round(tpot_ms, 2),
-            "e2e_ms": round(e2e_ms, 2),
-            "status": "success"
-        })
-        
-        print(f"✅ req_{idx+1}: TTFT={ttft:.1f}ms, TPOT={tpot_ms:.1f}ms")
-        
-    except Exception as e:
-        print(f"❌ req_{idx+1} 失败: {e}")
-        results.append({
-            "request_id": f"req_{idx+1}",
-            "arrival_time_ms": req["arrival_time_ms"],
-            "ttft_ms": 0,
-            "tpot_ms": 0,
-            "e2e_ms": 0,
-            "status": f"failed: {e}"
-        })
+def exact_length_prompt(tokenizer: Any, target: int) -> List[int]:
+    if target <= 0:
+        raise ValueError("prompt length must be positive")
+    seed = tokenizer.encode(
+        "The quick brown fox describes a distributed inference system. ",
+        add_special_tokens=False)
+    if not seed:
+        raise ValueError("tokenizer returned an empty seed")
+    return (seed * (target // len(seed) + 1))[:target]
 
-# ================= 保存结果 =================
-output_file = os.path.join(OUTPUT_DIR, f"pd_ground_truth_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
-with open(output_file, 'w') as f:
-    json.dump(results, f, indent=2)
 
-# 同时保存 CSV 方便对比
-csv_file = os.path.join(OUTPUT_DIR, "pd_ground_truth_latest.csv")
-with open(csv_file, 'w') as f:
-    writer = csv.writer(f)
-    writer.writerow(["request_id", "arrival_time_ms", "ttft_ms", "tpot_ms", "e2e_ms", "status"])
-    for r in results:
-        writer.writerow([r["request_id"], r["arrival_time_ms"], r["ttft_ms"], r["tpot_ms"], r["e2e_ms"], r["status"]])
+def exact_length_prompt_text(tokenizer: Any, target: int) -> str:
+    """Return text whose server-side tokenization is exactly ``target`` long.
 
-print(f"\n💾 结果已保存至: {output_file}")
-print(f"💾 CSV 已保存至: {csv_file}")
+    vLLM 0.19's P2pNcclConnector can stall with OpenAI ``prompt=list[int]``
+    requests under tensor parallelism. Sending text follows the reference PD
+    path; the round-trip check preserves the experiment's exact-length rule.
+    """
+    if target <= 0:
+        raise ValueError("prompt length must be positive")
 
-# ================= 统计摘要 =================
-success_results = [r for r in results if r["status"] == "success"]
-if success_results:
-    ttfts = [r["ttft_ms"] for r in success_results]
-    tpots = [r["tpot_ms"] for r in success_results]
-    print("\n" + "="*60)
-    print("📊 Ground Truth 统计摘要")
-    print("="*60)
-    print(f"成功请求: {len(success_results)}/{len(results)}")
-    print(f"TTFT: avg={sum(ttfts)/len(ttfts):.1f}ms, p50={sorted(ttfts)[len(ttfts)//2]:.1f}ms")
-    print(f"TPOT: avg={sum(tpots)/len(tpots):.1f}ms, p50={sorted(tpots)[len(tpots)//2]:.1f}ms")
-else:
-    print("\n❌ 没有成功请求，请检查 PD 服务状态。")
+    # Leading-space words are single, stable tokens in common BPE/tokenizer
+    # vocabularies and do not merge across repetitions. Test rather than assume:
+    # model/tokenizer variants are allowed as long as the final count is exact.
+    units = (
+        " x", " a", " the", " hello", " test", " token", " 0",
+        " z", "\n", ".", "!",
+    )
+    observed: Dict[str, int] = {}
+    for unit in units:
+        candidate = unit * target
+        actual = len(tokenizer.encode(candidate, add_special_tokens=False))
+        observed[repr(unit)] = actual
+        if actual == target:
+            return candidate
+
+    raise ValueError(
+        "could not construct an exact-length text prompt for this tokenizer: "
+        f"expected {target}; candidate counts={observed}")
+
+
+def parse_prometheus(text: str, prefixes: Sequence[str]) -> Dict[str, float]:
+    """Retain numeric vLLM series without depending on metric name versions."""
+    metrics: Dict[str, float] = {}
+    for line in text.splitlines():
+        match = PROMETHEUS_LINE.match(line.strip())
+        if not match or not any(match.group(1).startswith(p) for p in prefixes):
+            continue
+        try:
+            value = float(match.group(3))
+        except ValueError:
+            continue
+        if math.isfinite(value):
+            metrics[match.group(1) + (match.group(2) or "")] = value
+    return metrics
+
+
+def percentile(values: Sequence[float], p: float) -> float | None:
+    if not values:
+        return None
+    ordered = sorted(values)
+    position = (len(ordered) - 1) * p / 100.0
+    low = int(position)
+    high = min(low + 1, len(ordered) - 1)
+    return ordered[low] + (ordered[high] - ordered[low]) * (position - low)
+
+
+async def collect_metrics(http_client: Any, endpoints: Dict[str, str],
+                          prefixes: Sequence[str], interval_ms: float,
+                          epoch: float, stop: asyncio.Event) -> List[Dict[str, Any]]:
+    samples: List[Dict[str, Any]] = []
+    while True:
+        sample: Dict[str, Any] = {
+            "time_ms": (time.perf_counter() - epoch) * 1000.0,
+            "components": {},
+        }
+        for name, url in endpoints.items():
+            try:
+                response = await http_client.get(url)
+                response.raise_for_status()
+                sample["components"][name] = {
+                    "status": "success",
+                    "metrics": parse_prometheus(response.text, prefixes),
+                }
+            except Exception as exc:
+                sample["components"][name] = {
+                    "status": "failed",
+                    "error": f"{type(exc).__name__}: {exc}",
+                }
+        samples.append(sample)
+        if stop.is_set():
+            break
+        try:
+            await asyncio.wait_for(stop.wait(), timeout=interval_ms / 1000.0)
+        except asyncio.TimeoutError:
+            pass
+    return samples
+
+
+async def run_one(client: Any, semaphore: asyncio.Semaphore, tokenizer: Any,
+                  model: str, row: Dict[str, Any], epoch: float,
+                  allow_early_stop: bool) -> Dict[str, Any]:
+    scheduled = epoch + row["arrival_time_ms"] / 1000.0
+    await asyncio.sleep(max(scheduled - time.perf_counter(), 0.0))
+    released = time.perf_counter()
+    prompt = exact_length_prompt_text(tokenizer, row["prompt_len"])
+    async with semaphore:
+        acquired = time.perf_counter()
+        first_token_at = None
+        last_token_at = None
+        usage = None
+        error = None
+        try:
+            stream = await client.completions.create(
+                model=model, prompt=prompt, max_tokens=row["output_len"],
+                temperature=0.0, stream=True,
+                stream_options={"include_usage": True},
+                extra_body={
+                    "request_id": row["request_id"],
+                    "ignore_eos": not allow_early_stop,
+                })
+            async for chunk in stream:
+                if getattr(chunk, "usage", None):
+                    usage = chunk.usage
+                if chunk.choices and chunk.choices[0].text:
+                    now = time.perf_counter()
+                    first_token_at = first_token_at or now
+                    last_token_at = now
+        except Exception as exc:
+            error = f"{type(exc).__name__}: {exc}"
+        ended = time.perf_counter()
+
+    prompt_tokens = int(getattr(usage, "prompt_tokens", 0) or 0)
+    output_tokens = int(getattr(usage, "completion_tokens", 0) or 0)
+    if error is None and first_token_at is None and row["output_len"] > 0:
+        error = "response contained no output token"
+    if error is None and prompt_tokens != row["prompt_len"]:
+        error = (f"prompt token mismatch: expected {row['prompt_len']}, "
+                 f"received {prompt_tokens}")
+    if (error is None and not allow_early_stop and
+            output_tokens != row["output_len"]):
+        error = (f"output token mismatch: expected {row['output_len']}, "
+                 f"received {output_tokens}")
+    ttft = ((first_token_at - acquired) * 1000.0
+            if first_token_at is not None else None)
+    tpot = (((last_token_at - first_token_at) * 1000.0 / (output_tokens - 1))
+            if first_token_at is not None and last_token_at is not None and
+            output_tokens > 1 else 0.0 if output_tokens == 1 else None)
+    return {
+        **row,
+        "actual_prompt_tokens": prompt_tokens,
+        "actual_output_tokens": output_tokens,
+        "scheduled_time_ms": row["arrival_time_ms"],
+        "request_start_ms": (acquired - epoch) * 1000.0,
+        "client_backpressure_ms": (acquired - released) * 1000.0,
+        "ttft_ms": ttft,
+        "tpot_ms": tpot,
+        "e2e_ms": (ended - acquired) * 1000.0,
+        "status": "failed" if error else "success",
+        "error": error,
+    }
+
+
+async def warmup(client: Any, tokenizer: Any, args: argparse.Namespace) -> None:
+    prompt = exact_length_prompt_text(tokenizer, args.warmup_prompt_len)
+    for _ in range(args.warmup_requests):
+        await client.completions.create(
+            model=args.model, prompt=prompt,
+            max_tokens=args.warmup_output_len, temperature=0.0,
+            stream=False, extra_body={"ignore_eos": True})
+
+
+def summarize(rows: Sequence[Dict[str, Any]]) -> Dict[str, Any]:
+    successful = [row for row in rows if row["status"] == "success"]
+    result: Dict[str, Any] = {
+        "total_requests": len(rows),
+        "successful_requests": len(successful),
+        "failed_requests": len(rows) - len(successful),
+        "success_ratio": len(successful) / len(rows) if rows else 0.0,
+    }
+    for name in ("ttft_ms", "tpot_ms", "e2e_ms", "client_backpressure_ms"):
+        values = [float(row[name]) for row in successful if row[name] is not None]
+        result[name] = {
+            "mean": sum(values) / len(values) if values else None,
+            "p50": percentile(values, 50),
+            "p90": percentile(values, 90),
+            "p99": percentile(values, 99),
+            "max": max(values) if values else None,
+        }
+    return result
+
+
+async def main_async(args: argparse.Namespace) -> int:
+    if args.max_concurrency <= 0 or args.timeout <= 0:
+        raise ValueError("max concurrency and timeout must be positive")
+    if args.warmup_requests < 0 or args.metrics_interval_ms <= 0:
+        raise ValueError("warmup count must be non-negative and interval positive")
+    if args.warmup_requests and args.warmup_output_len < 2:
+        raise ValueError(
+            "PD warmup output length must be at least 2 for vLLM 0.19")
+    rows = load_trace(args.trace)
+    deployment, deployment_sha256 = load_deployment(args.deployment_config)
+    endpoints = parse_metrics_endpoints(args.component_metrics_url)
+
+    import httpx
+    from openai import AsyncOpenAI
+    from transformers import AutoTokenizer
+
+    tokenizer = AutoTokenizer.from_pretrained(
+        args.tokenizer or args.model, trust_remote_code=True)
+    exact_length_prompt(tokenizer, max(row["prompt_len"] for row in rows))
+    http_client = httpx.AsyncClient(trust_env=False, timeout=args.timeout)
+    client = AsyncOpenAI(base_url=args.base_url, api_key=args.api_key,
+                         timeout=args.timeout, http_client=http_client)
+    # The reference vLLM PD proxy exposes /v1/completions but not /v1/models.
+    # A successful warmup is therefore the end-to-end health check.
+    await warmup(client, tokenizer, args)
+    await asyncio.sleep(1.0)
+
+    epoch = time.perf_counter() + 0.5
+    stop = asyncio.Event()
+    metrics_task = (asyncio.create_task(collect_metrics(
+        http_client, endpoints, args.metrics_prefix,
+        args.metrics_interval_ms, epoch, stop)) if endpoints else None)
+    semaphore = asyncio.Semaphore(args.max_concurrency)
+    results = await asyncio.gather(*[
+        run_one(client, semaphore, tokenizer, args.model, row, epoch,
+                args.allow_early_stop) for row in rows])
+    stop.set()
+    metric_samples = await metrics_task if metrics_task else []
+    await http_client.aclose()
+
+    payload = {
+        "schema_version": 2,
+        "collector": "vllm_pd_proxy_streaming",
+        "experiment_type": "pd_ground_truth",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "repeat_id": args.repeat_id,
+        "model": args.model,
+        "base_url": args.base_url,
+        "trace": str(args.trace.resolve()),
+        "deployment_config": str(args.deployment_config.resolve()),
+        "deployment_config_sha256": deployment_sha256,
+        "deployment": deployment,
+        "collector_config": {
+            "max_concurrency": args.max_concurrency,
+            "timeout_seconds": args.timeout,
+            "warmup_requests": args.warmup_requests,
+            "allow_early_stop": args.allow_early_stop,
+            "metrics_interval_ms": args.metrics_interval_ms,
+            "component_metrics_urls": endpoints,
+        },
+        "summary": summarize(results),
+        "requests": results,
+        "component_metric_samples": metric_samples,
+    }
+    args.output.parent.mkdir(parents=True, exist_ok=True)
+    args.output.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    failed = payload["summary"]["failed_requests"]
+    print(f"saved {len(results)} requests ({failed} failed) to {args.output}")
+    if failed:
+        print("collection is invalid: inspect request errors before retrying")
+        return 2
+    return 0
+
+
+def main() -> int:
+    return asyncio.run(main_async(parse_args()))
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

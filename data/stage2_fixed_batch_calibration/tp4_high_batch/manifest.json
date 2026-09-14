@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "experiment_type": "fixed_batch_suite_manifest",
+  "tp_size": 4,
+  "deployment_config": "/data/home/lihaozhe/llm-simulator/configs/fixed_batch_tp4.json",
+  "files": [
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b12_l256.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b12_l768.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b16_l256.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b16_l768.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b24_l256.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b24_l768.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b32_l256.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch_calibration/tp4_high_batch/decode_b32_l768.json"
+  ]
+}

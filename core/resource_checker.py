@@ -7,8 +7,12 @@ from typing import Dict, List, Optional, Tuple
 from enum import Enum
 from dataclasses import dataclass
 
-from kv_block_pool import KVBlockPool
-from communication_model import CommunicationModel, Topology, CommType
+try:
+    from .kv_block_pool import KVBlockPool
+    from .communication_model import CommunicationModel, Topology, CommType
+except ImportError:  # direct script compatibility
+    from kv_block_pool import KVBlockPool
+    from communication_model import CommunicationModel, Topology, CommType
 
 
 class BottleneckType(Enum):
@@ -88,18 +92,11 @@ class ResourceChecker:
         Returns:
             需要的 KV block 数量
         """
-        # 计算 KV Cache 总字节数
-        bytes_per_token = num_kv_heads * head_dim * 2 * bytes_per_param / tp_size
-        total_bytes = num_layers * batch_size * seq_len * bytes_per_token
-        
-        # 转换为 MB
-        kv_mb = total_bytes / (1024 * 1024)
-        
-        # 计算需要的 block 数量 (向上取整)
-        block_size_mb = self.kv_pool.block_size_mb
-        num_blocks = int((kv_mb + block_size_mb - 1) // block_size_mb)
-        
-        return max(num_blocks, 1)
+        if batch_size <= 0 or seq_len < 0:
+            raise ValueError("batch_size must be positive and seq_len non-negative")
+        # vLLM allocates logical blocks independently for every sequence. Taking
+        # ceil after summing tokens would incorrectly hide per-request tail waste.
+        return batch_size * self.kv_pool.blocks_for_tokens(seq_len)
     
     def check_batch(self,
                     batch_size: int,
@@ -155,9 +152,12 @@ class ResourceChecker:
         
         # 显存占比：已分配 + 需要的
         used_memory = self.kv_pool.get_used_memory_mb()
-        needed_memory = kv_blocks_needed * self.kv_pool.block_size_mb
-        total_kv_memory = self.kv_pool.total_kv_memory_mb
-        memory_ratio = (used_memory + needed_memory) / total_kv_memory if total_kv_memory > 0 else 0
+        needed_memory = kv_blocks_needed * self.kv_pool.block_size_mib
+        total_kv_memory = self.kv_pool.total_kv_memory_mib
+        # Block utilization is authoritative even when bytes/token metadata was
+        # unavailable and memory_mib is therefore zero.
+        memory_ratio = ((self.kv_pool.get_used_blocks() + kv_blocks_needed)
+                        / self.kv_pool.total_blocks)
         
         details["compute_ratio"] = compute_ratio
         details["comm_ratio"] = comm_ratio
@@ -209,14 +209,14 @@ class ResourceChecker:
 
 # ============ 使用示例 ============
 if __name__ == "__main__":
-    # 初始化资源池 (20GB = 20480 MB)
-    pool = KVBlockPool(total_kv_memory_mb=20480, block_size_mb=64)
+    # 演示值；真实运行时应从 vLLM metrics 读取 num_gpu_blocks。
+    pool = KVBlockPool(total_blocks=4096, block_size_tokens=16)
     checker = ResourceChecker(kv_pool=pool)
     
     # 模拟参数
     num_layers = 64
     num_kv_heads = 8
-    head_dim = 80
+    head_dim = 128
     
     # 测试一个中等 batch
     batch_size = 8
@@ -228,7 +228,7 @@ if __name__ == "__main__":
         batch_size, seq_len, num_layers, num_kv_heads, head_dim, tp_size=tp_size
     )
     print(f"Batch {batch_size} x Seq {seq_len}, TP={tp_size}")
-    print(f"  需要的 KV blocks: {needed} ({needed * 64} MB)")
+    print(f"  需要的 KV blocks: {needed}")
     print(f"  可用 blocks: {pool.get_free_blocks()}")
     
     # 模拟分配

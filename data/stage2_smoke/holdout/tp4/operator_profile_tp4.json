@@ -1,0 +1,365 @@
+{
+  "schema_version": 2,
+  "profile_type": "operator",
+  "metadata": {
+    "captured_at_utc": "2026-09-12T11:32:08.795447+00:00",
+    "host": {
+      "hostname": "djs-l20",
+      "platform": "Linux-5.15.0-164-generic-x86_64-with-glibc2.35",
+      "python": "3.10.20 (main, Jun 11 2026, 15:17:37) [GCC 14.3.0]",
+      "executable": "/data/home/lihaozhe/miniconda3/envs/llm-simulator/bin/python"
+    },
+    "software": {
+      "torch": "2.10.0",
+      "vllm": "0.19.0",
+      "transformers": "4.57.6",
+      "triton": "3.6.0",
+      "numpy": "2.2.6",
+      "openai": "2.52.0",
+      "nvidia-nccl-cu12": "2.27.5"
+    },
+    "torch_runtime": {
+      "available": true,
+      "torch_version": "2.10.0+cu128",
+      "cuda_build_version": "12.8",
+      "cuda_available": true,
+      "visible_device_count": 1,
+      "visible_devices": [
+        {
+          "index": 0,
+          "name": "NVIDIA L20",
+          "capability": [
+            8,
+            9
+          ],
+          "total_memory_bytes": 47666757632
+        }
+      ],
+      "nccl_version": [
+        2,
+        27,
+        5
+      ],
+      "cudnn_version": 91002
+    },
+    "cuda": {
+      "visible_devices": "0",
+      "nvidia_smi_query": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+      "topology": "\u001b[4mGPU0\tGPU1\tGPU2\tGPU3\tGPU4\tGPU5\tGPU6\tGPU7\tCPU Affinity\tNUMA Affinity\tGPU NUMA ID\u001b[0m\nGPU0\t X \tNODE\tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU1\tNODE\t X \tNODE\tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU2\tNODE\tNODE\t X \tNODE\tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU3\tNODE\tNODE\tNODE\t X \tSYS\tSYS\tSYS\tSYS\t0-31,64-95\t0\t\tN/A\nGPU4\tSYS\tSYS\tSYS\tSYS\t X \tNODE\tNODE\tNODE\t32-63,96-127\t1\t\tN/A\nGPU5\tSYS\tSYS\tSYS\tSYS\tNODE\t X \tNODE\tNODE\t32-63,96-127\t1\t\tN/A\nGPU6\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\t X \tNODE\t32-63,96-127\t1\t\tN/A\nGPU7\tSYS\tSYS\tSYS\tSYS\tNODE\tNODE\tNODE\t X \t32-63,96-127\t1\t\tN/A\n\nLegend:\n\n  X    = Self\n  SYS  = Connection traversing PCIe as well as the SMP interconnect between NUMA nodes (e.g., QPI/UPI)\n  NODE = Connection traversing PCIe as well as the interconnect between PCIe Host Bridges within a NUMA node\n  PHB  = Connection traversing PCIe as well as a PCIe Host Bridge (typically the CPU)\n  PXB  = Connection traversing multiple PCIe bridges (without traversing the PCIe Host Bridge)\n  PIX  = Connection traversing at most a single PCIe bridge\n  NV#  = Connection traversing a bonded set of # NVLinks"
+    },
+    "model": {
+      "path": "/data/home/public/weight/Qwen3-32B",
+      "config_path": "/data/home/public/weight/Qwen3-32B/config.json",
+      "config_present": true,
+      "config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+      "config": {
+        "model_type": "qwen3",
+        "architectures": [
+          "Qwen3ForCausalLM"
+        ],
+        "num_hidden_layers": 64,
+        "hidden_size": 5120,
+        "intermediate_size": 25600,
+        "num_attention_heads": 64,
+        "num_key_value_heads": 8,
+        "head_dim": 128,
+        "torch_dtype": "bfloat16",
+        "vocab_size": 151936,
+        "max_position_embeddings": 40960
+      }
+    },
+    "benchmark": {
+      "kind": "qwen_tensor_parallel_operator_microbenchmark",
+      "stage": "both",
+      "tp_size": 4,
+      "dtype": "bfloat16",
+      "device": "cuda:0",
+      "warmup": 2,
+      "repeats": 5,
+      "model_config_source": "/data/home/public/weight/Qwen3-32B/config.json",
+      "model_config": {
+        "num_hidden_layers": 64,
+        "hidden_size": 5120,
+        "intermediate_size": 25600,
+        "num_attention_heads": 64,
+        "num_key_value_heads": 8,
+        "head_dim": 128
+      },
+      "timer": "torch.cuda.Event",
+      "weights_allocated_outside_timed_region": true,
+      "collectives_included": false
+    },
+    "environment": {
+      "CUDA_VISIBLE_DEVICES": "0"
+    },
+    "source": {
+      "project_root": "/data/home/lihaozhe/llm-simulator",
+      "git_commit": "3a1a69aa8fff64fd6863aeb763b532e09fa886e4",
+      "git_dirty": true
+    }
+  },
+  "measurements": [
+    {
+      "status": "success",
+      "stage": "prefill",
+      "shape": {
+        "batch_size": 2,
+        "prompt_length": 256,
+        "tp_size": 4
+      },
+      "operators": {
+        "attention_rmsnorm": {
+          "count": 5,
+          "mean_ms": 0.02565760016441345,
+          "std_ms": 0.004620533842716963,
+          "min_ms": 0.022304000332951546,
+          "p50_ms": 0.02377600036561489,
+          "p90_ms": 0.030777599662542343,
+          "p99_ms": 0.03432575985789299,
+          "max_ms": 0.03471999987959862
+        },
+        "qkv_projection": {
+          "count": 5,
+          "mean_ms": 0.14729599952697753,
+          "std_ms": 0.0028495428810328027,
+          "min_ms": 0.14534400403499603,
+          "p50_ms": 0.14591999351978302,
+          "p90_ms": 0.1505215972661972,
+          "p99_ms": 0.15262975454330444,
+          "max_ms": 0.1528639942407608
+        },
+        "attention": {
+          "count": 5,
+          "mean_ms": 0.033964800834655764,
+          "std_ms": 0.004173153584269068,
+          "min_ms": 0.03142400085926056,
+          "p50_ms": 0.03174399957060814,
+          "p90_ms": 0.038515201210975646,
+          "p99_ms": 0.04186752125620842,
+          "max_ms": 0.04224000126123428
+        },
+        "output_projection": {
+          "count": 5,
+          "mean_ms": 0.12319360077381133,
+          "std_ms": 0.0006612161185836001,
+          "min_ms": 0.12252800166606903,
+          "p50_ms": 0.12294399738311768,
+          "p90_ms": 0.1239872008562088,
+          "p99_ms": 0.12434432089328766,
+          "max_ms": 0.12438400089740753
+        },
+        "attention_residual": {
+          "count": 5,
+          "mean_ms": 0.01976960003376007,
+          "std_ms": 0.0030496113444703162,
+          "min_ms": 0.01788800023496151,
+          "p50_ms": 0.018303999677300453,
+          "p90_ms": 0.023059199750423434,
+          "p99_ms": 0.025547519251704218,
+          "max_ms": 0.02582399919629097
+        },
+        "ffn_rmsnorm": {
+          "count": 5,
+          "mean_ms": 0.022067200392484665,
+          "std_ms": 0.0016887511017969418,
+          "min_ms": 0.02112000063061714,
+          "p50_ms": 0.021247999742627144,
+          "p90_ms": 0.023814400285482408,
+          "p99_ms": 0.025277440026402472,
+          "max_ms": 0.025439999997615814
+        },
+        "ffn_gate_projection": {
+          "count": 5,
+          "mean_ms": 0.4136319994926453,
+          "std_ms": 0.0007666679864885267,
+          "min_ms": 0.41286399960517883,
+          "p50_ms": 0.4131839871406555,
+          "p90_ms": 0.41459200382232664,
+          "p99_ms": 0.4147648131847382,
+          "max_ms": 0.4147840142250061
+        },
+        "ffn_up_projection": {
+          "count": 5,
+          "mean_ms": 0.4132800042629242,
+          "std_ms": 0.0004681189292148094,
+          "min_ms": 0.41276800632476807,
+          "p50_ms": 0.4131839871406555,
+          "p90_ms": 0.4138304054737091,
+          "p99_ms": 0.413853440284729,
+          "max_ms": 0.41385599970817566
+        },
+        "ffn_activation": {
+          "count": 5,
+          "mean_ms": 0.02688639983534813,
+          "std_ms": 0.004010222069895189,
+          "min_ms": 0.023903999477624893,
+          "p50_ms": 0.024992000311613083,
+          "p90_ms": 0.031302399933338165,
+          "p99_ms": 0.03443584032356739,
+          "max_ms": 0.03478400036692619
+        },
+        "ffn_down_projection": {
+          "count": 5,
+          "mean_ms": 0.3462207973003387,
+          "std_ms": 0.0007617305017693004,
+          "min_ms": 0.34544000029563904,
+          "p50_ms": 0.346015989780426,
+          "p90_ms": 0.34714879393577575,
+          "p99_ms": 0.3473676729202271,
+          "max_ms": 0.3473919928073883
+        },
+        "ffn_residual": {
+          "count": 5,
+          "mean_ms": 0.0177023995667696,
+          "std_ms": 0.000834065414570874,
+          "min_ms": 0.017055999487638474,
+          "p50_ms": 0.01724799908697605,
+          "p90_ms": 0.018649600073695184,
+          "p99_ms": 0.019260160028934478,
+          "max_ms": 0.019328000023961067
+        }
+      },
+      "single_layer": {
+        "attention_ms": 0.3498816013336181,
+        "ffn_ms": 1.2397888008505105,
+        "total_compute_ms": 1.5896704021841286,
+        "bottleneck": "ffn",
+        "component_ratio": {
+          "attention": 0.2200969464191433,
+          "ffn": 0.7799030535808567
+        }
+      }
+    },
+    {
+      "status": "success",
+      "stage": "decode",
+      "shape": {
+        "batch_size": 2,
+        "kv_length": 256,
+        "tp_size": 4
+      },
+      "operators": {
+        "attention_rmsnorm": {
+          "count": 5,
+          "mean_ms": 0.022860800474882127,
+          "std_ms": 0.002666166315689607,
+          "min_ms": 0.02115200087428093,
+          "p50_ms": 0.021376000717282295,
+          "p90_ms": 0.025811200216412544,
+          "p99_ms": 0.02789632000029087,
+          "max_ms": 0.02812799997627735
+        },
+        "qkv_projection": {
+          "count": 5,
+          "mean_ms": 0.030636800080537797,
+          "std_ms": 0.002137696315505128,
+          "min_ms": 0.02924799919128418,
+          "p50_ms": 0.02953599952161312,
+          "p90_ms": 0.03294720053672791,
+          "p99_ms": 0.03468672104179859,
+          "max_ms": 0.03488000109791756
+        },
+        "attention": {
+          "count": 5,
+          "mean_ms": 0.0382080003619194,
+          "std_ms": 0.003489673036253601,
+          "min_ms": 0.03545600175857544,
+          "p50_ms": 0.036768000572919846,
+          "p90_ms": 0.041952000558376314,
+          "p99_ms": 0.04477440059185028,
+          "max_ms": 0.04508800059556961
+        },
+        "output_projection": {
+          "count": 5,
+          "mean_ms": 0.026028799638152123,
+          "std_ms": 0.00042770011095547364,
+          "min_ms": 0.025599999353289604,
+          "p50_ms": 0.025919999927282333,
+          "p90_ms": 0.026489599794149398,
+          "p99_ms": 0.026812159568071366,
+          "max_ms": 0.026847999542951584
+        },
+        "attention_residual": {
+          "count": 5,
+          "mean_ms": 0.01793919987976551,
+          "std_ms": 0.0010332777973152403,
+          "min_ms": 0.017343999817967415,
+          "p50_ms": 0.01740800030529499,
+          "p90_ms": 0.01902719959616661,
+          "p99_ms": 0.019902719557285307,
+          "max_ms": 0.019999999552965164
+        },
+        "ffn_rmsnorm": {
+          "count": 5,
+          "mean_ms": 0.02152319997549057,
+          "std_ms": 0.0012079905532439766,
+          "min_ms": 0.020287999883294106,
+          "p50_ms": 0.02099199965596199,
+          "p90_ms": 0.022931199893355368,
+          "p99_ms": 0.023691520318388937,
+          "max_ms": 0.02377600036561489
+        },
+        "ffn_gate_projection": {
+          "count": 5,
+          "mean_ms": 0.06027519926428795,
+          "std_ms": 0.0017109204664358887,
+          "min_ms": 0.059039998799562454,
+          "p50_ms": 0.059487998485565186,
+          "p90_ms": 0.0622079998254776,
+          "p99_ms": 0.06347520008683205,
+          "max_ms": 0.06361600011587143
+        },
+        "ffn_up_projection": {
+          "count": 5,
+          "mean_ms": 0.059040000289678575,
+          "std_ms": 0.00017874203295276616,
+          "min_ms": 0.05875200033187866,
+          "p50_ms": 0.05907199904322624,
+          "p90_ms": 0.059225600212812424,
+          "p99_ms": 0.05926016047596931,
+          "max_ms": 0.05926400050520897
+        },
+        "ffn_activation": {
+          "count": 5,
+          "mean_ms": 0.02383360043168068,
+          "std_ms": 0.00129990939657525,
+          "min_ms": 0.02252800017595291,
+          "p50_ms": 0.023584000766277313,
+          "p90_ms": 0.025286400690674782,
+          "p99_ms": 0.026173440739512444,
+          "max_ms": 0.02627200074493885
+        },
+        "ffn_down_projection": {
+          "count": 5,
+          "mean_ms": 0.09978879988193512,
+          "std_ms": 0.0006823137549970043,
+          "min_ms": 0.09868799895048141,
+          "p50_ms": 0.09984000027179718,
+          "p90_ms": 0.10046080052852631,
+          "p99_ms": 0.10079488039016724,
+          "max_ms": 0.100832000374794
+        },
+        "ffn_residual": {
+          "count": 5,
+          "mean_ms": 0.017631999775767328,
+          "std_ms": 0.0007010847878817324,
+          "min_ms": 0.017055999487638474,
+          "p50_ms": 0.017343999817967415,
+          "p90_ms": 0.01839359998703003,
+          "p99_ms": 0.018946559503674507,
+          "max_ms": 0.019007999449968338
+        }
+      },
+      "single_layer": {
+        "attention_ms": 0.13567360043525695,
+        "ffn_ms": 0.28209279961884026,
+        "total_compute_ms": 0.4177664000540972,
+        "bottleneck": "ffn",
+        "component_ratio": {
+          "attention": 0.32475948381125996,
+          "ffn": 0.67524051618874
+        }
+      }
+    }
+  ]
+}

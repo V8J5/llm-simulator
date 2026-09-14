@@ -21,12 +21,78 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, PROJECT_ROOT)
 
 from core.task_manager import task_manager
+from core.benchmark_protocol import (
+    adapt_legacy_report,
+    compare_reports,
+    load_benchmark_spec,
+)
 
 app = Flask(__name__, static_folder='.')
 CORS(app)
 
 REPORT_DIR = os.path.join(PROJECT_ROOT, 'data', 'benchmark_reports')
 TASKS_FILE = os.path.join(PROJECT_ROOT, 'data', 'tasks.json')
+BENCHMARK_SPEC_FILE = os.path.join(
+    PROJECT_ROOT, 'configs', 'benchmark_specs', 'qwen3_32b_v1.json')
+
+
+def _latest_report(gpu_type, tp):
+    pattern = os.path.join(REPORT_DIR, f'benchmark_{gpu_type}_TP{tp}_*.json')
+    files = glob.glob(pattern)
+    return max(files, key=os.path.getmtime) if files else None
+
+
+def _load_comparable_report(path):
+    """Load a report and explicitly adapt legacy v0 files in memory.
+
+    Legacy files used seq/time and 1/time.  Recompute token throughput from
+    batch and total time, and mark the provenance so the UI cannot present the
+    result as independently verified ground truth.
+    """
+    with open(path, 'r', encoding='utf-8') as handle:
+        payload = json.load(handle)
+    spec = load_benchmark_spec(BENCHMARK_SPEC_FILE)
+    return adapt_legacy_report(payload, spec)
+
+
+def _ground_truth_ratios(candidate_gpu, reference_gpu, tp):
+    pattern = os.path.join(
+        PROJECT_ROOT, 'data', 'relative_ground_truth', '**',
+        'relative_ground_truth_report.json')
+    matches = []
+    for path in glob.glob(pattern, recursive=True):
+        try:
+            with open(path, 'r', encoding='utf-8') as handle:
+                payload = json.load(handle)
+            acceptance = payload.get('acceptance', {})
+            if not (acceptance.get('ground_truth_complete') and
+                    acceptance.get('runtime_compatible') and
+                    acceptance.get('repeatability_ok')):
+                continue
+            candidate = payload.get('candidate', {})
+            reference = payload.get('reference', {})
+            same = (candidate.get('hardware_id') == candidate_gpu and
+                    reference.get('hardware_id') == reference_gpu and
+                    int(candidate.get('tp_size', -1)) == tp and
+                    int(reference.get('tp_size', -1)) == tp)
+            reverse = (candidate.get('hardware_id') == reference_gpu and
+                       reference.get('hardware_id') == candidate_gpu and
+                       int(candidate.get('tp_size', -1)) == tp and
+                       int(reference.get('tp_size', -1)) == tp)
+            if same:
+                matches.append((os.path.getmtime(path), path,
+                                payload.get('ground_truth_ratios', {})))
+            elif reverse:
+                ratios = {key: 1.0 / float(value)
+                          for key, value in payload.get('ground_truth_ratios', {}).items()
+                          if float(value) > 0}
+                matches.append((os.path.getmtime(path), path, ratios))
+        except (OSError, ValueError, TypeError, ZeroDivisionError):
+            continue
+    if not matches:
+        return None, None
+    _, path, ratios = max(matches, key=lambda item: item[0])
+    return ratios, path
 
 
 def _get_task_from_file(task_id):
@@ -71,21 +137,30 @@ def get_summary():
                 case_scores = {}
                 pattern = os.path.join(REPORT_DIR, f'benchmark_{gpu}_TP{tp}_*.json')
                 files = glob.glob(pattern)
+                data = None
                 if files:
                     # 读取匹配的 JSON 文件（按 TP 精确匹配）
-                    with open(files[0], 'r') as fp:
-                        data = json.load(fp)
-                        for item in data.get('prefill', []):
-                            case_scores[item['case']] = item.get('throughput_tok_s', 0)
-                        for item in data.get('decode', []):
-                            case_scores[item['case']] = item.get('throughput_tok_s', 0)
+                    latest = max(files, key=os.path.getmtime)
+                    data = _load_comparable_report(latest)
+                    for item in data.get('prefill', []):
+                        case_scores[item['case']] = item.get('throughput_tok_s', 0)
+                    for item in data.get('decode', []):
+                        case_scores[item['case']] = item.get('throughput_tok_s', 0)
+                prefill_values = [item.get('throughput_tok_s', 0)
+                                  for item in (data or {}).get('prefill', [])]
+                decode_values = [item.get('throughput_tok_s', 0)
+                                 for item in (data or {}).get('decode', [])]
                 
                 results.append({
                     'gpu': gpu,
                     'tp': tp,
-                    'prefill_avg': float(row['Prefill_Avg(tok/s)']) if row['Prefill_Avg(tok/s)'] else 0,
-                    'decode_avg': float(row['Decode_Avg(tok/s)']) if row['Decode_Avg(tok/s)'] else 0,
+                    'prefill_avg': (sum(prefill_values) / len(prefill_values)
+                                    if prefill_values else 0),
+                    'decode_avg': (sum(decode_values) / len(decode_values)
+                                   if decode_values else 0),
                     'combined_score': float(row['综合评分']) if row['综合评分'] else 0,
+                    'combined_score_status': 'legacy_not_for_ranking',
+                    'comparison_status': 'provisional',
                     'price': float(row['价格']) if row.get('价格') and row['价格'] else None,
                     'price_performance': float(row['性价比']) if row.get('性价比') and row['性价比'] else None,
                     'case_scores': case_scores,
@@ -97,28 +172,87 @@ def get_summary():
     json_files = glob.glob(os.path.join(REPORT_DIR, 'benchmark_*.json'))
     results = []
     for f in json_files:
-        with open(f, 'r') as fp:
-            data = json.load(fp)
-            meta = data.get('meta', {})
-            summary = data.get('summary', {})
-            gpu = meta.get('gpu_type', 'Unknown')
-            tp = meta.get('tp', 1)
-            case_scores = {}
-            for item in data.get('prefill', []):
-                case_scores[item['case']] = item.get('throughput_tok_s', 0)
-            for item in data.get('decode', []):
-                case_scores[item['case']] = item.get('throughput_tok_s', 0)
-            results.append({
-                'gpu': gpu,
-                'tp': tp,
-                'prefill_avg': summary.get('avg_prefill_throughput', 0),
-                'decode_avg': summary.get('avg_decode_throughput', 0),
-                'combined_score': summary.get('combined_score', 0),
-                'price': meta.get('price'),
-                'case_scores': case_scores,
-                'color': '#76b900' if 'L20' in gpu else '#ff6b6b' if '昇腾' in gpu else '#4ecdc4'
-            })
+        data = _load_comparable_report(f)
+        meta = data.get('meta', {})
+        summary = data.get('summary', {})
+        gpu = meta.get('gpu_type', 'Unknown')
+        tp = meta.get('tp', 1)
+        case_scores = {}
+        for item in data.get('prefill', []):
+            case_scores[item['case']] = item.get('throughput_tok_s', 0)
+        for item in data.get('decode', []):
+            case_scores[item['case']] = item.get('throughput_tok_s', 0)
+        prefill_values = [item.get('throughput_tok_s', 0)
+                          for item in data.get('prefill', [])]
+        decode_values = [item.get('throughput_tok_s', 0)
+                         for item in data.get('decode', [])]
+        results.append({
+            'gpu': gpu,
+            'tp': tp,
+            'prefill_avg': (sum(prefill_values) / len(prefill_values)
+                            if prefill_values else 0),
+            'decode_avg': (sum(decode_values) / len(decode_values)
+                           if decode_values else 0),
+            'combined_score': summary.get('combined_score', 0),
+            'combined_score_status': 'legacy_not_for_ranking',
+            'comparison_status': 'provisional',
+            'price': meta.get('price'),
+            'case_scores': case_scores,
+            'color': '#76b900' if 'L20' in gpu else '#ff6b6b' if '昇腾' in gpu else '#4ecdc4'
+        })
     return jsonify(results)
+
+
+@app.route('/api/benchmark/spec')
+def get_benchmark_spec():
+    """Return the versioned model workload and fairness contract."""
+    return jsonify(load_benchmark_spec(BENCHMARK_SPEC_FILE))
+
+
+@app.route('/api/benchmark/options')
+def get_benchmark_options():
+    options = set()
+    for path in glob.glob(os.path.join(REPORT_DIR, 'benchmark_*_TP*_*.json')):
+        try:
+            with open(path, 'r', encoding='utf-8') as handle:
+                meta = json.load(handle).get('meta', {})
+            if meta.get('gpu_type') and meta.get('tp'):
+                options.add((str(meta['gpu_type']), int(meta['tp'])))
+        except (OSError, ValueError, TypeError):
+            continue
+    return jsonify([
+        {'gpu': gpu, 'tp': tp, 'id': f'{gpu}::TP{tp}'}
+        for gpu, tp in sorted(options)
+    ])
+
+
+@app.route('/api/benchmark/relative')
+def get_relative_benchmark():
+    candidate_gpu = request.args.get('candidate')
+    reference_gpu = request.args.get('reference')
+    tp = request.args.get('tp', type=int)
+    if not candidate_gpu or not reference_gpu or tp is None:
+        return jsonify({'error': 'candidate, reference and tp are required'}), 400
+    candidate_path = _latest_report(candidate_gpu, tp)
+    reference_path = _latest_report(reference_gpu, tp)
+    if not candidate_path or not reference_path:
+        return jsonify({'error': 'matching report not found'}), 404
+    candidate = _load_comparable_report(candidate_path)
+    reference = _load_comparable_report(reference_path)
+    truth_ratios, truth_path = _ground_truth_ratios(
+        candidate_gpu, reference_gpu, tp)
+    result = compare_reports(candidate, reference, truth_ratios)
+    result['sources'] = {
+        'candidate': os.path.basename(candidate_path),
+        'reference': os.path.basename(reference_path),
+        'ground_truth': (os.path.relpath(truth_path, PROJECT_ROOT)
+                         if truth_path else None),
+    }
+    if any(report.get('meta', {}).get('report_provenance') ==
+           'legacy_v0_adapted_in_memory' for report in (candidate, reference)):
+        result['compatibility']['warnings'].append(
+            'legacy report throughput was corrected in memory; regenerate reports for protocol-native artifacts')
+    return jsonify(result)
 
 
 @app.route('/api/report/<gpu_type>')

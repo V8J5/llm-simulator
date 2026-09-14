@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "experiment_type": "pd_remote_kv_readiness_analysis",
+  "interpretation": "post_prefill_to_first_byte_ms includes remote-KV readiness and decode admission; it is not raw interconnect transfer time",
+  "scenarios": [
+    {
+      "scenario": "isolated",
+      "run_file": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/timing_diagnostics/isolated_v3.json",
+      "timing_log": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/timing_diagnostics/isolated_v3_timing.log",
+      "deployment_config_sha256": "bff5c74d83bbbe76cc3ffeec8a6bee487340360ae0f108df2de0a74db3ab8088",
+      "total_requests": 8,
+      "successful_requests": 8,
+      "aligned_timing_records": 8,
+      "cohort_threshold_ms": 50.0,
+      "readiness_cohort_count": 8,
+      "multi_request_cohort_count": 0,
+      "largest_readiness_cohort": 1,
+      "prefill_service_ms": {
+        "count": 8,
+        "mean": 301.6445,
+        "p50": 254.618,
+        "p90": 608.4786,
+        "p99": 608.67516,
+        "min": 88.02799999999999,
+        "max": 608.697
+      },
+      "post_prefill_to_first_byte_ms": {
+        "count": 8,
+        "mean": 30.59737499999999,
+        "p50": 32.537499999999994,
+        "p90": 33.6311,
+        "p99": 34.460809999999995,
+        "min": 20.880999999999972,
+        "max": 34.553
+      },
+      "decode_headers_ms": {
+        "count": 8,
+        "mean": 9.466375,
+        "p50": 9.1265,
+        "p90": 11.4242,
+        "p99": 11.50862,
+        "min": 7.544,
+        "max": 11.518
+      },
+      "client_minus_proxy_first_byte_ms": {
+        "count": 8,
+        "mean": 5.642604487836373,
+        "p50": 5.633888033747681,
+        "p90": 6.551946665036677,
+        "p99": 6.689045051037082,
+        "min": 4.38561790269614,
+        "max": 6.704278205037127
+      },
+      "post_prefill_wait_over_100ms_ratio": 0.0,
+      "kv_event_source": "p2p_worker_blocking_receive",
+      "kv_state_timing": {
+        "prefill_complete_to_kv_receive_start_ms": {
+          "count": 8,
+          "mean": -284.57208764553815,
+          "p50": -237.55105653470753,
+          "p90": -75.72653495848775,
+          "p99": -74.75378580511273,
+          "min": -589.4734053465128,
+          "max": -74.64570256584882
+        },
+        "kv_receive_duration_ms": {
+          "count": 8,
+          "mean": 275.6804139353335,
+          "p50": 230.4200977087021,
+          "p90": 570.3672704286873,
+          "p99": 575.574651574716,
+          "min": 70.24034950882196,
+          "max": 576.1532494798303
+        },
+        "kv_receive_complete_to_first_byte_ms": {
+          "count": 8,
+          "mean": 39.48904871020465,
+          "p50": 39.2264709726572,
+          "p90": 41.00444863174556,
+          "p99": 41.29068444386541,
+          "min": 37.64135305702686,
+          "max": 41.322488422989835
+        }
+      }
+    },
+    {
+      "scenario": "medium",
+      "run_file": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/timing_diagnostics/medium_v3.json",
+      "timing_log": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/timing_diagnostics/medium_v3_timing.log",
+      "deployment_config_sha256": "bff5c74d83bbbe76cc3ffeec8a6bee487340360ae0f108df2de0a74db3ab8088",
+      "total_requests": 20,
+      "successful_requests": 20,
+      "aligned_timing_records": 20,
+      "cohort_threshold_ms": 50.0,
+      "readiness_cohort_count": 8,
+      "multi_request_cohort_count": 4,
+      "largest_readiness_cohort": 6,
+      "prefill_service_ms": {
+        "count": 20,
+        "mean": 972.14775,
+        "p50": 1018.409,
+        "p90": 1474.2203000000004,
+        "p99": 1650.75242,
+        "min": 90.174,
+        "max": 1657.798
+      },
+      "post_prefill_to_first_byte_ms": {
+        "count": 20,
+        "mean": 251.80280000000002,
+        "p50": 36.176000000000045,
+        "p90": 824.6216000000005,
+        "p99": 1059.2568199999998,
+        "min": 28.285000000000082,
+        "max": 1059.4699999999998
+      },
+      "decode_headers_ms": {
+        "count": 20,
+        "mean": 8.336,
+        "p50": 8.0345,
+        "p90": 10.3586,
+        "p99": 10.85801,
+        "min": 6.27,
+        "max": 10.938
+      },
+      "client_minus_proxy_first_byte_ms": {
+        "count": 20,
+        "mean": 7.573249006339902,
+        "p50": 7.213731595724937,
+        "p90": 9.445202461695658,
+        "p99": 10.734413216675518,
+        "min": 5.066099498033537,
+        "max": 10.971331161677881
+      },
+      "post_prefill_wait_over_100ms_ratio": 0.25,
+      "kv_event_source": "p2p_worker_blocking_receive",
+      "kv_state_timing": {
+        "prefill_complete_to_kv_receive_start_ms": {
+          "count": 20,
+          "mean": -215.73170166278183,
+          "p50": -16.362698809683252,
+          "p90": 61.927694372439305,
+          "p99": 65.61564787995215,
+          "min": -1041.9883081111311,
+          "max": 65.91205527317516
+        },
+        "kv_receive_duration_ms": {
+          "count": 20,
+          "mean": 215.04520820453763,
+          "p50": 3.5242955200374126,
+          "p90": 633.6331401020288,
+          "p99": 956.050237352028,
+          "min": 1.6253655776381493,
+          "max": 1021.5138709172606
+        },
+        "kv_receive_complete_to_first_byte_ms": {
+          "count": 20,
+          "mean": 252.48929345824422,
+          "p50": 49.270183115988914,
+          "p90": 767.5242691535657,
+          "p99": 1073.6440899452655,
+          "min": 36.4243919816017,
+          "max": 1074.727948219776
+        }
+      }
+    },
+    {
+      "scenario": "saturated",
+      "run_file": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/timing_diagnostics/saturated_v3.json",
+      "timing_log": "/data/home/lihaozhe/llm-simulator/data/ground_truth_pd/timing_diagnostics/saturated_v3_timing.log",
+      "deployment_config_sha256": "bff5c74d83bbbe76cc3ffeec8a6bee487340360ae0f108df2de0a74db3ab8088",
+      "total_requests": 20,
+      "successful_requests": 20,
+      "aligned_timing_records": 20,
+      "cohort_threshold_ms": 50.0,
+      "readiness_cohort_count": 3,
+      "multi_request_cohort_count": 2,
+      "largest_readiness_cohort": 13,
+      "prefill_service_ms": {
+        "count": 20,
+        "mean": 2476.1889,
+        "p50": 2753.967,
+        "p90": 3822.5056,
+        "p99": 3905.8681,
+        "min": 600.856,
+        "max": 3914.9519999999998
+      },
+      "post_prefill_to_first_byte_ms": {
+        "count": 20,
+        "mean": 741.9666,
+        "p50": 973.0330000000001,
+        "p90": 1688.3532,
+        "p99": 1688.6307599999998,
+        "min": 32.35600000000022,
+        "max": 1688.687
+      },
+      "decode_headers_ms": {
+        "count": 20,
+        "mean": 8.24055,
+        "p50": 7.8,
+        "p90": 10.075400000000002,
+        "p99": 11.916889999999997,
+        "min": 6.363,
+        "max": 12.234
+      },
+      "client_minus_proxy_first_byte_ms": {
+        "count": 20,
+        "mean": 8.122611395043094,
+        "p50": 8.51059412455561,
+        "p90": 9.979463071519103,
+        "p99": 10.19688482869989,
+        "min": 5.082025175929061,
+        "max": 10.213444037497084
+      },
+      "post_prefill_wait_over_100ms_ratio": 0.55,
+      "kv_event_source": "p2p_worker_blocking_receive",
+      "kv_state_timing": {
+        "prefill_complete_to_kv_receive_start_ms": {
+          "count": 20,
+          "mean": -242.03702601973416,
+          "p50": -20.595286648333058,
+          "p90": -11.23368242961778,
+          "p99": 20.229936891934784,
+          "min": -1054.5039166938066,
+          "max": 26.82429170864816
+        },
+        "kv_receive_duration_ms": {
+          "count": 20,
+          "mean": 228.2555980142206,
+          "p50": 3.0416822992265224,
+          "p90": 933.5795377381146,
+          "p99": 1023.32194307819,
+          "min": 1.61775853484869,
+          "max": 1029.7526307404041
+        },
+        "kv_receive_complete_to_first_byte_ms": {
+          "count": 20,
+          "mean": 755.7480280055136,
+          "p50": 985.3433851487935,
+          "p90": 1708.1374351896525,
+          "p99": 1711.6164417055293,
+          "min": 43.97815792059919,
+          "max": 1711.9402859534025
+        }
+      }
+    }
+  ]
+}

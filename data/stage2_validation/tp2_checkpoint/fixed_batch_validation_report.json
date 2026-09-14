@@ -1,0 +1,939 @@
+{
+  "schema_version": 1,
+  "experiment_type": "fixed_batch_tp_matrix_validation",
+  "configuration": {
+    "expected_tp": [
+      1,
+      2
+    ],
+    "data_dir": "/data/home/lihaozhe/llm-simulator/data",
+    "operator_profile_dir": "/data/home/lihaozhe/llm-simulator/data/stage2_profiling/training",
+    "collective_profile_dir": "/data/home/lihaozhe/llm-simulator/data/stage2_profiling/collectives",
+    "calibration_enabled": false,
+    "calibration_file": null
+  },
+  "acceptance": {
+    "mape_threshold_pct": 20.0,
+    "errors_pass": false,
+    "coverage_complete": true,
+    "metadata_complete": true,
+    "passed": false
+  },
+  "tp_coverage": {
+    "1": {
+      "status": "infeasible",
+      "stages": [],
+      "reason": "Qwen3-32B BF16 model weights do not fit one NVIDIA L20"
+    },
+    "2": {
+      "status": "measured",
+      "stages": [
+        "decode",
+        "prefill"
+      ],
+      "reason": null
+    }
+  },
+  "metadata_audit": [
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b1_l1024.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b1_l128.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b1_l512.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b4_l1024.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b4_l128.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b4_l512.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b8_l1024.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b8_l128.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b8_l512.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b1_l1024.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b1_l128.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b1_l512.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b4_l1024.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b4_l128.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b4_l512.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b8_l1024.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b8_l128.json"
+    },
+    {
+      "complete": true,
+      "missing": [],
+      "fields": {
+        "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068",
+        "torch_version": "2.10.0",
+        "vllm_version": "0.19.0",
+        "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+        "dtype": "bfloat16",
+        "warmup_batches": 1,
+        "measured_batches": 3,
+        "server_launch_configuration": {
+          "model": "/data/home/public/weight/Qwen3-32B",
+          "tensor_parallel_size": 2,
+          "cuda_visible_devices": [
+            0,
+            1
+          ],
+          "dtype": "bfloat16",
+          "gpu_memory_utilization": 0.85,
+          "max_model_len": 8192,
+          "max_num_batched_tokens": 8192,
+          "max_num_seqs": 32,
+          "enforce_eager": true,
+          "enable_prefix_caching": false,
+          "block_size_tokens": 16
+        }
+      },
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b8_l512.json"
+    }
+  ],
+  "metadata_consistency_by_tp": {
+    "2": {
+      "consistent": true,
+      "conflicts": {}
+    }
+  },
+  "summary": {
+    "2": {
+      "prefill": {
+        "count": 9,
+        "mape_pct": 565.8006160010664,
+        "bias_pct": 565.8006160010664,
+        "max_absolute_error_pct": 1961.8931135507976,
+        "bottleneck_counts": {
+          "ffn": 9
+        }
+      },
+      "decode": {
+        "count": 9,
+        "mape_pct": 28.446202073785646,
+        "bias_pct": 28.446202073785646,
+        "max_absolute_error_pct": 46.1488781643268,
+        "bottleneck_counts": {
+          "ffn": 9
+        }
+      }
+    }
+  },
+  "points": [
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b1_l1024.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 1,
+      "representative_length": 1024,
+      "observed_iteration_ms": 76.12526634087165,
+      "predicted_iteration_ms": 434.1235,
+      "absolute_error_ms": 357.99823365912835,
+      "error_pct": 470.27518045860563,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 72.81853447854519,
+      "ffn_ms": 261.87673565745354,
+      "collective_ms": 99.42819980096525,
+      "unmodeled_runtime_residual_ms": -357.99823365912835,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b1_l128.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 1,
+      "representative_length": 128,
+      "observed_iteration_ms": 71.4294749001662,
+      "predicted_iteration_ms": 78.6556,
+      "absolute_error_ms": 7.2261250998338085,
+      "error_pct": 10.116447180849981,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 14.32668170928955,
+      "ffn_ms": 46.89561597704888,
+      "collective_ms": 17.43332168968199,
+      "unmodeled_runtime_residual_ms": -7.2261250998338085,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b1_l512.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 1,
+      "representative_length": 512,
+      "observed_iteration_ms": 67.47414078563452,
+      "predicted_iteration_ms": 240.3165,
+      "absolute_error_ms": 172.84235921436547,
+      "error_pct": 256.1608894931852,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 38.27886095643043,
+      "ffn_ms": 149.5290886580944,
+      "collective_ms": 52.5085839131055,
+      "unmodeled_runtime_residual_ms": -172.84235921436547,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b4_l1024.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 4,
+      "representative_length": 1024,
+      "observed_iteration_ms": 186.67133649190268,
+      "predicted_iteration_ms": 1606.2942,
+      "absolute_error_ms": 1419.6228635080975,
+      "error_pct": 760.4932231090963,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 253.9779750172297,
+      "ffn_ms": 968.9004229378701,
+      "collective_ms": 383.41582692282844,
+      "unmodeled_runtime_residual_ms": -1419.6228635080975,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b4_l128.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 4,
+      "representative_length": 128,
+      "observed_iteration_ms": 175.88145534197488,
+      "predicted_iteration_ms": 238.7742,
+      "absolute_error_ms": 62.89274465802512,
+      "error_pct": 35.75859918587761,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 36.736563372612,
+      "ffn_ms": 149.5290886580944,
+      "collective_ms": 52.5085839131055,
+      "unmodeled_runtime_residual_ms": -62.89274465802512,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b4_l512.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 4,
+      "representative_length": 512,
+      "observed_iteration_ms": 151.10972772041956,
+      "predicted_iteration_ms": 806.4843,
+      "absolute_error_ms": 655.3745722795804,
+      "error_pct": 433.707731571155,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 134.0794626131654,
+      "ffn_ms": 478.22525445222857,
+      "collective_ms": 194.17961195134941,
+      "unmodeled_runtime_residual_ms": -655.3745722795804,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b8_l1024.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 8,
+      "representative_length": 1024,
+      "observed_iteration_ms": 154.71446017424265,
+      "predicted_iteration_ms": 3190.0468,
+      "absolute_error_ms": 3035.3323398257576,
+      "error_pct": 1961.8931135507976,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 515.7264121969541,
+      "ffn_ms": 1914.7986461639405,
+      "collective_ms": 759.5217563142968,
+      "unmodeled_runtime_residual_ms": -3035.3323398257576,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b8_l128.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 8,
+      "representative_length": 128,
+      "observed_iteration_ms": 162.89836913347244,
+      "predicted_iteration_ms": 428.4452,
+      "absolute_error_ms": 265.54683086652756,
+      "error_pct": 163.01380565016527,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 67.14030084311962,
+      "ffn_ms": 261.87673565745354,
+      "collective_ms": 99.42819980096525,
+      "unmodeled_runtime_residual_ms": -265.54683086652756,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/prefill_b8_l512.json",
+      "stage": "prefill",
+      "tp_size": 2,
+      "batch_size": 8,
+      "representative_length": 512,
+      "observed_iteration_ms": 144.8718731602033,
+      "predicted_iteration_ms": 1594.7301,
+      "absolute_error_ms": 1449.8582268397968,
+      "error_pct": 1000.7865538098645,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 242.41387461662293,
+      "ffn_ms": 968.9004229378701,
+      "collective_ms": 383.41582692282844,
+      "unmodeled_runtime_residual_ms": -1449.8582268397968,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b1_l1024.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 1,
+      "representative_length": 1040,
+      "observed_iteration_ms": 46.41539535375051,
+      "predicted_iteration_ms": 67.7343,
+      "absolute_error_ms": 21.318904646249493,
+      "error_pct": 45.93067555230219,
+      "extrapolated": true,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 16.16355999854786,
+      "ffn_ms": 45.337292801141736,
+      "collective_ms": 6.233462561824649,
+      "unmodeled_runtime_residual_ms": -21.318904646249493,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b1_l128.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 1,
+      "representative_length": 144,
+      "observed_iteration_ms": 46.2566438701845,
+      "predicted_iteration_ms": 67.5519,
+      "absolute_error_ms": 21.295256129815506,
+      "error_pct": 46.03718373857582,
+      "extrapolated": true,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 15.981158835921445,
+      "ffn_ms": 45.337292801141736,
+      "collective_ms": 6.233462561824649,
+      "unmodeled_runtime_residual_ms": -21.295256129815506,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b1_l512.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 1,
+      "representative_length": 528,
+      "observed_iteration_ms": 46.30825829802342,
+      "predicted_iteration_ms": 67.679,
+      "absolute_error_ms": 21.370741701976584,
+      "error_pct": 46.1488781643268,
+      "extrapolated": true,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 16.10823160798124,
+      "ffn_ms": 45.337292801141736,
+      "collective_ms": 6.233462561824649,
+      "unmodeled_runtime_residual_ms": -21.370741701976584,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b4_l1024.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 4,
+      "representative_length": 1040,
+      "observed_iteration_ms": 49.809263806329454,
+      "predicted_iteration_ms": 59.7187,
+      "absolute_error_ms": 9.909436193670544,
+      "error_pct": 19.89476542395978,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 14.183606933695188,
+      "ffn_ms": 39.39612668633461,
+      "collective_ms": 6.138978806893249,
+      "unmodeled_runtime_residual_ms": -9.909436193670544,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b4_l128.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 4,
+      "representative_length": 144,
+      "observed_iteration_ms": 49.27894808051567,
+      "predicted_iteration_ms": 59.5767,
+      "absolute_error_ms": 10.297751919484334,
+      "error_pct": 20.896858233781874,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 14.041589580936957,
+      "ffn_ms": 39.39612668633461,
+      "collective_ms": 6.138978806893249,
+      "unmodeled_runtime_residual_ms": -10.297751919484334,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b4_l512.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 4,
+      "representative_length": 528,
+      "observed_iteration_ms": 49.37911441209175,
+      "predicted_iteration_ms": 59.6426,
+      "absolute_error_ms": 10.26348558790825,
+      "error_pct": 20.78507423655814,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 14.107482872511358,
+      "ffn_ms": 39.39612668633461,
+      "collective_ms": 6.138978806893249,
+      "unmodeled_runtime_residual_ms": -10.26348558790825,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b8_l1024.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 8,
+      "representative_length": 1040,
+      "observed_iteration_ms": 50.93935411423445,
+      "predicted_iteration_ms": 60.1128,
+      "absolute_error_ms": 9.173445885765553,
+      "error_pct": 18.00856340893834,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 14.523346147991717,
+      "ffn_ms": 39.354327038526534,
+      "collective_ms": 6.235120902450161,
+      "unmodeled_runtime_residual_ms": -9.173445885765553,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b8_l128.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 8,
+      "representative_length": 144,
+      "observed_iteration_ms": 49.85607453867272,
+      "predicted_iteration_ms": 59.6597,
+      "absolute_error_ms": 9.803625461327279,
+      "error_pct": 19.663853506402177,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 14.070252548124003,
+      "ffn_ms": 39.354327038526534,
+      "collective_ms": 6.235120902450161,
+      "unmodeled_runtime_residual_ms": -9.803625461327279,
+      "estimated_bottleneck": "ffn"
+    },
+    {
+      "source": "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2/decode_b8_l512.json",
+      "stage": "decode",
+      "tp_size": 2,
+      "batch_size": 8,
+      "representative_length": 528,
+      "observed_iteration_ms": 50.36588025564748,
+      "predicted_iteration_ms": 59.7591,
+      "absolute_error_ms": 9.393219744352514,
+      "error_pct": 18.649966399225715,
+      "extrapolated": false,
+      "profile_source": "tp_sharded_operator_profile",
+      "attention_ms": 14.169662138053894,
+      "ffn_ms": 39.354327038526534,
+      "collective_ms": 6.235120902450161,
+      "unmodeled_runtime_residual_ms": -9.393219744352514,
+      "estimated_bottleneck": "ffn"
+    }
+  ],
+  "attribution_policy": {
+    "attention_ffn": "TP-sharded operator profile when available, otherwise legacy table",
+    "collective": "measured AllReduce lookup used by LLMCostModel",
+    "unmodeled_runtime_residual": "observed fixed-batch iteration minus modeled total",
+    "negative_residual": "model overprediction; excluded from bottleneck selection"
+  }
+}

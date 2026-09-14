@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "experiment_type": "operator_interpolation_holdout_validation",
+  "training_profile": "/data/home/lihaozhe/llm-simulator/data/stage2_smoke/training/tp4/operator_profile_tp4.json",
+  "holdout_profile": "/data/home/lihaozhe/llm-simulator/data/stage2_smoke/holdout/tp4/operator_profile_tp4.json",
+  "metadata_identity": {
+    "tp_size": 4,
+    "dtype": "bfloat16",
+    "model_config_sha256": "97e295b63283935788fac5e4f8860862a56d4089538cafc93f0431f2ebe483bb",
+    "gpu_inventory": "0, NVIDIA L20, GPU-094fa489-1d06-8e2d-5472-86ede424fe28, 575.51.03, 46068\n1, NVIDIA L20, GPU-eab969fb-2ff3-0a02-98f2-09553897b528, 575.51.03, 46068\n2, NVIDIA L20, GPU-8c055b89-1012-7ec4-7714-75eddf1b44db, 575.51.03, 46068\n3, NVIDIA L20, GPU-c1a74599-8eaf-267b-65b6-5bf5af032498, 575.51.03, 46068\n4, NVIDIA L20, GPU-13abcc34-fbd1-52a8-20af-8bdf75680396, 575.51.03, 46068\n5, NVIDIA L20, GPU-4889cbae-8185-c8aa-939f-b3e1d6703cb9, 575.51.03, 46068\n6, NVIDIA L20, GPU-bffe663e-9091-437b-6b85-5f9c3fa1478a, 575.51.03, 46068\n7, NVIDIA L20, GPU-906ef884-cc72-20f4-9342-dae5d2221fbd, 575.51.03, 46068"
+  },
+  "acceptance": {
+    "mape_threshold_pct": 20.0,
+    "passed": true
+  },
+  "summary": {
+    "prefill": {
+      "attention": {
+        "count": 1,
+        "mape_pct": 6.463443155115583,
+        "bias_pct": 6.463443155115583,
+        "p90_absolute_error_pct": 6.463443155115583,
+        "max_absolute_error_pct": 6.463443155115583
+      },
+      "ffn": {
+        "count": 1,
+        "mape_pct": 1.4278552371240487,
+        "bias_pct": 1.4278552371240487,
+        "p90_absolute_error_pct": 1.4278552371240487,
+        "max_absolute_error_pct": 1.4278552371240487
+      },
+      "total_compute": {
+        "count": 1,
+        "mape_pct": 2.5361727612991167,
+        "bias_pct": 2.5361727612991167,
+        "p90_absolute_error_pct": 2.5361727612991167,
+        "max_absolute_error_pct": 2.5361727612991167
+      },
+      "bottleneck_match_ratio": 1.0
+    },
+    "decode": {
+      "attention": {
+        "count": 1,
+        "mape_pct": 25.464643770654007,
+        "bias_pct": 25.464643770654007,
+        "p90_absolute_error_pct": 25.464643770654007,
+        "max_absolute_error_pct": 25.464643770654007
+      },
+      "ffn": {
+        "count": 1,
+        "mape_pct": 16.595390355501248,
+        "bias_pct": 16.595390355501248,
+        "p90_absolute_error_pct": 16.595390355501248,
+        "max_absolute_error_pct": 16.595390355501248
+      },
+      "total_compute": {
+        "count": 1,
+        "mape_pct": 19.475764516397522,
+        "bias_pct": 19.475764516397522,
+        "p90_absolute_error_pct": 19.475764516397522,
+        "max_absolute_error_pct": 19.475764516397522
+      },
+      "bottleneck_match_ratio": 1.0
+    }
+  },
+  "points": [
+    {
+      "stage": "prefill",
+      "tp_size": 4,
+      "batch_size": 2,
+      "prompt_length": 256,
+      "observed_attention_ms": 0.3498816013336181,
+      "predicted_attention_ms": 0.37249599974602465,
+      "attention_error_pct": 6.463443155115583,
+      "observed_ffn_ms": 1.2397888008505105,
+      "predicted_ffn_ms": 1.257491190172732,
+      "ffn_error_pct": 1.4278552371240487,
+      "observed_total_compute_ms": 1.5896704021841286,
+      "predicted_total_compute_ms": 1.6299871899187566,
+      "total_compute_error_pct": 2.5361727612991167,
+      "extrapolated": false,
+      "predicted_bottleneck": "ffn",
+      "observed_bottleneck": "ffn",
+      "bottleneck_match": true
+    },
+    {
+      "stage": "decode",
+      "tp_size": 4,
+      "batch_size": 2,
+      "kv_length": 256,
+      "observed_attention_ms": 0.13567360043525695,
+      "predicted_attention_ms": 0.17022239947691561,
+      "attention_error_pct": 25.464643770654007,
+      "observed_ffn_ms": 0.28209279961884026,
+      "predicted_ffn_ms": 0.32890720088034875,
+      "ffn_error_pct": 16.595390355501248,
+      "observed_total_compute_ms": 0.4177664000540972,
+      "predicted_total_compute_ms": 0.4991296003572644,
+      "total_compute_error_pct": 19.475764516397522,
+      "extrapolated": false,
+      "predicted_bottleneck": "ffn",
+      "observed_bottleneck": "ffn",
+      "bottleneck_match": true
+    }
+  ]
+}

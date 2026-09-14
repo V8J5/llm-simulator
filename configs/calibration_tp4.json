@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "prefill": {
+    "4": 1.0
+  },
+  "decode": {
+    "4": 0.603125
+  },
+  "metadata": {
+    "method": "weighted request-level TPOT MAPE grid search",
+    "fit_dataset": "independent calibration traces only",
+    "prefill_policy": "kept at 1.0; not fitted on scheduler-sensitive TTFT"
+  }
+}

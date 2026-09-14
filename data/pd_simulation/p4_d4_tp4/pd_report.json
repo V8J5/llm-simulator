@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "experiment_type": "pd_disaggregated_simulation",
+  "configuration": {
+    "num_prefill_gpus": 4,
+    "prefill_tp": 4,
+    "prefill_num_gpu_blocks": 22136,
+    "prefill_kv_memory_mb": 10000.0,
+    "prefill_max_num_batched_tokens": 4096,
+    "prefill_max_num_seqs": 16,
+    "num_decode_gpus": 4,
+    "decode_tp": 4,
+    "decode_num_gpu_blocks": 22136,
+    "decode_kv_memory_mb": 20000.0,
+    "decode_max_num_batched_tokens": 4096,
+    "decode_max_num_seqs": 32,
+    "block_size_tokens": 16,
+    "enable_chunked_prefill": true,
+    "kv_transfer_mode": "pcie",
+    "kv_transfer_bw_gb_s": 12.5,
+    "kv_transfer_latency_ms": 0.1,
+    "kv_transfer_concurrency": 1
+  },
+  "workload": {
+    "mode": "poisson",
+    "arrival_rate_rps": 1.0,
+    "prompt_len": 512,
+    "output_len": 128,
+    "trace": null,
+    "num_requests": 200,
+    "seed": 20260910
+  },
+  "calibration": {
+    "enabled": true,
+    "file": "/data/home/lihaozhe/llm-simulator/configs/calibration_tp4_chunked.json"
+  },
+  "metrics": {
+    "total_requests": 200,
+    "completed_requests": 200,
+    "completion_ratio": 1.0,
+    "ttft_ms": {
+      "avg": 213.7364058164702,
+      "p50": 203.58929313549015,
+      "p90": 238.75310883273642,
+      "p99": 360.0774781561364,
+      "max": 450.9011649446329,
+      "min": 190.997063321498
+    },
+    "tpot_ms": {
+      "avg": 25.032187455380473,
+      "p50": 24.861011679789755,
+      "p90": 25.54918364829393,
+      "p99": 27.313757372703417,
+      "max": 29.33846640419907,
+      "min": 24.603991601049938
+    },
+    "e2e_latency_ms": {
+      "avg": 3392.8242126497894,
+      "p50": 3366.041268696412,
+      "p90": 3482.2824435183416,
+      "p99": 3708.1078926039554,
+      "max": 3923.972855522181,
+      "min": 3317.320759330807
+    },
+    "input_throughput_tokens_per_s": 484.6616261811786,
+    "output_throughput_tokens_per_s": 121.16540654529464,
+    "throughput_tokens_per_s": 121.16540654529464,
+    "goodput_tokens_per_s": 121.16540654529464,
+    "goodput": {
+      "ttft_sla_ms": 500,
+      "tpot_sla_ms": 50,
+      "ttft_satisfied": 200,
+      "tpot_satisfied": 200,
+      "both_satisfied": 200,
+      "ttft_ratio": 1.0,
+      "tpot_ratio": 1.0,
+      "both_ratio": 1.0,
+      "token_goodput": 25600
+    },
+    "simulation_time_ms": 211281.42701712542,
+    "pd": {
+      "total_gpus": 8,
+      "prefill_replicas": 1,
+      "decode_replicas": 1,
+      "transfer_count": 200,
+      "transfer_size_mb": 25600.0,
+      "transfer_queue_time_ms": 10.339999999996508,
+      "prefill_batch_count": 199,
+      "decode_batch_count": 8188,
+      "prefill_peak_kv_utilization": 0.0043368268883267076,
+      "decode_peak_kv_utilization": 0.015224069389230214
+    }
+  }
+}

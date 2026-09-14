@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "experiment_type": "relative_ground_truth_run",
+  "protocol_version": "0.1",
+  "hardware_id": "L20",
+  "model": "/data/home/public/weight/Qwen3-32B",
+  "model_id": "Qwen/Qwen3-32B",
+  "tp_size": 4,
+  "dtype": "bfloat16",
+  "benchmark_spec": "/data/home/lihaozhe/llm-simulator/configs/benchmark_specs/qwen3_32b_v1.json",
+  "benchmark_spec_sha256": "a85c2a7ddafb65f972df04117a79c7880e2dd54129fc7d4d580a1b37198eea17",
+  "deployment_config": "/data/home/lihaozhe/llm-simulator/configs/fixed_batch_tp4.json",
+  "deployment_config_sha256": "7be7ccb9e3cfdef3151c8dc7c61c0a0282ccd5785244b9d351cc835c42b89021",
+  "warmup": 1,
+  "repeats": 3,
+  "entries": [
+    {
+      "stage": "prefill",
+      "case": "P_S",
+      "batch_size": 1,
+      "prompt_length": 512,
+      "file": "/data/home/lihaozhe/llm-simulator/data/relative_ground_truth/runs/L20/tp4/prefill_P_S.json"
+    },
+    {
+      "stage": "prefill",
+      "case": "P_M",
+      "batch_size": 4,
+      "prompt_length": 1024,
+      "file": "/data/home/lihaozhe/llm-simulator/data/relative_ground_truth/runs/L20/tp4/prefill_P_M.json"
+    },
+    {
+      "stage": "prefill",
+      "case": "P_L",
+      "batch_size": 8,
+      "prompt_length": 4096,
+      "file": "/data/home/lihaozhe/llm-simulator/data/relative_ground_truth/runs/L20/tp4/prefill_P_L.json"
+    },
+    {
+      "stage": "prefill",
+      "case": "P_XL",
+      "batch_size": 16,
+      "prompt_length": 4096,
+      "file": "/data/home/lihaozhe/llm-simulator/data/relative_ground_truth/runs/L20/tp4/prefill_P_XL.json"
+    },
+    {
+      "stage": "decode",
+      "case": "D_S",
+      "batch_size": 1,
+      "kv_length": 512,
+      "file": "/data/home/lihaozhe/llm-simulator/data/relative_ground_truth/runs/L20/tp4/decode_D_S.json"
+    },
+    {
+      "stage": "decode",
+      "case": "D_M",
+      "batch_size": 8,
+      "kv_length": 1024,
+      "file": "/data/home/lihaozhe/llm-simulator/data/relative_ground_truth/runs/L20/tp4/decode_D_M.json"
+    },
+    {
+      "stage": "decode",
+      "case": "D_L",
+      "batch_size": 16,
+      "kv_length": 4096,
+      "file": "/data/home/lihaozhe/llm-simulator/data/relative_ground_truth/runs/L20/tp4/decode_D_L.json"
+    },
+    {
+      "stage": "decode",
+      "case": "D_XL",
+      "batch_size": 32,
+      "kv_length": 4096,
+      "file": "/data/home/lihaozhe/llm-simulator/data/relative_ground_truth/runs/L20/tp4/decode_D_XL.json"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "experiment_type": "fixed_batch_suite_manifest",
+  "tp_size": 2,
+  "deployment_config": "/data/home/lihaozhe/llm-simulator/configs/fixed_batch_tp2.json",
+  "files": [
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b1_l128.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b1_l512.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b1_l1024.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b4_l128.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b4_l512.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b4_l1024.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b8_l128.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b8_l512.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/prefill_b8_l1024.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b1_l128.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b1_l512.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b1_l1024.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b4_l128.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b4_l512.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b4_l1024.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b8_l128.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b8_l512.json",
+    "/data/home/lihaozhe/llm-simulator/data/stage2_fixed_batch/tp2_v2/decode_b8_l1024.json"
+  ]
+}

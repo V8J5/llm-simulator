@@ -1,0 +1,34 @@
+{
+  "schema_version": 2,
+  "prefill": {
+    "4": 1.0
+  },
+  "decode": {
+    "4": {
+      "base_factor": 0.825925925925926,
+      "reference_batch_size": 8.0,
+      "reference_kv_len": 1024.0,
+      "batch_exponent": 0.0,
+      "kv_exponent": -0.05185185185185186,
+      "min_factor": 0.2,
+      "max_factor": 2.5
+    }
+  },
+  "iteration_overhead_ms": {
+    "4": 6.1111111111111125
+  },
+  "pd_transfer": {
+    "effective_bandwidth_gb_s": 10.69141531322506,
+    "fixed_latency_ms": 0.1,
+    "concurrency": 1,
+    "interpretation": "effective remote-KV readiness rate including connector and receiver scheduling; not raw interconnect bandwidth"
+  },
+  "metadata": {
+    "method": "multi-start coordinate search",
+    "objective": "0.35 * macro TTFT MAPE + macro TPOT MAPE + 0.15 * macro E2E MAPE",
+    "fit_dataset": "independent real PD calibration traces only",
+    "validation_policy": "validation_trace.csv and holdout traces are excluded",
+    "deployment_config_sha256": "bff5c74d83bbbe76cc3ffeec8a6bee487340360ae0f108df2de0a74db3ab8088",
+    "transfer_fit_policy": "effective remote-KV readiness rate fitted jointly; this is not reported as physical NCCL bandwidth"
+  }
+}

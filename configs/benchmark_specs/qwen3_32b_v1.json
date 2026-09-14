@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "protocol_version": "0.1",
+  "benchmark_name": "Qwen3-32B P/D hardware benchmark v0.1",
+  "model": {
+    "name": "Qwen3-32B",
+    "model_id": "Qwen/Qwen3-32B",
+    "architecture": "dense_decoder_transformer",
+    "attention_type": "GQA",
+    "num_hidden_layers": 64,
+    "hidden_size": 5120,
+    "intermediate_size": 25600,
+    "num_attention_heads": 64,
+    "num_key_value_heads": 8,
+    "head_dim": 128,
+    "dtype": "bfloat16"
+  },
+  "fairness": {
+    "primary_track": "iso_workload",
+    "iso_workload_rule": "model, dtype, TP, batch size, length, kernel semantics and software protocol must match",
+    "oom_policy": "mark the case infeasible; never lower batch inside the iso-workload score",
+    "secondary_track": "best_feasible",
+    "secondary_track_note": "hardware-specific feasible batch is reported separately for capacity/economics"
+  },
+  "workloads": {
+    "prefill": [
+      {"case": "P_S", "batch_size": 1, "prompt_length": 512, "purpose": "low-concurrency interactive prefill"},
+      {"case": "P_M", "batch_size": 4, "prompt_length": 1024, "purpose": "balanced prefill"},
+      {"case": "P_L", "batch_size": 8, "prompt_length": 4096, "purpose": "long-context throughput"},
+      {"case": "P_XL", "batch_size": 16, "prompt_length": 4096, "purpose": "memory and compute pressure"}
+    ],
+    "decode": [
+      {"case": "D_S", "batch_size": 1, "kv_length": 512, "purpose": "single-user latency"},
+      {"case": "D_M", "batch_size": 8, "kv_length": 1024, "purpose": "balanced decode"},
+      {"case": "D_L", "batch_size": 16, "kv_length": 4096, "purpose": "KV bandwidth pressure"},
+      {"case": "D_XL", "batch_size": 32, "kv_length": 4096, "purpose": "high-concurrency decode"}
+    ]
+  },
+  "score": {
+    "per_case": "candidate_throughput / reference_throughput",
+    "stage_aggregation": "geometric_mean",
+    "combined_score": null,
+    "reason": "P and D have different units and deployment roles; report them separately"
+  },
+  "limitations": [
+    "Current legacy layer profiler is a synthetic proxy, not a faithful vLLM kernel execution.",
+    "Relative results remain provisional until checked against independent real A/B full-model measurements."
+  ]
+}

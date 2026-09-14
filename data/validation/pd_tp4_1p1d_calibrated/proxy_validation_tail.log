@@ -1,0 +1,300 @@
+[2026-09-11 01:44:39 +0000] [85753] [INFO] 127.0.0.1:60666 POST /v1/completions 1.1 200 - 5572893
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4cafd13af8c84c6da11392a164d5a8f3 completed
+[2026-09-11 01:44:40 +0000] [85753] [INFO] 127.0.0.1:60696 POST /v1/completions 1.1 200 - 5036877
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5b36396e1f2d42e3a541e502dfb76c77 completed
+[2026-09-11 01:44:40 +0000] [85753] [INFO] 127.0.0.1:60726 POST /v1/completions 1.1 200 - 4318311
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9f660d6e32694623838e79bf137d1a8f completed
+[2026-09-11 01:44:40 +0000] [85753] [INFO] 127.0.0.1:51762 POST /v1/completions 1.1 200 - 3593882
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_92090d67e61144e395991ff4f18d07ee completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f9c8a8f8858c43c69f8b2fbc64c4ed11 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_03311d13801e4c05aebd859d959a22a5 completed
+[2026-09-11 01:44:40 +0000] [85753] [INFO] 127.0.0.1:51806 POST /v1/completions 1.1 200 - 2657830
+[2026-09-11 01:44:40 +0000] [85753] [INFO] 127.0.0.1:51812 POST /v1/completions 1.1 200 - 2461653
+[2026-09-11 01:44:40 +0000] [85753] [INFO] 127.0.0.1:51776 POST /v1/completions 1.1 200 - 3261401
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_c09012c840fc4c61a6e66792936e0f3a completed
+[2026-09-11 01:44:41 +0000] [85753] [INFO] 127.0.0.1:60672 POST /v1/completions 1.1 200 - 6671123
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_66616171287747db8f1d281bd665bfde completed
+[2026-09-11 01:44:41 +0000] [85753] [INFO] 127.0.0.1:60684 POST /v1/completions 1.1 200 - 6426543
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_176b5fda4e2a42ccb6ccbe64c206d900 completed
+[2026-09-11 01:44:41 +0000] [85753] [INFO] 127.0.0.1:60712 POST /v1/completions 1.1 200 - 5752562
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_62d9dd13ca08428db81376c31ceecd30 completed
+[2026-09-11 01:44:41 +0000] [85753] [INFO] 127.0.0.1:60748 POST /v1/completions 1.1 200 - 4813651
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_03622cf4b82b48de87c05e35ae73c8bd completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_62d4a75762ef4ba2a47e5f7d200a0d57 completed
+[2026-09-11 01:44:41 +0000] [85753] [INFO] 127.0.0.1:51798 POST /v1/completions 1.1 200 - 3876618
+[2026-09-11 01:44:41 +0000] [85753] [INFO] 127.0.0.1:51788 POST /v1/completions 1.1 200 - 4075751
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_3d01fb79b03c457f9fdcfa85c20a9ab5 completed
+[2026-09-11 01:44:43 +0000] [85753] [INFO] 127.0.0.1:60674 POST /v1/completions 1.1 200 - 8604789
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_be22751be04b43a39d0d837bf32937dd completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_96150bfedbf64c5c9d1fe148d0ba36ee completed
+[2026-09-11 01:44:43 +0000] [85753] [INFO] 127.0.0.1:60690 POST /v1/completions 1.1 200 - 8335896
+[2026-09-11 01:44:43 +0000] [85753] [INFO] 127.0.0.1:60710 POST /v1/completions 1.1 200 - 7932548
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_fe93a292ad85416aacc2e3a49a4a2e24 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_ec98c5d025af44de80aa82a9feb25bca completed
+[2026-09-11 01:44:43 +0000] [85753] [INFO] 127.0.0.1:60736 POST /v1/completions 1.1 200 - 7198264
+[2026-09-11 01:44:43 +0000] [85753] [INFO] 127.0.0.1:60720 POST /v1/completions 1.1 200 - 7598759
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_99e676a71f2a4e5393859b8be7f4ec35 completed
+[2026-09-11 01:44:43 +0000] [85753] [INFO] 127.0.0.1:60742 POST /v1/completions 1.1 200 - 7059383
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_265b264f6d8d42b49b0fb03606c770ef completed
+[2026-09-11 01:44:43 +0000] [85753] [INFO] 127.0.0.1:51774 POST /v1/completions 1.1 200 - 6525297
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5cbe501765bf485fa55f9e2b739e9139 completed in 0.087 s
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5cbe501765bf485fa55f9e2b739e9139 completed
+[2026-09-11 01:44:55 +0000] [85753] [INFO] 127.0.0.1:60302 POST /v1/completions 1.1 200 - 378969
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_a23d333118ab4350a17eb038b86e8eed completed in 0.086 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_04c58264ac5d42b0ade5d268544d3cc3 completed in 0.180 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d078fbaedb144804856e4aadd22741a6 completed in 0.316 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5f4b3c9854484c3ea044779012fa4ddf completed in 0.696 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_891b111f5fe0438f8900320ee6834dd7 completed in 0.812 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_759dddc7bcd64ba086beb468a0eb8756 completed in 1.014 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_a86a0f286a634eaabd4702c3ce6e6822 completed in 1.217 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_92bd718c85fa49eba147d4cd3d0f917e completed in 0.594 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_66750d23f4b140f4acabb0b37f7aad4c completed in 1.195 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_cc3b1623c84447c48c463be335b8ce0b completed in 0.795 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e973882f399f4bd1b063ac7669bc3a47 completed in 0.999 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_155ffd5ac7a2419885f8f6b7210661d1 completed in 0.826 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e802729699874165822dacc2fc720511 completed in 1.022 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d1d47f589b20428288ffd04d0a88f0b6 completed in 1.057 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d1f4c84918324e16926f619b2ef192ce completed in 1.457 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5ee7abdba3184f0886e488314a2cce63 completed in 1.658 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_c70f715932c246a887ea37783284dc3e completed in 1.259 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_30d11709c7d44699ad3ecb41c85aa03e completed in 1.416 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_850d551609f141eaad7595282493a557 completed in 1.220 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_27348a2fd6b5430496fb11117cf3f64b completed in 1.620 s
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_a23d333118ab4350a17eb038b86e8eed completed
+[2026-09-11 01:45:02 +0000] [85753] [INFO] 127.0.0.1:60302 POST /v1/completions 1.1 200 - 5572045
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_759dddc7bcd64ba086beb468a0eb8756 completed
+[2026-09-11 01:45:03 +0000] [85753] [INFO] 127.0.0.1:39882 POST /v1/completions 1.1 200 - 5040878
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_cc3b1623c84447c48c463be335b8ce0b completed
+[2026-09-11 01:45:03 +0000] [85753] [INFO] 127.0.0.1:39924 POST /v1/completions 1.1 200 - 4316450
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5ee7abdba3184f0886e488314a2cce63 completed
+[2026-09-11 01:45:03 +0000] [85753] [INFO] 127.0.0.1:39972 POST /v1/completions 1.1 200 - 3592791
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_30d11709c7d44699ad3ecb41c85aa03e completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_c70f715932c246a887ea37783284dc3e completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_850d551609f141eaad7595282493a557 completed
+[2026-09-11 01:45:03 +0000] [85753] [INFO] 127.0.0.1:40018 POST /v1/completions 1.1 200 - 2656412
+[2026-09-11 01:45:03 +0000] [85753] [INFO] 127.0.0.1:39992 POST /v1/completions 1.1 200 - 3260657
+[2026-09-11 01:45:03 +0000] [85753] [INFO] 127.0.0.1:40034 POST /v1/completions 1.1 200 - 2460190
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_04c58264ac5d42b0ade5d268544d3cc3 completed
+[2026-09-11 01:45:04 +0000] [85753] [INFO] 127.0.0.1:39852 POST /v1/completions 1.1 200 - 6693088
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5f4b3c9854484c3ea044779012fa4ddf completed
+[2026-09-11 01:45:04 +0000] [85753] [INFO] 127.0.0.1:39866 POST /v1/completions 1.1 200 - 6441845
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_66750d23f4b140f4acabb0b37f7aad4c completed
+[2026-09-11 01:45:04 +0000] [85753] [INFO] 127.0.0.1:39910 POST /v1/completions 1.1 200 - 5768937
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_155ffd5ac7a2419885f8f6b7210661d1 completed
+[2026-09-11 01:45:04 +0000] [85753] [INFO] 127.0.0.1:39966 POST /v1/completions 1.1 200 - 4830737
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d1d47f589b20428288ffd04d0a88f0b6 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_27348a2fd6b5430496fb11117cf3f64b completed
+[2026-09-11 01:45:04 +0000] [85753] [INFO] 127.0.0.1:40002 POST /v1/completions 1.1 200 - 4090620
+[2026-09-11 01:45:04 +0000] [85753] [INFO] 127.0.0.1:40004 POST /v1/completions 1.1 200 - 3891694
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d078fbaedb144804856e4aadd22741a6 completed
+[2026-09-11 01:45:06 +0000] [85753] [INFO] 127.0.0.1:39854 POST /v1/completions 1.1 200 - 8614193
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_891b111f5fe0438f8900320ee6834dd7 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_a86a0f286a634eaabd4702c3ce6e6822 completed
+[2026-09-11 01:45:06 +0000] [85753] [INFO] 127.0.0.1:39896 POST /v1/completions 1.1 200 - 7945020
+[2026-09-11 01:45:06 +0000] [85753] [INFO] 127.0.0.1:39870 POST /v1/completions 1.1 200 - 8349956
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_92bd718c85fa49eba147d4cd3d0f917e completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e973882f399f4bd1b063ac7669bc3a47 completed
+[2026-09-11 01:45:06 +0000] [85753] [INFO] 127.0.0.1:39940 POST /v1/completions 1.1 200 - 7211765
+[2026-09-11 01:45:06 +0000] [85753] [INFO] 127.0.0.1:39916 POST /v1/completions 1.1 200 - 7615221
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e802729699874165822dacc2fc720511 completed
+[2026-09-11 01:45:06 +0000] [85753] [INFO] 127.0.0.1:39950 POST /v1/completions 1.1 200 - 7072444
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d1f4c84918324e16926f619b2ef192ce completed
+[2026-09-11 01:45:06 +0000] [85753] [INFO] 127.0.0.1:39986 POST /v1/completions 1.1 200 - 6536354
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5bfd37a4521a440c81200d8c7b0f4ec6 completed in 0.090 s
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_5bfd37a4521a440c81200d8c7b0f4ec6 completed
+[2026-09-11 01:45:18 +0000] [85753] [INFO] 127.0.0.1:55266 POST /v1/completions 1.1 200 - 376029
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_b32bc3ba1a024bb797d607a37d7a55e5 completed in 0.602 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e0969884ee7940d8ba29601b3da51725 completed in 1.627 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_2875cdc453634aa2bfa0648ef2a2a015 completed in 1.679 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e3e419f5a72f4a448926e36e01949fe2 completed in 1.527 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_042b1c44a0134ba680e54c8e0889f03c completed in 1.576 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_11d39930d0cc4695b83d01b8ba52bf1c completed in 1.476 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_8d64d43e2b794b49a959558778108eda completed in 2.040 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_ae2b47d7f894457fbce58826a9182645 completed in 2.142 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d850bf6b5915446f8ace38d12b54ec68 completed in 2.091 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_3d04610477c942c1804b07545c0d6a8a completed in 2.783 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_be37897d499e48208c90e069d70b180a completed in 2.732 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9aed9af3a34c41d5bfaadc2bfe55f307 completed in 2.881 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d7c352af79824983b008d64916778bbf completed in 2.933 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_91c21bd9276244d1bfebe8e0ade9daad completed in 2.832 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e37e94a47ef34383b223cb38e25f5cad completed in 3.009 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_311a941020fe40519c7ca5b1f4733d68 completed in 3.057 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_0fb59382b79c45c5948baad1e297a3bb completed in 2.959 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_39d61f893b9d420199e2f6ea4c453144 completed in 3.872 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4545861dd6794339aed4030ed7f99df8 completed in 3.822 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d2f35b9f00f546e9bf6210ad7282d300 completed in 3.919 s
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d850bf6b5915446f8ace38d12b54ec68 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e3e419f5a72f4a448926e36e01949fe2 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9aed9af3a34c41d5bfaadc2bfe55f307 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_2875cdc453634aa2bfa0648ef2a2a015 completed
+[2026-09-11 01:45:25 +0000] [85753] [INFO] 127.0.0.1:55324 POST /v1/completions 1.1 200 - 5609088
+[2026-09-11 01:45:25 +0000] [85753] [INFO] 127.0.0.1:55298 POST /v1/completions 1.1 200 - 5759496
+[2026-09-11 01:45:25 +0000] [85753] [INFO] 127.0.0.1:55340 POST /v1/completions 1.1 200 - 5459328
+[2026-09-11 01:45:25 +0000] [85753] [INFO] 127.0.0.1:55270 POST /v1/completions 1.1 200 - 5913017
+[2026-09-11 01:45:25 +0000] [85753] [INFO] 127.0.0.1:55380 POST /v1/completions 1.1 - - 5280184
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e37e94a47ef34383b223cb38e25f5cad completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_39d61f893b9d420199e2f6ea4c453144 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d2f35b9f00f546e9bf6210ad7282d300 completed
+[2026-09-11 01:45:25 +0000] [85753] [INFO] 127.0.0.1:55380 POST /v1/completions 1.1 200 - 5280755
+[2026-09-11 01:45:25 +0000] [85753] [INFO] 127.0.0.1:55410 POST /v1/completions 1.1 200 - 5130832
+[2026-09-11 01:45:25 +0000] [85753] [INFO] 127.0.0.1:55398 POST /v1/completions 1.1 200 - 5177796
+[2026-09-11 01:45:26 +0000] [85753] [INFO] 127.0.0.1:55306 POST /v1/completions 1.1 - - 6772218
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_11d39930d0cc4695b83d01b8ba52bf1c completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e0969884ee7940d8ba29601b3da51725 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_8d64d43e2b794b49a959558778108eda completed
+[2026-09-11 01:45:26 +0000] [85753] [INFO] 127.0.0.1:55306 POST /v1/completions 1.1 200 - 6772925
+[2026-09-11 01:45:26 +0000] [85753] [INFO] 127.0.0.1:55280 POST /v1/completions 1.1 200 - 6923491
+[2026-09-11 01:45:26 +0000] [85753] [INFO] 127.0.0.1:55332 POST /v1/completions 1.1 200 - 6621787
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_be37897d499e48208c90e069d70b180a completed
+[2026-09-11 01:45:26 +0000] [85753] [INFO] 127.0.0.1:55370 POST /v1/completions 1.1 200 - 6402019
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4545861dd6794339aed4030ed7f99df8 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_0fb59382b79c45c5948baad1e297a3bb completed
+[2026-09-11 01:45:26 +0000] [85753] [INFO] 127.0.0.1:55426 POST /v1/completions 1.1 200 - 6133346
+[2026-09-11 01:45:26 +0000] [85753] [INFO] 127.0.0.1:55382 POST /v1/completions 1.1 200 - 6284531
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_b32bc3ba1a024bb797d607a37d7a55e5 completed
+[2026-09-11 01:45:28 +0000] [85753] [INFO] 127.0.0.1:55266 POST /v1/completions 1.1 200 - 8999098
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_042b1c44a0134ba680e54c8e0889f03c completed
+[2026-09-11 01:45:28 +0000] [85753] [INFO] 127.0.0.1:55294 POST /v1/completions 1.1 - - 8918666
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_ae2b47d7f894457fbce58826a9182645 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_3d04610477c942c1804b07545c0d6a8a completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_91c21bd9276244d1bfebe8e0ade9daad completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d7c352af79824983b008d64916778bbf completed
+[2026-09-11 01:45:28 +0000] [85753] [INFO] 127.0.0.1:55294 POST /v1/completions 1.1 200 - 8919243
+[2026-09-11 01:45:28 +0000] [85753] [INFO] 127.0.0.1:55308 POST /v1/completions 1.1 200 - 8769933
+[2026-09-11 01:45:28 +0000] [85753] [INFO] 127.0.0.1:55356 POST /v1/completions 1.1 200 - 8470910
+[2026-09-11 01:45:28 +0000] [85753] [INFO] 127.0.0.1:55342 POST /v1/completions 1.1 200 - 8519419
+[2026-09-11 01:45:28 +0000] [85753] [INFO] 127.0.0.1:55334 POST /v1/completions 1.1 200 - 8621201
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_311a941020fe40519c7ca5b1f4733d68 completed
+[2026-09-11 01:45:29 +0000] [85753] [INFO] 127.0.0.1:55376 POST /v1/completions 1.1 200 - 8432699
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f0b5c1292a0347b2aaff5250ddf90d25 completed in 0.087 s
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f0b5c1292a0347b2aaff5250ddf90d25 completed
+[2026-09-11 01:45:40 +0000] [85753] [INFO] 127.0.0.1:43656 POST /v1/completions 1.1 200 - 378414
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_46d5fd54e248467580990aaac578e871 completed in 0.601 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_c2224a3a4a044fb7bf3784b5eed616c1 completed in 1.476 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_a1ee11609c7841f4bd769353c0c92631 completed in 1.672 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_32a55f4e2cbd46c4b104fe5a0c8bda1c completed in 1.578 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4382ecaf49cb4ba6aa4c991de07c6ec0 completed in 1.524 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f6d1a315545145a2b081919d3c43a159 completed in 1.626 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_779a895688034aacb4c896424a50f45c completed in 2.091 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_cd4ae6a167f049288f558c1b298844c0 completed in 2.141 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9e89b4287169436a928e611f76975389 completed in 2.038 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f21ce08eb1e54f58a793ccc8d0285cfb completed in 2.928 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_450368bd4714436bacdee87afef591e8 completed in 2.828 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9ae110834d764dfe8f04f9f211a96253 completed in 2.730 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_01b1ee36262d49aab034c29934ac4d79 completed in 2.879 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_2103eb4fbb11463e9e7e71722fb3b5ee completed in 2.778 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_c7193b1a954f4444b143d9447f028dec completed in 3.006 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e07852d47d43491e89c0c60b83883fba completed in 2.956 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_eda132d7184146c18483b2495c4f02e4 completed in 3.057 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4f88e5f42b89487b95fff6f01a8b256a completed in 3.916 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_ecd2bafc84e14558802e5741c06ad4dc completed in 3.819 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e6bf5baff47644719b021d22c7a6f20d completed in 3.868 s
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_779a895688034aacb4c896424a50f45c completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4382ecaf49cb4ba6aa4c991de07c6ec0 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_01b1ee36262d49aab034c29934ac4d79 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_a1ee11609c7841f4bd769353c0c92631 completed
+[2026-09-11 01:45:48 +0000] [85753] [INFO] 127.0.0.1:43706 POST /v1/completions 1.1 200 - 5601839
+[2026-09-11 01:45:48 +0000] [85753] [INFO] 127.0.0.1:43686 POST /v1/completions 1.1 200 - 5751668
+[2026-09-11 01:45:48 +0000] [85753] [INFO] 127.0.0.1:43730 POST /v1/completions 1.1 200 - 5453548
+[2026-09-11 01:45:48 +0000] [85753] [INFO] 127.0.0.1:43660 POST /v1/completions 1.1 200 - 5899803
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_c7193b1a954f4444b143d9447f028dec completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4f88e5f42b89487b95fff6f01a8b256a completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e6bf5baff47644719b021d22c7a6f20d completed
+[2026-09-11 01:45:48 +0000] [85753] [INFO] 127.0.0.1:43794 POST /v1/completions 1.1 200 - 5267064
+[2026-09-11 01:45:48 +0000] [85753] [INFO] 127.0.0.1:43822 POST /v1/completions 1.1 200 - 5165943
+[2026-09-11 01:45:48 +0000] [85753] [INFO] 127.0.0.1:43832 POST /v1/completions 1.1 200 - 5118168
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_c2224a3a4a044fb7bf3784b5eed616c1 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9e89b4287169436a928e611f76975389 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f6d1a315545145a2b081919d3c43a159 completed
+[2026-09-11 01:45:49 +0000] [85753] [INFO] 127.0.0.1:43698 POST /v1/completions 1.1 200 - 6763730
+[2026-09-11 01:45:49 +0000] [85753] [INFO] 127.0.0.1:43708 POST /v1/completions 1.1 200 - 6610089
+[2026-09-11 01:45:49 +0000] [85753] [INFO] 127.0.0.1:43662 POST /v1/completions 1.1 200 - 6913335
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9ae110834d764dfe8f04f9f211a96253 completed
+[2026-09-11 01:45:49 +0000] [85753] [INFO] 127.0.0.1:43766 POST /v1/completions 1.1 200 - 6393050
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_ecd2bafc84e14558802e5741c06ad4dc completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e07852d47d43491e89c0c60b83883fba completed
+[2026-09-11 01:45:49 +0000] [85753] [INFO] 127.0.0.1:43838 POST /v1/completions 1.1 200 - 6123692
+[2026-09-11 01:45:49 +0000] [85753] [INFO] 127.0.0.1:43806 POST /v1/completions 1.1 200 - 6273703
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_46d5fd54e248467580990aaac578e871 completed
+[2026-09-11 01:45:51 +0000] [85753] [INFO] 127.0.0.1:43656 POST /v1/completions 1.1 200 - 8987395
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_32a55f4e2cbd46c4b104fe5a0c8bda1c completed
+[2026-09-11 01:45:51 +0000] [85753] [INFO] 127.0.0.1:43672 POST /v1/completions 1.1 - - 8908549
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_450368bd4714436bacdee87afef591e8 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f21ce08eb1e54f58a793ccc8d0285cfb completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_cd4ae6a167f049288f558c1b298844c0 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_2103eb4fbb11463e9e7e71722fb3b5ee completed
+[2026-09-11 01:45:51 +0000] [85753] [INFO] 127.0.0.1:43672 POST /v1/completions 1.1 200 - 8909137
+[2026-09-11 01:45:51 +0000] [85753] [INFO] 127.0.0.1:43744 POST /v1/completions 1.1 200 - 8507069
+[2026-09-11 01:45:51 +0000] [85753] [INFO] 127.0.0.1:43720 POST /v1/completions 1.1 200 - 8608950
+[2026-09-11 01:45:51 +0000] [85753] [INFO] 127.0.0.1:43700 POST /v1/completions 1.1 200 - 8757464
+[2026-09-11 01:45:51 +0000] [85753] [INFO] 127.0.0.1:43758 POST /v1/completions 1.1 200 - 8458190
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_eda132d7184146c18483b2495c4f02e4 completed
+[2026-09-11 01:45:51 +0000] [85753] [INFO] 127.0.0.1:43780 POST /v1/completions 1.1 200 - 8418829
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d6a60899e4774f8f80a35df76b692969 completed in 0.089 s
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d6a60899e4774f8f80a35df76b692969 completed
+[2026-09-11 01:46:03 +0000] [85753] [INFO] 127.0.0.1:39842 POST /v1/completions 1.1 200 - 391112
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9e6700c5a3904653855926d406323fa1 completed in 0.601 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4b8d2bd7d07b42cd9d7307718c916217 completed in 1.525 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_ecd9c05b2a6b400589b966c6a3ff028a completed in 1.478 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_bdba0748a9484cc29f0e96ab00539d2b completed in 1.626 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_b0aad548f1fc44bf9bf0adafcf89e97a completed in 1.679 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_8f647f02c8e7466eb556bb4f24a61a9f completed in 1.578 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_2fac25d6040f44aaa23daf9ae32988c6 completed in 2.040 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_280466ddfbc84e8c968342b8c5aabbff completed in 2.095 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_fd846587f12c4485aafde88e88441354 completed in 2.143 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d44a433316004495966d99585a28aa1e completed in 2.782 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f4e9fce906ab43f89e18d737e5370ceb completed in 2.930 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_8f3a24893f014344aa53d611af708baa completed in 2.883 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_0ea45ab125244f61a275cd66d5f9f6c7 completed in 2.832 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_503284c6e31b4e8293a3ec5120324a6b completed in 2.731 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_b10cffce2e674ab99f84b599b89aa4dd completed in 3.060 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e4aabe9d106a485885216702b573aabc completed in 3.010 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_27a640f8bcbf41d3b386e28a207bb485 completed in 2.962 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d91909c3e24a4e8db7046d68a8491cb2 completed in 3.873 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_3beb359b6335459b9351a49133f9acdd completed in 3.921 s
+INFO:pd_proxy_vllm019:prefill ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_389a40803c004ed1b07961c4bc9c5353 completed in 3.822 s
+[2026-09-11 01:46:10 +0000] [85753] [INFO] 127.0.0.1:39888 POST /v1/completions 1.1 - - 5757155
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_4b8d2bd7d07b42cd9d7307718c916217 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_8f3a24893f014344aa53d611af708baa completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_280466ddfbc84e8c968342b8c5aabbff completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_b0aad548f1fc44bf9bf0adafcf89e97a completed
+[2026-09-11 01:46:10 +0000] [85753] [INFO] 127.0.0.1:39888 POST /v1/completions 1.1 200 - 5757863
+[2026-09-11 01:46:10 +0000] [85753] [INFO] 127.0.0.1:39944 POST /v1/completions 1.1 200 - 5460658
+[2026-09-11 01:46:10 +0000] [85753] [INFO] 127.0.0.1:39916 POST /v1/completions 1.1 200 - 5611033
+[2026-09-11 01:46:10 +0000] [85753] [INFO] 127.0.0.1:39854 POST /v1/completions 1.1 200 - 5912444
+[2026-09-11 01:46:11 +0000] [85753] [INFO] 127.0.0.1:40024 POST /v1/completions 1.1 - - 5125432
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d91909c3e24a4e8db7046d68a8491cb2 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_3beb359b6335459b9351a49133f9acdd completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_e4aabe9d106a485885216702b573aabc completed
+[2026-09-11 01:46:11 +0000] [85753] [INFO] 127.0.0.1:40024 POST /v1/completions 1.1 200 - 5126246
+[2026-09-11 01:46:11 +0000] [85753] [INFO] 127.0.0.1:40020 POST /v1/completions 1.1 200 - 5174792
+[2026-09-11 01:46:11 +0000] [85753] [INFO] 127.0.0.1:39990 POST /v1/completions 1.1 200 - 5276404
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_ecd9c05b2a6b400589b966c6a3ff028a completed
+[2026-09-11 01:46:11 +0000] [85753] [INFO] 127.0.0.1:39890 POST /v1/completions 1.1 - - 6735283
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_bdba0748a9484cc29f0e96ab00539d2b completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_2fac25d6040f44aaa23daf9ae32988c6 completed
+[2026-09-11 01:46:11 +0000] [85753] [INFO] 127.0.0.1:39890 POST /v1/completions 1.1 200 - 6735936
+[2026-09-11 01:46:11 +0000] [85753] [INFO] 127.0.0.1:39870 POST /v1/completions 1.1 200 - 6884642
+[2026-09-11 01:46:11 +0000] [85753] [INFO] 127.0.0.1:39932 POST /v1/completions 1.1 200 - 6582617
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_503284c6e31b4e8293a3ec5120324a6b completed
+[2026-09-11 01:46:12 +0000] [85753] [INFO] 127.0.0.1:39974 POST /v1/completions 1.1 200 - 6362235
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_27a640f8bcbf41d3b386e28a207bb485 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_389a40803c004ed1b07961c4bc9c5353 completed
+[2026-09-11 01:46:12 +0000] [85753] [INFO] 127.0.0.1:40006 POST /v1/completions 1.1 200 - 6244134
+[2026-09-11 01:46:12 +0000] [85753] [INFO] 127.0.0.1:40026 POST /v1/completions 1.1 200 - 6093311
+[2026-09-11 01:46:13 +0000] [85753] [INFO] 127.0.0.1:39842 POST /v1/completions 1.1 - - 8974128
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_9e6700c5a3904653855926d406323fa1 completed
+[2026-09-11 01:46:13 +0000] [85753] [INFO] 127.0.0.1:39842 POST /v1/completions 1.1 200 - 8974914
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_d44a433316004495966d99585a28aa1e completed
+[2026-09-11 01:46:14 +0000] [85753] [INFO] 127.0.0.1:39960 POST /v1/completions 1.1 - - 8445919
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_fd846587f12c4485aafde88e88441354 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_f4e9fce906ab43f89e18d737e5370ceb completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_0ea45ab125244f61a275cd66d5f9f6c7 completed
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_8f647f02c8e7466eb556bb4f24a61a9f completed
+[2026-09-11 01:46:14 +0000] [85753] [INFO] 127.0.0.1:39960 POST /v1/completions 1.1 200 - 8446773
+[2026-09-11 01:46:14 +0000] [85753] [INFO] 127.0.0.1:39904 POST /v1/completions 1.1 200 - 8745928
+[2026-09-11 01:46:14 +0000] [85753] [INFO] 127.0.0.1:39934 POST /v1/completions 1.1 200 - 8595657
+[2026-09-11 01:46:14 +0000] [85753] [INFO] 127.0.0.1:39946 POST /v1/completions 1.1 200 - 8497730
+[2026-09-11 01:46:14 +0000] [85753] [INFO] 127.0.0.1:39886 POST /v1/completions 1.1 200 - 8898312
+INFO:pd_proxy_vllm019:decode ___prefill_addr_10.199.6.2:14579___decode_addr_10.199.6.2:14589_b10cffce2e674ab99f84b599b89aa4dd completed
+[2026-09-11 01:46:14 +0000] [85753] [INFO] 127.0.0.1:39982 POST /v1/completions 1.1 200 - 8407036

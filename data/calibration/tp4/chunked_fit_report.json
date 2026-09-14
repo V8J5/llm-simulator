@@ -1,0 +1,283 @@
+{
+  "schema_version": 2,
+  "configuration": {
+    "tp_size": 4,
+    "num_gpu_blocks": 22136,
+    "block_size_tokens": 16,
+    "max_num_batched_tokens": 8192,
+    "max_num_seqs": 32,
+    "chunked_prefill_enabled": true,
+    "parameter_ranges": {
+      "base_factor": [
+        0.35,
+        1.1
+      ],
+      "batch_exponent": [
+        -0.5,
+        0.5
+      ],
+      "kv_exponent": [
+        -0.35,
+        0.35
+      ],
+      "iteration_overhead_ms": [
+        0.0,
+        20.0
+      ]
+    },
+    "reference_batch_size": 8.0,
+    "reference_kv_len": 1024.0
+  },
+  "selected": {
+    "objective": 3.869407182037744,
+    "macro_tpot_mape_pct": 3.262190440611693,
+    "macro_e2e_mape_pct": 3.036083707130255,
+    "scenarios": [
+      {
+        "name": "calibration_isolated",
+        "request_count": 8,
+        "ttft_mape_pct": 16.149461009096317,
+        "ttft_bias_pct": -16.149461009096317,
+        "tpot_mape_pct": 1.3983972121219412,
+        "tpot_bias_pct": -1.2730168844340175,
+        "e2e_mape_pct": 2.301731101748036,
+        "e2e_bias_pct": -2.301731101748036
+      },
+      {
+        "name": "calibration_medium",
+        "request_count": 20,
+        "ttft_mape_pct": 6.675689043921315,
+        "ttft_bias_pct": -1.3866297105098795,
+        "tpot_mape_pct": 3.3675747080642457,
+        "tpot_bias_pct": 1.6017961296135816,
+        "e2e_mape_pct": 2.6267095683452597,
+        "e2e_bias_pct": 2.6267095683452597
+      },
+      {
+        "name": "calibration_saturated",
+        "request_count": 20,
+        "ttft_mape_pct": 16.006554460210538,
+        "ttft_bias_pct": 15.63701395101189,
+        "tpot_mape_pct": 5.020599401648891,
+        "tpot_bias_pct": -2.5625346063871777,
+        "e2e_mape_pct": 4.17981045129747,
+        "e2e_bias_pct": 4.17981045129747
+      }
+    ],
+    "parameters": {
+      "base_factor": 0.6,
+      "batch_exponent": -0.16666666666666669,
+      "kv_exponent": -0.05185185185185186,
+      "iteration_overhead_ms": 3.3333333333333335
+    }
+  },
+  "evaluation_count": 254,
+  "search_history": [
+    {
+      "start": 0,
+      "round": -1,
+      "parameters": {
+        "base_factor": 0.6,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 0.0
+      },
+      "objective": 19.56207462561981
+    },
+    {
+      "start": 0,
+      "round": 0,
+      "parameters": {
+        "base_factor": 0.6,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.11666666666666667,
+        "iteration_overhead_ms": 3.3333333333333335
+      },
+      "objective": 4.934649968106783
+    },
+    {
+      "start": 0,
+      "round": 1,
+      "parameters": {
+        "base_factor": 0.6,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 3.3333333333333335
+      },
+      "objective": 4.037772527482559
+    },
+    {
+      "start": 0,
+      "round": 2,
+      "parameters": {
+        "base_factor": 0.6,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.05185185185185186,
+        "iteration_overhead_ms": 3.3333333333333335
+      },
+      "objective": 3.869407182037744
+    },
+    {
+      "start": 1,
+      "round": -1,
+      "parameters": {
+        "base_factor": 0.75,
+        "batch_exponent": 0.0,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 5.0
+      },
+      "objective": 22.984515117733157
+    },
+    {
+      "start": 1,
+      "round": 0,
+      "parameters": {
+        "base_factor": 0.6000000000000001,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 3.3333333333333335
+      },
+      "objective": 5.069398840761415
+    },
+    {
+      "start": 1,
+      "round": 1,
+      "parameters": {
+        "base_factor": 0.6000000000000001,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 3.3333333333333335
+      },
+      "objective": 4.037772527482559
+    },
+    {
+      "start": 1,
+      "round": 2,
+      "parameters": {
+        "base_factor": 0.6000000000000001,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.05185185185185186,
+        "iteration_overhead_ms": 3.3333333333333335
+      },
+      "objective": 3.869407182037744
+    },
+    {
+      "start": 2,
+      "round": -1,
+      "parameters": {
+        "base_factor": 0.55,
+        "batch_exponent": 0.15,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 10.0
+      },
+      "objective": 25.912975429276404
+    },
+    {
+      "start": 2,
+      "round": 0,
+      "parameters": {
+        "base_factor": 0.35,
+        "batch_exponent": -0.33333333333333337,
+        "kv_exponent": 0.0,
+        "iteration_overhead_ms": 13.333333333333334
+      },
+      "objective": 13.368100782074917
+    },
+    {
+      "start": 2,
+      "round": 1,
+      "parameters": {
+        "base_factor": 0.35,
+        "batch_exponent": -0.16666666666666674,
+        "kv_exponent": -0.11666666666666665,
+        "iteration_overhead_ms": 14.444444444444446
+      },
+      "objective": 4.739268628284555
+    },
+    {
+      "start": 2,
+      "round": 2,
+      "parameters": {
+        "base_factor": 0.3534722222222222,
+        "batch_exponent": -0.14814814814814822,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 14.814814814814817
+      },
+      "objective": 4.1395107994349
+    },
+    {
+      "start": 3,
+      "round": -1,
+      "parameters": {
+        "base_factor": 0.7,
+        "batch_exponent": -0.15,
+        "kv_exponent": 0.1,
+        "iteration_overhead_ms": 3.0
+      },
+      "objective": 12.778429698863867
+    },
+    {
+      "start": 3,
+      "round": 0,
+      "parameters": {
+        "base_factor": 0.6000000000000001,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.11666666666666667,
+        "iteration_overhead_ms": 3.0
+      },
+      "objective": 4.872639578664197
+    },
+    {
+      "start": 3,
+      "round": 1,
+      "parameters": {
+        "base_factor": 0.6000000000000001,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.07777777777777778,
+        "iteration_overhead_ms": 3.166666666666667
+      },
+      "objective": 4.072166775367695
+    },
+    {
+      "start": 3,
+      "round": 2,
+      "parameters": {
+        "base_factor": 0.6000000000000001,
+        "batch_exponent": -0.16666666666666669,
+        "kv_exponent": -0.06481481481481483,
+        "iteration_overhead_ms": 3.518518518518519
+      },
+      "objective": 3.898088698839915
+    }
+  ],
+  "sources": [
+    {
+      "name": "calibration_isolated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_isolated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_isolated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_isolated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_isolated/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_medium",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_medium.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_medium/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_medium/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_medium/repeat_3.json"
+      ]
+    },
+    {
+      "name": "calibration_saturated",
+      "trace": "/data/home/lihaozhe/llm-simulator/data/trace/calibration/calibration_saturated.csv",
+      "runs": [
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_saturated/repeat_1.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_saturated/repeat_2.json",
+        "/data/home/lihaozhe/llm-simulator/data/ground_truth_co_located/calibration_tp4/calibration_saturated/repeat_3.json"
+      ]
+    }
+  ],
+  "holdout_policy": "Neither validation_trace.csv nor holdout_mixed_v2.csv is used in fitting. Freeze the generated config before running the new holdout."
+}

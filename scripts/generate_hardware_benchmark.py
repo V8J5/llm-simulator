@@ -39,6 +39,10 @@ sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__f
 
 from memory_estimator import MemoryEstimator
 
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DEFAULT_SPEC = os.path.join(
+    PROJECT_ROOT, "configs", "benchmark_specs", "qwen3_32b_v1.json")
+
 # ================= 模型固定参数 =================
 HIDDEN_SIZE = 5120
 NUM_LAYERS = 64
@@ -172,7 +176,7 @@ def find_max_batch_for_prefill(tp: int, seq: int, layer_ms: float, comm_table: D
         total_mb = mem_info.get("total_with_margin_mb", 0)
         if total_mb < gpu_memory_mb:
             time_ms = calc_prefill_time(layer_ms, tp, batch, seq, comm_table)
-            throughput = seq / (time_ms / 1000)
+            throughput = batch * seq / (time_ms / 1000)
             return batch, throughput
     return 1, 0.0
 
@@ -195,7 +199,7 @@ def find_max_batch_for_decode(tp: int, kv: int, layer_ms: float, comm_table: Dic
         total_mb = mem_info.get("total_with_margin_mb", 0)
         if total_mb < gpu_memory_mb:
             time_ms = calc_decode_time(layer_ms, tp, batch, kv, comm_table)
-            throughput = 1 / (time_ms / 1000)
+            throughput = batch / (time_ms / 1000)
             return batch, throughput
     return 1, 0.0
 
@@ -222,6 +226,8 @@ def main():
     parser.add_argument("--gpu-memory-mb", type=int, default=46000, help="GPU 显存大小（MB）")
     parser.add_argument("--memory-mode", choices=["test", "inference"], default="test",help="显存估算模式: test=测试模式(不含权重), inference=真实推理模式(含权重)")
     parser.add_argument("--output-dir", default=None, help="输出目录")
+    parser.add_argument("--benchmark-spec", default=DEFAULT_SPEC,
+                        help="版本化 BenchmarkSpec JSON")
     args = parser.parse_args()
     
     # ========== 按 GPU 型号隔离数据目录 ==========
@@ -234,6 +240,22 @@ def main():
     PRICE = args.price
     GPU_MEMORY_MB = args.gpu_memory_mb
     MEMORY_MODE = args.memory_mode
+    with open(args.benchmark_spec, "r", encoding="utf-8") as handle:
+        benchmark_spec = json.load(handle)
+    if benchmark_spec.get("protocol_version") != "0.1":
+        raise ValueError("only benchmark protocol 0.1 is supported")
+    BENCHMARK_CASES = {
+        "prefill": [{
+            "name": item["case"],
+            "batch": item["batch_size"],
+            "seq": item["prompt_length"],
+        } for item in benchmark_spec["workloads"]["prefill"]],
+        "decode": [{
+            "name": item["case"],
+            "batch": item["batch_size"],
+            "kv": item["kv_length"],
+        } for item in benchmark_spec["workloads"]["decode"]],
+    }
     
     print("=" * 70)
     print(f"🔬 硬件推理能力标准化评测（内存建模 + 性价比）")
@@ -305,6 +327,15 @@ def main():
     # ========== 评分计算 ==========
     results = {
         "meta": {
+            "schema_version": 2,
+            "protocol_version": benchmark_spec["protocol_version"],
+            "benchmark_name": benchmark_spec["benchmark_name"],
+            "model_id": benchmark_spec["model"]["model_id"],
+            "model_name": benchmark_spec["model"]["name"],
+            "dtype": benchmark_spec["model"]["dtype"],
+            "comparison_status": "provisional",
+            "comparison_status_reason": (
+                "independent real A/B full-model ratios have not been supplied"),
             "gpu_type": GPU_TYPE,
             "tp": TP,
             "price": PRICE,
@@ -370,7 +401,7 @@ def main():
             })
         else:
             total_ms = calc_prefill_time(layer_ms, TP, batch, seq, comm_table)
-            throughput = seq / (total_ms / 1000)
+            throughput = batch * seq / (total_ms / 1000)
             prefill_throughputs.append(throughput)
             results["prefill"].append({
                 "case": name, "batch": batch, "seq": seq,
@@ -432,7 +463,7 @@ def main():
             })
         else:
             total_ms = calc_decode_time(layer_ms, TP, batch, kv, comm_table)
-            throughput = 1 / (total_ms / 1000)
+            throughput = batch / (total_ms / 1000)
             decode_throughputs.append(throughput)
             results["decode"].append({
                 "case": name, "batch": batch, "kv": kv,
@@ -446,12 +477,17 @@ def main():
     if prefill_throughputs and decode_throughputs:
         avg_prefill = sum(prefill_throughputs) / len(prefill_throughputs)
         avg_decode = sum(decode_throughputs) / len(decode_throughputs)
+        # Kept only for compatibility with the legacy page.  It is not a
+        # scientifically valid P/D score because Prefill and Decode represent
+        # different deployment roles and scales.
         combined = avg_prefill * 0.5 + avg_decode * 0.5
         
         results["summary"] = {
             "avg_prefill_throughput": round(avg_prefill, 2),
             "avg_decode_throughput": round(avg_decode, 2),
             "combined_score": round(combined, 2),
+            "combined_score_status": "legacy_not_for_ranking",
+            "primary_score_policy": "report_prefill_and_decode_separately",
             "prefill_cases": len(prefill_throughputs),
             "decode_cases": len(decode_throughputs)
         }

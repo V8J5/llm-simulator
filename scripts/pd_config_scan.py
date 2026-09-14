@@ -1,275 +1,200 @@
 #!/usr/bin/env python3
-"""
-PD 分离配置扫描工具（完善版）
+"""Scan prefill/decode-disaggregated configurations and rank SLA capacity."""
 
-遍历多种 P/D 配置，输出对比报告
-用法: python scripts/pd_config_scan.py
+from __future__ import annotations
 
-修复内容：
-1. 仿真时长从 10 秒改为 30 秒，确保所有请求都能完成
-2. 增加 TP ≤ 卡数的合法性校验，自动跳过无效配置
-3. 统一请求数为 20 个
-4. 增加配置合法性检查的详细输出
-"""
-
-import os
-import sys
+import argparse
+import csv
 import json
-from typing import List, Dict, Any, Optional, Tuple
-from datetime import datetime
+import sys
+from pathlib import Path
 
-# 添加 core 目录到路径
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
 
-from core.pd_simulator import PDSimulator, PDConfig
+from core.experiment_runner import CapacityPolicy, WorkloadSpec
+from core.pd_experiment_runner import PDCapacityExperimentRunner, pd_serving_grid
 from core.qwen3_cost_model import LLMCostModel
-from core.simulator import RequestGenerator
 
 
-def is_config_valid(p_gpus: int, d_gpus: int, p_tp: int, d_tp: int) -> Tuple[bool, str]:
-    """
-    检查 PD 配置是否合法
-    
-    Returns:
-        (is_valid, reason)
-    """
-    if p_tp > p_gpus:
-        return False, f"Prefill TP({p_tp}) > Prefill 卡数({p_gpus})"
-    if d_tp > d_gpus:
-        return False, f"Decode TP({d_tp}) > Decode 卡数({d_gpus})"
-    if p_gpus <= 0 or d_gpus <= 0:
-        return False, "卡数必须大于 0"
-    if p_tp <= 0 or d_tp <= 0:
-        return False, "TP 必须大于 0"
-    return True, "OK"
+def _gpu_split(value: str) -> tuple[int, int]:
+    try:
+        prefill, decode = (int(item) for item in value.split(":", 1))
+    except (TypeError, ValueError) as exc:
+        raise argparse.ArgumentTypeError(
+            "GPU split must use PREFILL:DECODE, for example 4:8") from exc
+    if prefill <= 0 or decode <= 0:
+        raise argparse.ArgumentTypeError("GPU counts must be positive")
+    return prefill, decode
 
 
-def run_single_config(pd_config: PDConfig, 
-                      trace_file: str = None,  # 新增参数
-                      sim_duration_ms: float = 30000.0) -> Dict[str, Any]:
-    DATA_DIR = "/data/home/lihaozhe/llm-simulator/data/trace"
-    cost_model = LLMCostModel(DATA_DIR, peak_tflops=119.5, mem_bw_gb_s=864.0)
-    
-    # 使用 trace 模式加载固定 trace
-    generator = RequestGenerator(
-        mode="trace",           # 改为 trace 模式
-        trace_file=trace_file,  # 传入固定 trace 路径
-        trace_repeat=False
-    )
-    
-    simulator = PDSimulator(
-        pd_config=pd_config,
-        cost_model=cost_model,
-        request_generator=generator,
-        resource_checker=None,
-        max_concurrent_requests=8,
-        max_batch_token=4096
-    )
-    
-    stats = simulator.run(
-        simulation_duration_ms=sim_duration_ms,
-        ttft_sla_ms=500.0,
-        tpot_sla_ms=50.0
-    )
-    
-    return stats
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--data-dir", type=Path, default=PROJECT_ROOT / "data")
+    parser.add_argument("--operator-profile-dir", type=Path)
+    parser.add_argument("--collective-profile-dir", type=Path)
+    parser.add_argument("--output-dir", type=Path,
+                        default=PROJECT_ROOT / "data" / "pd_capacity_search")
+    parser.add_argument("--calibration-file", type=Path)
+    parser.add_argument("--enable-calibration", action="store_true")
+    parser.add_argument("--allow-unprofiled-tp", action="store_true")
+    parser.add_argument("--gpu-splits", nargs="+", type=_gpu_split,
+                        default=[(4, 4)], metavar="P:D",
+                        help="physical GPU split(s), e.g. 4:8 8:4")
+    parser.add_argument("--prefill-tp-sizes", nargs="+", type=int, default=[4])
+    parser.add_argument("--decode-tp-sizes", nargs="+", type=int, default=[4])
+    parser.add_argument("--prefill-num-gpu-blocks", type=int, default=22136)
+    parser.add_argument("--decode-num-gpu-blocks", type=int, default=22136)
+    parser.add_argument("--block-size-tokens", type=int, default=16)
+    parser.add_argument("--prefill-max-num-batched-tokens", nargs="+", type=int,
+                        default=[4096])
+    parser.add_argument("--prefill-max-num-seqs", nargs="+", type=int,
+                        default=[16])
+    parser.add_argument("--decode-max-num-batched-tokens", nargs="+", type=int,
+                        default=[4096])
+    parser.add_argument("--decode-max-num-seqs", nargs="+", type=int,
+                        default=[16, 32])
+    parser.add_argument("--chunked-prefill", choices=["on", "off", "both"],
+                        default="on")
+    parser.add_argument("--kv-transfer-modes", nargs="+", default=["pcie"])
+    parser.add_argument("--kv-transfer-bandwidths-gb-s", nargs="+", type=float,
+                        default=[12.5])
+    parser.add_argument("--kv-transfer-latency-ms", type=float, default=0.1)
+    parser.add_argument("--kv-transfer-concurrencies", nargs="+", type=int,
+                        default=[1])
+    parser.add_argument(
+        "--decode-kv-load-policies", nargs="+",
+        choices=["post_transfer", "blocking_receive"],
+        default=["blocking_receive"],
+        help=("Decode-side KV admission semantics to scan. Use "
+              "blocking_receive for the vLLM 0.19 P2pNcclConnector "
+              "(default)."))
+    parser.add_argument("--arrival-rates-rps", nargs="+", type=float,
+                        required=True)
+    parser.add_argument("--refine-iterations", type=int, default=3)
+    parser.add_argument("--mode", choices=["fixed", "poisson"], default="poisson")
+    parser.add_argument("--prompt-len", type=int, default=512)
+    parser.add_argument("--output-len", type=int, default=128)
+    parser.add_argument("--prompt-len-range", nargs=2, type=int,
+                        metavar=("MIN", "MAX"))
+    parser.add_argument("--output-len-range", nargs=2, type=int,
+                        metavar=("MIN", "MAX"))
+    parser.add_argument("--num-requests", type=int, default=200)
+    parser.add_argument("--simulation-duration-ms", type=float,
+                        default=1_000_000.0)
+    parser.add_argument("--repeats", type=int, default=3)
+    parser.add_argument("--seed", type=int, default=20260910)
+    parser.add_argument("--ttft-sla-ms", type=float, default=500.0)
+    parser.add_argument("--tpot-sla-ms", type=float, default=50.0)
+    parser.add_argument("--min-completion-ratio", type=float, default=1.0)
+    parser.add_argument("--min-sla-success-ratio", type=float, default=0.9)
+    return parser.parse_args()
 
 
-def scan_configs():
-    """扫描多种 PD 配置"""
-    
-    # 定义要扫描的配置: (name, P卡数, D卡数, P_TP, D_TP)
-    all_configs = [
-        ("P2_D2_TP2", 2, 2, 2, 2),
-        ("P2_D4_TP2_TP4", 2, 4, 2, 4),
-        ("P4_D4_TP4", 4, 4, 4, 4),
-        ("P4_D8_TP4_TP8", 4, 8, 4, 8),
-        ("P2_D8_TP2_TP8", 2, 8, 2, 8),
-        ("P4_D8_TP8_TP8", 4, 8, 8, 8),  # 此配置将在校验中被标记为无效
-    ]
-    
-    # ========== 修复 2: 过滤掉无效配置 ==========
-    valid_configs = []
-    invalid_configs = []
-    
-    for name, p_gpus, d_gpus, p_tp, d_tp in all_configs:
-        is_valid, reason = is_config_valid(p_gpus, d_gpus, p_tp, d_tp)
-        if is_valid:
-            valid_configs.append((name, p_gpus, d_gpus, p_tp, d_tp))
-        else:
-            invalid_configs.append((name, p_gpus, d_gpus, p_tp, d_tp, reason))
-    
-    results = []
-    total_kv = 30000
-    
-    print("=" * 80)
-    print("PD 分离配置扫描 (完善版)")
-    print("=" * 80)
-    print(f"开始时间: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"总配置数: {len(all_configs)}")
-    print(f"有效配置: {len(valid_configs)}")
-    print(f"无效配置: {len(invalid_configs)}")
-    
-    # 打印无效配置
-    if invalid_configs:
-        print("\n⚠️ 以下配置因不合法将被跳过:")
-        for name, p_gpus, d_gpus, p_tp, d_tp, reason in invalid_configs:
-            print(f"  - {name}: {reason}")
-    
-    print("-" * 80)
-    print(f"仿真时长: 30000ms (30秒)，确保所有请求完成")
-    print(f"请求数量: 20 个 (固定间隔 100ms 到达)")
-    print("-" * 80)
-    
-    # ========== 修复 1: 仿真时长统一为 30 秒 ==========
-    SIM_DURATION_MS = 30000.0
-    
-    for idx, (name, p_gpus, d_gpus, p_tp, d_tp) in enumerate(valid_configs):
-        print(f"\n[{idx+1}/{len(valid_configs)}] 运行配置: {name}")
-        print(f"  P: {p_gpus} 卡, TP={p_tp}")
-        print(f"  D: {d_gpus} 卡, TP={d_tp}")
-        
-        # KV 池按比例分配 (总 KV 30GB，P/D 按卡数比例分配)
-        p_kv = int(total_kv * p_gpus / (p_gpus + d_gpus))
-        d_kv = total_kv - p_kv
-        
-        pd_config = PDConfig(
-            num_prefill_gpus=p_gpus,
-            prefill_tp=p_tp,
-            prefill_kv_memory_mb=p_kv,
-            num_decode_gpus=d_gpus,
-            decode_tp=d_tp,
-            decode_kv_memory_mb=d_kv,
-            kv_transfer_bw_gb_s=12.5,
-            kv_transfer_latency_ms=0.1,
-            kv_transfer_mode="pcie"  # 可改为 "nvlink" 或 "roce"
-        )
-        
-        try:
-            # stats = run_single_config(pd_config, mode="fixed", 
-            #                           num_requests=20, 
-            #                           sim_duration_ms=SIM_DURATION_MS)
-            stats = run_single_config(
-                pd_config, 
-                trace_file="/data/home/lihaozhe/llm-simulator/data/trace/validation_trace.csv",
-                sim_duration_ms=SIM_DURATION_MS
-            )
-            
-            result = {
-                "config_name": name,
-                "p_gpus": p_gpus,
-                "d_gpus": d_gpus,
-                "p_tp": p_tp,
-                "d_tp": d_tp,
-                "p_kv_mb": p_kv,
-                "d_kv_mb": d_kv,
-                "total_requests": stats.get("total_requests", 0),
-                "completed_requests": stats.get("completed_requests", 0),
-                "ttft_avg": stats.get("ttft_ms", {}).get("avg", 0),
-                "ttft_p50": stats.get("ttft_ms", {}).get("p50", 0),
-                "ttft_p90": stats.get("ttft_ms", {}).get("p90", 0),
-                "ttft_p99": stats.get("ttft_ms", {}).get("p99", 0),
-                "tpot_avg": stats.get("tpot_ms", {}).get("avg", 0),
-                "tpot_p50": stats.get("tpot_ms", {}).get("p50", 0),
-                "tpot_p90": stats.get("tpot_ms", {}).get("p90", 0),
-                "tpot_p99": stats.get("tpot_ms", {}).get("p99", 0),
-                "throughput": stats.get("throughput_tokens_per_s", 0),
-                "goodput_ttft": stats.get("goodput", {}).get("ttft_ratio", 0) * 100,
-                "goodput_tpot": stats.get("goodput", {}).get("tpot_ratio", 0) * 100,
-                "goodput_both": stats.get("goodput", {}).get("both_ratio", 0) * 100,
-            }
-            
-            results.append(result)
-            
-            # 计算完成率
-            complete_rate = f"{result['completed_requests']}/{result['total_requests']}"
-            print(f"  ✅ 完成: {complete_rate} 个请求")
-            print(f"  📊 Goodput (Both): {result['goodput_both']:.1f}%")
-            print(f"  📊 吞吐: {result['throughput']:.1f} tokens/s")
-            print(f"  📊 TTFT P50: {result['ttft_p50']:.1f} ms")
-            
-        except Exception as e:
-            print(f"  ❌ 失败: {e}")
-            results.append({
-                "config_name": name,
-                "p_gpus": p_gpus,
-                "d_gpus": d_gpus,
-                "p_tp": p_tp,
-                "d_tp": d_tp,
-                "p_kv_mb": p_kv,
-                "d_kv_mb": d_kv,
-                "error": str(e)
-            })
-    
-    return results, invalid_configs
-
-
-def print_report(results: List[Dict[str, Any]], invalid_configs: List[Tuple]):
-    """打印对比报告"""
-    print("\n" + "=" * 80)
-    print("📊 PD 分离配置扫描报告")
-    print("=" * 80)
-    
-    # 如果有无效配置，先显示
-    if invalid_configs:
-        print("\n⚠️ 跳过的无效配置:")
-        for name, p_gpus, d_gpus, p_tp, d_tp, reason in invalid_configs:
-            print(f"  - {name}: {reason}")
-        print()
-    
-    # 有效配置的结果
-    valid_results = [r for r in results if "error" not in r]
-    if not valid_results:
-        print("❌ 没有有效的配置结果")
+def write_csv(path: Path, rows: list[dict]) -> None:
+    if not rows:
         return
-    
-    # 表头
-    print(f"\n{'配置':<16} {'P卡/D卡':<10} {'P_TP/D_TP':<12} {'Goodput':<10} {'吞吐':<12} {'TTFT P50':<12} {'TTFT P90':<12} {'TPOT avg':<12} {'完成率':<10}")
-    print("-" * 120)
-    
-    for r in valid_results:
-        complete_rate = f"{r['completed_requests']}/{r['total_requests']}"
-        print(f"{r['config_name']:<16} {r['p_gpus']}/{r['d_gpus']:<7} {r['p_tp']}/{r['d_tp']:<9} {r['goodput_both']:<9.1f}% {r['throughput']:<11.1f} {r['ttft_p50']:<11.1f} {r['ttft_p90']:<11.1f} {r['tpot_avg']:<11.1f} {complete_rate:<10}")
-    
-    # 找出最优配置
-    best_goodput = max(valid_results, key=lambda x: x['goodput_both'])
-    best_throughput = max(valid_results, key=lambda x: x['throughput'])
-    best_ttft = min(valid_results, key=lambda x: x['ttft_p50'])
-    
-    print("\n" + "=" * 80)
-    print("🏆 最优配置")
-    print("=" * 80)
-    print(f"  最佳 Goodput: {best_goodput['config_name']} ({best_goodput['goodput_both']:.1f}%)")
-    print(f"  最佳吞吐: {best_throughput['config_name']} ({best_throughput['throughput']:.1f} tokens/s)")
-    print(f"  最佳 TTFT P50: {best_ttft['config_name']} ({best_ttft['ttft_p50']:.1f} ms)")
-    
-    # 保存结果
-    output_dir = "/data/home/lihaozhe/llm-simulator/data/pd_config_scan"
-    os.makedirs(output_dir, exist_ok=True)
-    output_file = os.path.join(output_dir, f"pd_config_scan_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json")
-    
-    # 保存时包含完整信息
-    full_result = {
-        "scan_time": datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-        "sim_duration_ms": 30000,
-        "num_requests": 20,
-        "invalid_configs": [
-            {"name": name, "p_gpus": p_gpus, "d_gpus": d_gpus, 
-             "p_tp": p_tp, "d_tp": d_tp, "reason": reason}
-            for name, p_gpus, d_gpus, p_tp, d_tp, reason in invalid_configs
-        ],
-        "results": results
+    path.parent.mkdir(parents=True, exist_ok=True)
+    fields = [key for key in rows[0] if key != "runs"]
+    with path.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=fields)
+        writer.writeheader()
+        writer.writerows({key: row.get(key) for key in fields} for row in rows)
+
+
+def main() -> int:
+    args = parse_args()
+    if args.enable_calibration and not args.calibration_file:
+        raise SystemExit("--enable-calibration requires --calibration-file")
+    if args.calibration_file and not args.calibration_file.exists():
+        raise SystemExit(f"calibration file not found: {args.calibration_file}")
+    chunked = {"on": [True], "off": [False], "both": [False, True]}[
+        args.chunked_prefill]
+    model = LLMCostModel(
+        str(args.data_dir),
+        calibration_file=(str(args.calibration_file)
+                          if args.calibration_file else None),
+        enable_e2e_compensation=args.enable_calibration,
+        operator_profile_dir=(str(args.operator_profile_dir)
+                              if args.operator_profile_dir else None),
+        collective_profile_dir=(str(args.collective_profile_dir)
+                                if args.collective_profile_dir else None))
+    requested_tps = set(args.prefill_tp_sizes) | set(args.decode_tp_sizes)
+    profiled_tps = {1, *model.comm_tables.keys()}
+    missing_tps = sorted(requested_tps - profiled_tps)
+    if missing_tps and not args.allow_unprofiled_tp:
+        raise SystemExit(
+            f"TP values lack communication profiles: {missing_tps}; "
+            "collect profiles or pass --allow-unprofiled-tp explicitly")
+
+    configs, rejected = pd_serving_grid(
+        args.gpu_splits, args.prefill_tp_sizes, args.decode_tp_sizes,
+        args.prefill_num_gpu_blocks, args.decode_num_gpu_blocks,
+        args.block_size_tokens, args.prefill_max_num_batched_tokens,
+        args.prefill_max_num_seqs, args.decode_max_num_batched_tokens,
+        args.decode_max_num_seqs, chunked, args.kv_transfer_modes,
+        args.kv_transfer_bandwidths_gb_s, args.kv_transfer_latency_ms,
+        args.kv_transfer_concurrencies, args.decode_kv_load_policies)
+    if not configs:
+        raise SystemExit("no valid configuration remains after TP divisibility checks")
+    workload = WorkloadSpec(
+        mode=args.mode, prompt_len=args.prompt_len, output_len=args.output_len,
+        prompt_len_range=(tuple(args.prompt_len_range)
+                          if args.prompt_len_range else None),
+        output_len_range=(tuple(args.output_len_range)
+                          if args.output_len_range else None),
+        num_requests=args.num_requests,
+        simulation_duration_ms=args.simulation_duration_ms, seed=args.seed)
+    policy = CapacityPolicy(
+        ttft_sla_ms=args.ttft_sla_ms, tpot_sla_ms=args.tpot_sla_ms,
+        min_completion_ratio=args.min_completion_ratio,
+        min_sla_success_ratio=args.min_sla_success_ratio)
+    report = PDCapacityExperimentRunner(
+        model, workload, policy, repeats=args.repeats).run(
+            configs, args.arrival_rates_rps,
+            refine_iterations=args.refine_iterations)
+    report["rejected_configurations"] = rejected
+    report["provenance"] = {
+        "data_dir": str(args.data_dir.resolve()),
+        "calibration_enabled": args.enable_calibration,
+        "calibration_file": (str(args.calibration_file.resolve())
+                             if args.calibration_file else None),
+        "profiled_tp_sizes": sorted(profiled_tps),
+        "unprofiled_tp_sizes": missing_tps,
+        "decode_kv_load_policies": args.decode_kv_load_policies,
+        "operator_profile_dir": (
+            str(args.operator_profile_dir.resolve())
+            if args.operator_profile_dir else None),
+        "collective_profile_dir": (
+            str(args.collective_profile_dir.resolve())
+            if args.collective_profile_dir else None),
     }
-    
-    with open(output_file, 'w') as f:
-        json.dump(full_result, f, indent=2)
-    print(f"\n💾 结果已保存至: {output_file}")
 
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    with (args.output_dir / "pd_capacity_report.json").open(
+            "w", encoding="utf-8") as handle:
+        json.dump(report, handle, indent=2, ensure_ascii=False)
+    write_csv(args.output_dir / "pd_capacity_points.csv", report["points"])
+    write_csv(args.output_dir / "pd_capacity_ranking.csv",
+              report["capacity_ranking"])
+    write_csv(args.output_dir / "pd_efficiency_ranking.csv",
+              report["efficiency_ranking"])
+    write_csv(args.output_dir / "pd_rejected_configs.csv", rejected)
 
-def main():
-    results, invalid_configs = scan_configs()
-    print_report(results, invalid_configs)
+    print(f"valid configurations: {len(configs)}")
+    print(f"rejected configurations: {len(rejected)}")
+    print(f"evaluated points: {len(report['points'])}")
+    print("rank  lower_rps  upper_rps  total_gpu  bottleneck  config")
+    for row in report["capacity_ranking"]:
+        print(f"{row['rank']:>4}  {str(row['capacity_lower_bound_rps']):>9}  "
+              f"{str(row['capacity_upper_bound_rps']):>9}  "
+              f"{row['total_gpus']:>9}  "
+              f"{str(row['estimated_bottleneck_at_capacity']):>10}  "
+              f"{row['config_id']}")
+    print(f"report: {args.output_dir / 'pd_capacity_report.json'}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())
